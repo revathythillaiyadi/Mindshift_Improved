@@ -1,0 +1,263 @@
+import { AlertCircle, TrendingUp, Flame, Target, Bell } from 'lucide-react';
+import { useState } from 'react';
+
+interface RightPanelProps {
+  selectedRegion: string;
+}
+
+const regionalContacts: Record<string, { crisis: string; hotline: string; emergency: string }> = {
+  US: {
+    crisis: '988 (Suicide & Crisis Lifeline)',
+    hotline: '1-800-273-8255 (National Suicide Prevention)',
+    emergency: '911',
+  },
+  UK: {
+    crisis: '116 123 (Samaritans)',
+    hotline: '0800 689 5652 (Campaign Against Living Miserably)',
+    emergency: '999',
+  },
+  CA: {
+    crisis: '1-833-456-4566 (Talk Suicide Canada)',
+    hotline: '1-866-277-3553 (Kids Help Phone)',
+    emergency: '911',
+  },
+  AU: {
+    crisis: '13 11 14 (Lifeline)',
+    hotline: '1800 55 1800 (Kids Helpline)',
+    emergency: '000',
+  },
+  IN: {
+    crisis: '9152987821 (AASRA)',
+    hotline: '080 46110007 (iCall)',
+    emergency: '112',
+  },
+  DE: {
+    crisis: '0800 1110111 (TelefonSeelsorge)',
+    hotline: '0800 1110222 (TelefonSeelsorge)',
+    emergency: '112',
+  },
+  FR: {
+    crisis: '3114 (National Suicide Prevention)',
+    hotline: '01 45 39 40 00 (SOS Amitié)',
+    emergency: '112',
+  },
+  JP: {
+    crisis: '0120-783-556 (TELL Lifeline)',
+    hotline: '0570-064-556 (Mental Health Support)',
+    emergency: '110',
+  },
+};
+
+export default function RightPanel({ selectedRegion }: RightPanelProps) {
+  const [showSOSModal, setShowSOSModal] = useState(false);
+
+  const contacts = regionalContacts[selectedRegion] || regionalContacts.US;
+
+  const moodData = [
+    { date: 'Mon', mood: 7 },
+    { date: 'Tue', mood: 6 },
+    { date: 'Wed', mood: 8 },
+    { date: 'Thu', mood: 7 },
+    { date: 'Fri', mood: 9 },
+    { date: 'Sat', mood: 8 },
+    { date: 'Sun', mood: 8 },
+  ];
+
+  const maxMood = 10;
+
+  return (
+    <>
+      <aside className="w-80 bg-white/80 dark:bg-gray-800/80 backdrop-blur-sm border-l border-blue-100 dark:border-gray-700 overflow-y-auto transition-colors">
+        <div className="p-6 space-y-6">
+          <button
+            onClick={() => setShowSOSModal(true)}
+            className="w-full py-4 bg-gradient-to-r from-red-500 to-orange-500 text-white rounded-xl font-bold text-lg shadow-lg hover:shadow-xl transition-all hover:scale-105 flex items-center justify-center gap-2"
+          >
+            <AlertCircle className="w-6 h-6" />
+            SOS - Get Help Now
+          </button>
+
+          <div className="bg-gradient-to-br from-blue-50 to-teal-50 dark:from-gray-700 dark:to-gray-600 rounded-xl p-4 transition-colors">
+            <div className="flex items-center gap-2 mb-3">
+              <Flame className="w-5 h-5 text-orange-500" />
+              <h3 className="font-semibold text-gray-800 dark:text-white">Current Streak</h3>
+            </div>
+            <div className="flex items-baseline gap-2">
+              <span className="text-4xl font-bold bg-gradient-to-r from-blue-600 to-teal-600 bg-clip-text text-transparent">
+                7
+              </span>
+              <span className="text-gray-600 dark:text-gray-300">days</span>
+            </div>
+            <p className="text-sm text-gray-600 dark:text-gray-400 mt-2">
+              Keep it up! You're building healthy habits.
+            </p>
+          </div>
+
+          <div className="bg-white dark:bg-gray-700 rounded-xl p-4 border border-blue-100 dark:border-gray-600 transition-colors">
+            <div className="flex items-center gap-2 mb-4">
+              <TrendingUp className="w-5 h-5 text-blue-600 dark:text-blue-400" />
+              <h3 className="font-semibold text-gray-800 dark:text-white">Mood Tracker</h3>
+            </div>
+            <div className="space-y-2">
+              <div className="flex items-end justify-between h-32 gap-1">
+                {moodData.map((day) => (
+                  <div key={day.date} className="flex-1 flex flex-col items-center gap-1">
+                    <div
+                      className="w-full bg-gradient-to-t from-blue-500 to-teal-500 rounded-t-lg transition-all hover:opacity-80"
+                      style={{ height: `${(day.mood / maxMood) * 100}%` }}
+                    />
+                    <span className="text-xs text-gray-600 dark:text-gray-400">{day.date}</span>
+                  </div>
+                ))}
+              </div>
+              <div className="flex items-center justify-between text-xs text-gray-500 dark:text-gray-400">
+                <span>Last 7 days</span>
+                <span className="text-teal-600 dark:text-teal-400 font-medium">Trending up</span>
+              </div>
+            </div>
+          </div>
+
+          <div className="bg-white dark:bg-gray-700 rounded-xl p-4 border border-blue-100 dark:border-gray-600 transition-colors">
+            <div className="flex items-center gap-2 mb-4">
+              <Target className="w-5 h-5 text-blue-600 dark:text-blue-400" />
+              <h3 className="font-semibold text-gray-800 dark:text-white">Goals Progress</h3>
+            </div>
+            <div className="space-y-3">
+              <div>
+                <div className="flex items-center justify-between mb-1">
+                  <span className="text-sm text-gray-700 dark:text-gray-300">Daily Check-in</span>
+                  <span className="text-sm font-medium text-blue-600 dark:text-blue-400">7/7</span>
+                </div>
+                <div className="h-2 bg-blue-100 dark:bg-gray-600 rounded-full overflow-hidden">
+                  <div className="h-full bg-gradient-to-r from-blue-500 to-teal-500 rounded-full" style={{ width: '100%' }} />
+                </div>
+              </div>
+              <div>
+                <div className="flex items-center justify-between mb-1">
+                  <span className="text-sm text-gray-700 dark:text-gray-300">Journal Entries</span>
+                  <span className="text-sm font-medium text-blue-600 dark:text-blue-400">4/10</span>
+                </div>
+                <div className="h-2 bg-blue-100 dark:bg-gray-600 rounded-full overflow-hidden">
+                  <div className="h-full bg-gradient-to-r from-blue-500 to-teal-500 rounded-full" style={{ width: '40%' }} />
+                </div>
+              </div>
+              <div>
+                <div className="flex items-center justify-between mb-1">
+                  <span className="text-sm text-gray-700 dark:text-gray-300">Mindfulness Minutes</span>
+                  <span className="text-sm font-medium text-blue-600 dark:text-blue-400">45/60</span>
+                </div>
+                <div className="h-2 bg-blue-100 dark:bg-gray-600 rounded-full overflow-hidden">
+                  <div className="h-full bg-gradient-to-r from-blue-500 to-teal-500 rounded-full" style={{ width: '75%' }} />
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <div className="bg-gradient-to-br from-amber-50 to-yellow-50 dark:from-amber-900/20 dark:to-yellow-900/20 rounded-xl p-4 border border-amber-200 dark:border-amber-800 transition-colors">
+            <div className="flex items-start gap-3">
+              <Bell className="w-5 h-5 text-amber-600 dark:text-amber-400 flex-shrink-0 mt-1" />
+              <div>
+                <h3 className="font-semibold text-gray-800 dark:text-white mb-1">Daily Check-in</h3>
+                <p className="text-sm text-gray-600 dark:text-gray-300">
+                  How are you feeling today? Take a moment to chat with NIRA.
+                </p>
+              </div>
+            </div>
+          </div>
+
+          <div className="bg-white dark:bg-gray-700 rounded-xl p-4 border border-blue-100 dark:border-gray-600 transition-colors">
+            <h3 className="font-semibold text-gray-800 dark:text-white mb-3">Recent Achievements</h3>
+            <div className="space-y-2">
+              <div className="flex items-center gap-3 p-2 bg-blue-50 dark:bg-gray-600 rounded-lg">
+                <span className="text-2xl">🎯</span>
+                <div className="flex-1">
+                  <p className="text-sm font-medium text-gray-800 dark:text-white">7-Day Streak!</p>
+                  <p className="text-xs text-gray-600 dark:text-gray-400">Checked in daily</p>
+                </div>
+              </div>
+              <div className="flex items-center gap-3 p-2 bg-blue-50 dark:bg-gray-600 rounded-lg">
+                <span className="text-2xl">📝</span>
+                <div className="flex-1">
+                  <p className="text-sm font-medium text-gray-800 dark:text-white">Journaling Pro</p>
+                  <p className="text-xs text-gray-600 dark:text-gray-400">10 entries written</p>
+                </div>
+              </div>
+              <div className="flex items-center gap-3 p-2 bg-blue-50 dark:bg-gray-600 rounded-lg">
+                <span className="text-2xl">🌟</span>
+                <div className="flex-1">
+                  <p className="text-sm font-medium text-gray-800 dark:text-white">Mood Improver</p>
+                  <p className="text-xs text-gray-600 dark:text-gray-400">Positive trend this week</p>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </aside>
+
+      {showSOSModal && (
+        <div className="fixed inset-0 bg-black/50 flex items-center justify-center z-50 p-4">
+          <div className="bg-white dark:bg-gray-800 rounded-2xl shadow-2xl max-w-md w-full p-6 transition-colors">
+            <div className="flex items-center gap-3 mb-4">
+              <div className="w-12 h-12 bg-red-100 dark:bg-red-900/30 rounded-full flex items-center justify-center">
+                <AlertCircle className="w-6 h-6 text-red-600 dark:text-red-400" />
+              </div>
+              <h2 className="text-2xl font-bold text-gray-800 dark:text-white">Emergency Resources</h2>
+            </div>
+
+            <p className="text-gray-600 dark:text-gray-300 mb-6">
+              If you're in crisis or need immediate support, please reach out to one of these services:
+            </p>
+
+            <div className="space-y-4 mb-6">
+              <div className="p-4 bg-red-50 dark:bg-red-900/20 rounded-lg border border-red-200 dark:border-red-800">
+                <h3 className="font-semibold text-red-900 dark:text-red-200 mb-2">Crisis Hotline</h3>
+                <a
+                  href={`tel:${contacts.crisis.split(' ')[0]}`}
+                  className="text-lg font-bold text-red-600 dark:text-red-400 hover:underline"
+                >
+                  {contacts.crisis}
+                </a>
+              </div>
+
+              <div className="p-4 bg-amber-50 dark:bg-amber-900/20 rounded-lg border border-amber-200 dark:border-amber-800">
+                <h3 className="font-semibold text-amber-900 dark:text-amber-200 mb-2">Support Hotline</h3>
+                <a
+                  href={`tel:${contacts.hotline.split(' ')[0]}`}
+                  className="text-lg font-bold text-amber-600 dark:text-amber-400 hover:underline"
+                >
+                  {contacts.hotline}
+                </a>
+              </div>
+
+              <div className="p-4 bg-blue-50 dark:bg-blue-900/20 rounded-lg border border-blue-200 dark:border-blue-800">
+                <h3 className="font-semibold text-blue-900 dark:text-blue-200 mb-2">Emergency Services</h3>
+                <a
+                  href={`tel:${contacts.emergency}`}
+                  className="text-lg font-bold text-blue-600 dark:text-blue-400 hover:underline"
+                >
+                  {contacts.emergency}
+                </a>
+              </div>
+            </div>
+
+            <div className="flex gap-3">
+              <button
+                onClick={() => setShowSOSModal(false)}
+                className="flex-1 px-6 py-3 bg-gray-100 dark:bg-gray-700 text-gray-700 dark:text-gray-300 rounded-lg hover:bg-gray-200 dark:hover:bg-gray-600 transition-colors font-medium"
+              >
+                Close
+              </button>
+              <button className="flex-1 px-6 py-3 bg-gradient-to-r from-red-600 to-orange-600 text-white rounded-lg hover:shadow-lg transition-all font-medium">
+                Call Now
+              </button>
+            </div>
+
+            <p className="text-xs text-gray-500 dark:text-gray-400 text-center mt-4">
+              You're not alone. Help is available 24/7.
+            </p>
+          </div>
+        </div>
+      )}
+    </>
+  );
+}
