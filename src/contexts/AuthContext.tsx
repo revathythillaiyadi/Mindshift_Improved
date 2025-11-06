@@ -10,6 +10,7 @@ export interface UserProfile {
   region: string;
   emergencyContactName: string;
   emergencyContactPhone: string;
+  emergencyContactRelationship?: string;
 }
 
 interface AuthContextType {
@@ -91,6 +92,7 @@ export function AuthProvider({ children }: { children: ReactNode }) {
             region: profile.region,
             emergency_contact_name: profile.emergencyContactName,
             emergency_contact_phone: profile.emergencyContactPhone,
+            emergency_contact_relationship: profile.emergencyContactRelationship,
           })
           .eq('id', authData.user.id);
 

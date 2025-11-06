@@ -1,5 +1,5 @@
 import { useState } from 'react';
-import { Brain, Mail, Lock, AlertCircle, CheckCircle, User, Phone, MapPin, Shield, Check } from 'lucide-react';
+import { Brain, Mail, Lock, AlertCircle, CheckCircle, User, Phone, MapPin, Shield, Check, Users } from 'lucide-react';
 import { Link } from 'react-router-dom';
 import { useAuth, UserProfile } from '../contexts/AuthContext';
 
@@ -35,6 +35,7 @@ export default function SignUp() {
     region: '',
     emergencyContactName: '',
     emergencyContactPhone: '',
+    emergencyContactRelationship: '',
   });
 
   const [confirmPassword, setConfirmPassword] = useState('');
@@ -84,6 +85,10 @@ export default function SignUp() {
     }
     if (!formData.emergencyContactPhone.trim()) {
       setError('Please enter an emergency contact phone number.');
+      return false;
+    }
+    if (!formData.emergencyContactRelationship) {
+      setError('Please select your relationship with the emergency contact.');
       return false;
     }
     return true;
@@ -429,6 +434,33 @@ export default function SignUp() {
                       />
                     </div>
                   </div>
+
+                  <div>
+                    <label htmlFor="emergencyContactRelationship" className="block text-sm font-semibold text-blue-900 dark:text-blue-100 mb-2">
+                      Relationship
+                    </label>
+                    <div className="relative">
+                      <Users className="absolute left-4 top-1/2 -translate-y-1/2 w-5 h-5 text-blue-400 pointer-events-none z-10" />
+                      <select
+                        id="emergencyContactRelationship"
+                        value={formData.emergencyContactRelationship}
+                        onChange={(e) => updateFormData('emergencyContactRelationship', e.target.value)}
+                        className="w-full pl-12 pr-4 py-3 border-2 border-blue-200 dark:border-gray-600 rounded-xl focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-transparent bg-white dark:bg-gray-700 text-blue-900 dark:text-white appearance-none transition-all"
+                        required
+                      >
+                        <option value="">Select relationship</option>
+                        <option value="Parent">Parent</option>
+                        <option value="Spouse">Spouse</option>
+                        <option value="Partner">Partner</option>
+                        <option value="Sibling">Sibling</option>
+                        <option value="Child">Child</option>
+                        <option value="Friend">Friend</option>
+                        <option value="Guardian">Guardian</option>
+                        <option value="Relative">Relative</option>
+                        <option value="Other">Other</option>
+                      </select>
+                    </div>
+                  </div>
                 </div>
               </div>
 
@@ -495,6 +527,10 @@ export default function SignUp() {
                     <div className="flex justify-between">
                       <span className="text-blue-700 dark:text-blue-300">Phone:</span>
                       <span className="font-medium text-blue-900 dark:text-blue-100">{formData.emergencyContactPhone}</span>
+                    </div>
+                    <div className="flex justify-between">
+                      <span className="text-blue-700 dark:text-blue-300">Relationship:</span>
+                      <span className="font-medium text-blue-900 dark:text-blue-100">{formData.emergencyContactRelationship}</span>
                     </div>
                   </div>
                 </div>
