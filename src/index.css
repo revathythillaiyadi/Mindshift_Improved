@@ -1,4 +1,4 @@
-@import url('https://fonts.googleapis.com/css2?family=Nunito:wght@300;400;600;700;800&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Quicksand:wght@300;400;500;600;700&family=Inter:wght@300;400;500;600&family=Lora:wght@400;500;600&display=swap');
 
 @tailwind base;
 @tailwind components;
@@ -10,9 +10,15 @@
   }
 
   body {
-    @apply font-sans antialiased;
-    background-color: #FBFBF9;
-    color: #333333;
+    @apply font-body antialiased;
+    background-color: #FAF9F7;
+    color: #5A5A5A;
+    letter-spacing: 0.01em;
+  }
+
+  h1, h2, h3, h4, h5, h6 {
+    @apply font-sans;
+    letter-spacing: -0.02em;
   }
 }
 
@@ -22,11 +28,19 @@
   }
 
   .animate-fade-in {
-    animation: fadeIn 0.5s ease-in;
+    animation: fadeIn 0.8s ease-out;
   }
 
   .animate-breathing {
-    animation: breathing 8s ease-in-out infinite;
+    animation: breathing 10s ease-in-out infinite;
+  }
+
+  .animate-float {
+    animation: float 6s ease-in-out infinite;
+  }
+
+  .animate-pulse-gentle {
+    animation: pulseGentle 3s ease-in-out infinite;
   }
 
   .animate-grow-vine {
@@ -34,14 +48,18 @@
   }
 
   .animate-unfurl-leaf {
-    animation: unfurlLeaf 0.6s ease-out forwards;
+    animation: unfurlLeaf 0.8s ease-out forwards;
     transform-origin: left center;
+  }
+
+  .animate-wave {
+    animation: wave 20s ease-in-out infinite;
   }
 
   @keyframes fadeIn {
     from {
       opacity: 0;
-      transform: translateY(10px);
+      transform: translateY(20px);
     }
     to {
       opacity: 1;
@@ -51,21 +69,43 @@
 
   @keyframes breathing {
     0%, 100% {
-      opacity: 0.3;
+      opacity: 0.15;
+      transform: scale(1) translateY(0);
+    }
+    50% {
+      opacity: 0.35;
+      transform: scale(1.1) translateY(-15px);
+    }
+  }
+
+  @keyframes float {
+    0%, 100% {
+      transform: translateY(0px) rotate(0deg);
+    }
+    50% {
+      transform: translateY(-25px) rotate(3deg);
+    }
+  }
+
+  @keyframes pulseGentle {
+    0%, 100% {
+      opacity: 0.7;
       transform: scale(1);
     }
     50% {
-      opacity: 0.6;
-      transform: scale(1.05);
+      opacity: 1;
+      transform: scale(1.03);
     }
   }
 
   @keyframes growVine {
     from {
       height: 0;
+      opacity: 0;
     }
     to {
       height: 100%;
+      opacity: 1;
     }
   }
 
@@ -77,6 +117,15 @@
     to {
       opacity: 1;
       transform: scale(1) rotate(0deg);
+    }
+  }
+
+  @keyframes wave {
+    0%, 100% {
+      transform: translateX(0);
+    }
+    50% {
+      transform: translateX(-20px);
     }
   }
 }
