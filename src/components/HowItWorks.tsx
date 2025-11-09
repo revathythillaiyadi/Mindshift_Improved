@@ -81,7 +81,7 @@ export default function HowItWorks() {
   return (
     <section id="how-it-works" ref={sectionRef} className="relative py-32 px-6 bg-warm-white overflow-hidden">
       <div
-        className="fixed top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 pointer-events-none"
+        className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 pointer-events-none"
         style={{ zIndex: 0, width: '1000px', height: '1000px' }}
       >
         <svg
