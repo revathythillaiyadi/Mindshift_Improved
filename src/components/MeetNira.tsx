@@ -1,4 +1,5 @@
-import { Bot, User, Mic, Smile, ArrowRight, Heart, Leaf, Flower2 } from 'lucide-react';
+import { Bot, User, Mic, Smile, ArrowRight } from 'lucide-react';
+import MoodIcon from './MoodIcon';
 import { useState, useEffect } from 'react';
 
 export default function MeetNira() {
@@ -23,14 +24,14 @@ export default function MeetNira() {
 
   return (
     <section className="py-24 px-6 bg-gradient-to-b from-mint-50/20 via-warm-white to-sage-50/30 relative overflow-hidden">
-      <div className="absolute top-20 right-10 w-24 h-24 opacity-20 animate-float">
-        <Flower2 className="w-full h-full text-mint-400" />
+      <div className="absolute top-20 right-10 w-24 h-24 opacity-65 animate-float">
+        <MoodIcon mood="creative" />
       </div>
-      <div className="absolute bottom-20 left-10 w-28 h-28 opacity-15 animate-float" style={{ animationDelay: '1s' }}>
-        <Leaf className="w-full h-full text-sage-400" />
+      <div className="absolute bottom-20 left-10 w-28 h-28 opacity-70 animate-float" style={{ animationDelay: '1s' }}>
+        <MoodIcon mood="peaceful" />
       </div>
-      <div className="absolute top-1/3 left-20 w-20 h-20 opacity-10 animate-float" style={{ animationDelay: '2s' }}>
-        <Flower2 className="w-full h-full text-mint-300" />
+      <div className="absolute top-1/3 left-20 w-20 h-20 opacity-60 animate-float" style={{ animationDelay: '2s' }}>
+        <MoodIcon mood="happy" />
       </div>
 
       <div className="container mx-auto max-w-7xl">
@@ -123,9 +124,13 @@ export default function MeetNira() {
         </div>
 
         <div className="text-center mt-12 flex items-center justify-center gap-2 animate-pulse-gentle">
-          <Leaf className="w-4 h-4 text-sage-400" />
+          <div className="w-6 h-6 opacity-70">
+            <MoodIcon mood="confident" />
+          </div>
           <span className="text-forest/50 text-sm lowercase">you're doing great</span>
-          <Leaf className="w-4 h-4 text-mint-400" />
+          <div className="w-6 h-6 opacity-70">
+            <MoodIcon mood="calm" />
+          </div>
         </div>
       </div>
     </section>

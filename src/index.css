@@ -186,6 +186,32 @@
       background-position: 100% 50%;
     }
   }
+
+  @keyframes bounce-subtle {
+    0%, 100% {
+      transform: translateY(0) scale(1);
+    }
+    50% {
+      transform: translateY(-5px) scale(1.05);
+    }
+  }
+
+  @keyframes rotate-gentle {
+    0%, 100% {
+      transform: rotate(-5deg);
+    }
+    50% {
+      transform: rotate(5deg);
+    }
+  }
+
+  .animate-bounce-subtle {
+    animation: bounce-subtle 2s ease-in-out infinite;
+  }
+
+  .animate-rotate-gentle {
+    animation: rotate-gentle 3s ease-in-out infinite;
+  }
 }
 
 @supports (animation-timeline: view()) {

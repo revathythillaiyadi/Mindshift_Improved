@@ -1,4 +1,5 @@
-import { Bot, BookText, Heart, Target, Radio, Leaf } from 'lucide-react';
+import { Bot, BookText, Heart, Target, Radio } from 'lucide-react';
+import MoodIcon, { type MoodType } from './MoodIcon';
 
 const services = [
   {
@@ -32,22 +33,26 @@ export default function Services() {
   return (
     <section id="services" className="py-20 px-6 bg-gradient-to-b from-sage-50/30 via-warm-white to-mint-50/20 relative overflow-hidden">
       <div className="absolute inset-0 pointer-events-none overflow-hidden">
-        <div className="absolute top-20 right-20 w-32 h-32 opacity-10 animate-float">
-          <Leaf className="w-full h-full text-sage-400" style={{ animationDelay: '0s' }} />
+        <div className="absolute top-20 right-20 w-32 h-32 opacity-60 animate-float">
+          <MoodIcon mood="energetic" style={{ animationDelay: '0s' }} />
         </div>
-        <div className="absolute bottom-32 left-20 w-28 h-28 opacity-15 animate-float">
-          <Leaf className="w-full h-full text-mint-400" style={{ animationDelay: '2s' }} />
+        <div className="absolute bottom-32 left-20 w-28 h-28 opacity-70 animate-float">
+          <MoodIcon mood="creative" style={{ animationDelay: '2s' }} />
         </div>
       </div>
 
       <div className="container mx-auto max-w-7xl relative">
         <div className="text-center mb-16 animate-fade-in">
           <div className="inline-flex items-center gap-2 mb-4">
-            <Leaf className="w-6 h-6 text-sage-500 animate-float" />
+            <div className="w-8 h-8 opacity-80 animate-float">
+              <MoodIcon mood="happy" />
+            </div>
             <h2 className="text-4xl md:text-5xl font-bold text-forest">
               Your Personal Space for Growth
             </h2>
-            <Leaf className="w-6 h-6 text-mint-500 animate-float" style={{ animationDelay: '0.5s' }} />
+            <div className="w-8 h-8 opacity-80 animate-float" style={{ animationDelay: '0.5s' }}>
+              <MoodIcon mood="peaceful" />
+            </div>
           </div>
           <p className="text-xl text-gentle-gray/70 max-w-3xl mx-auto font-serif italic">
             Everything you need to nurture your mental wellness, thoughtfully designed for your journey
@@ -63,8 +68,8 @@ export default function Services() {
                 className="bg-white/80 backdrop-blur-sm p-8 rounded-[2rem] shadow-lg border-2 border-sage-100/50 hover:shadow-xl transition-all hover:-translate-y-2 group relative overflow-hidden animate-fade-in"
                 style={{ animationDelay: `${index * 0.1}s` }}
               >
-                <div className="absolute -right-8 -bottom-8 w-24 h-24 opacity-5 group-hover:opacity-10 transition-opacity">
-                  <Leaf className="w-full h-full text-sage-400 rotate-45" />
+                <div className="absolute -right-8 -bottom-8 w-24 h-24 opacity-30 group-hover:opacity-50 transition-opacity">
+                  <MoodIcon mood={(['happy', 'calm', 'energetic', 'peaceful', 'confident'] as MoodType[])[index % 5]} />
                 </div>
 
                 <div className="w-16 h-16 bg-gradient-to-br from-sage-500 to-mint-500 rounded-[1.5rem] flex items-center justify-center mb-6 group-hover:scale-110 group-hover:rotate-3 transition-all shadow-md relative">
