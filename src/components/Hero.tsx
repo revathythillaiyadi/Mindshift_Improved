@@ -16,8 +16,8 @@ export default function Hero() {
           alt="Person sitting peacefully on bench in serene park"
           className="w-full h-full object-cover"
         />
-        <div className="absolute inset-0 bg-gradient-to-b from-amber-900/30 via-amber-800/10 to-transparent"></div>
-        <div className="absolute inset-0 bg-gradient-to-t from-amber-950/40 via-transparent to-transparent"></div>
+        <div className="absolute inset-0 bg-gradient-to-b from-sage-900/30 via-sage-800/10 to-transparent"></div>
+        <div className="absolute inset-0 bg-gradient-to-t from-forest/40 via-transparent to-transparent"></div>
 
         {/* Liquid glass overlay effect */}
         <div className="absolute inset-0 liquid-glass-overlay"></div>
@@ -33,14 +33,14 @@ export default function Hero() {
         <div className="text-center space-y-8 animate-fade-in">
           {/* Headline with liquid glass backing */}
           <div className="liquid-glass-content-card p-8 rounded-[3rem]">
-            <h1 className="text-4xl md:text-6xl lg:text-7xl font-bold leading-tight tracking-tight text-amber-50 drop-shadow-2xl">
+            <h1 className="text-4xl md:text-6xl lg:text-7xl font-bold leading-tight tracking-tight text-sage-50 drop-shadow-2xl">
               hey, feeling a little heavy lately?
             </h1>
           </div>
 
           {/* Sub-headline */}
           <div className="liquid-glass-content-card p-6 rounded-[2.5rem]">
-            <p className="text-xl md:text-2xl lg:text-3xl leading-relaxed max-w-3xl mx-auto text-amber-50/95 font-light drop-shadow-lg">
+            <p className="text-xl md:text-2xl lg:text-3xl leading-relaxed max-w-3xl mx-auto text-sage-50/95 font-light drop-shadow-lg">
               you're not alone. let's reframe those thoughts and reshape your world.
             </p>
           </div>
@@ -52,14 +52,14 @@ export default function Hero() {
               className="liquid-glass-cta-button"
             >
               <span className="relative z-10">Start Your Journey</span>
-              <div className="absolute inset-0 bg-gradient-to-r from-amber-400/20 to-amber-600/20 rounded-full transform scale-0 group-hover:scale-100 transition-transform duration-500"></div>
+              <div className="absolute inset-0 bg-gradient-to-r from-sage-400/20 to-mint-500/20 rounded-full transform scale-0 group-hover:scale-100 transition-transform duration-500"></div>
             </button>
           </div>
         </div>
       </div>
 
       {/* Seamless transition gradient to next section */}
-      <div className="absolute bottom-0 left-0 right-0 h-40 bg-gradient-to-b from-transparent via-amber-50/30 to-amber-50/80 pointer-events-none"></div>
+      <div className="absolute bottom-0 left-0 right-0 h-40 bg-gradient-to-b from-transparent via-sage-50/30 to-warm-white/80 pointer-events-none"></div>
     </section>
   );
 }

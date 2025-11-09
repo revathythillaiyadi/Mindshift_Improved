@@ -14,9 +14,9 @@ export default function Header({ isDark, setIsDark }: HeaderProps) {
           <div className="flex items-center justify-between">
             <div className="flex items-center space-x-3 group">
               <div className="liquid-glass-logo-container">
-                <Brain className="w-9 h-9 text-amber-600" strokeWidth={2.5} />
+                <Brain className="w-9 h-9 text-sage-700" strokeWidth={2.5} />
               </div>
-              <span className="text-2xl font-bold bg-gradient-to-r from-amber-900 to-amber-700 bg-clip-text text-transparent tracking-tight">
+              <span className="text-2xl font-bold bg-gradient-to-r from-forest to-sage-700 bg-clip-text text-transparent tracking-tight">
                 MindShift
               </span>
             </div>
@@ -32,14 +32,14 @@ export default function Header({ isDark, setIsDark }: HeaderProps) {
             <div className="flex items-center space-x-4">
               <button
                 onClick={() => setIsDark(!isDark)}
-                className="p-2 rounded-full hover:bg-amber-100/30 transition-all duration-300 liquid-glass-icon-button"
+                className="p-2 rounded-full hover:bg-sage-100/30 transition-all duration-300 liquid-glass-icon-button"
                 aria-label="Toggle theme"
               >
-                {isDark ? <Sun className="w-5 h-5 text-amber-700" /> : <Moon className="w-5 h-5 text-amber-700" />}
+                {isDark ? <Sun className="w-5 h-5 text-sage-700" /> : <Moon className="w-5 h-5 text-sage-700" />}
               </button>
-              <Link to="/login" className="px-4 py-2 text-amber-900/80 hover:text-amber-700 transition-all duration-300 font-medium relative overflow-hidden group">
+              <Link to="/login" className="px-4 py-2 text-forest/80 hover:text-sage-700 transition-all duration-300 font-medium relative overflow-hidden group">
                 <span className="relative z-10">Login</span>
-                <div className="absolute inset-0 bg-amber-100/20 transform scale-x-0 group-hover:scale-x-100 transition-transform origin-left rounded-full"></div>
+                <div className="absolute inset-0 bg-sage-100/20 transform scale-x-0 group-hover:scale-x-100 transition-transform origin-left rounded-full"></div>
               </Link>
               <Link to="/signup" className="liquid-glass-button">
                 Sign Up

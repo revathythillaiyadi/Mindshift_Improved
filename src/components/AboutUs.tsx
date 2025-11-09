@@ -35,7 +35,7 @@ export default function AboutUs() {
           <div className="space-y-6">
             <div className="liquid-glass-card group relative overflow-hidden animate-fade-in" style={{ animationDelay: '0.1s' }}>
               <div className="flex items-start gap-4 relative">
-                <div className="w-14 h-14 bg-gradient-to-br from-amber-600 to-amber-800 rounded-[1.5rem] flex items-center justify-center flex-shrink-0 shadow-md group-hover:scale-110 transition-transform">
+                <div className="w-14 h-14 bg-gradient-to-br from-sage-500 to-mint-500 rounded-[1.5rem] flex items-center justify-center flex-shrink-0 shadow-md group-hover:scale-110 transition-transform">
                   <Shield className="w-7 h-7 text-white" strokeWidth={2} />
                 </div>
                 <div>
@@ -49,7 +49,7 @@ export default function AboutUs() {
 
             <div className="liquid-glass-card group relative overflow-hidden animate-fade-in" style={{ animationDelay: '0.2s' }}>
               <div className="flex items-start gap-4 relative">
-                <div className="w-14 h-14 bg-gradient-to-br from-amber-700 to-amber-900 rounded-[1.5rem] flex items-center justify-center flex-shrink-0 shadow-md group-hover:scale-110 transition-transform">
+                <div className="w-14 h-14 bg-gradient-to-br from-mint-500 to-sage-500 rounded-[1.5rem] flex items-center justify-center flex-shrink-0 shadow-md group-hover:scale-110 transition-transform">
                   <Award className="w-7 h-7 text-white" strokeWidth={2} />
                 </div>
                 <div>
@@ -63,7 +63,7 @@ export default function AboutUs() {
 
             <div className="liquid-glass-card group relative overflow-hidden animate-fade-in" style={{ animationDelay: '0.3s' }}>
               <div className="flex items-start gap-4 relative">
-                <div className="w-14 h-14 bg-gradient-to-br from-amber-500 to-amber-700 rounded-[1.5rem] flex items-center justify-center flex-shrink-0 shadow-md group-hover:scale-110 transition-transform">
+                <div className="w-14 h-14 bg-gradient-to-br from-sage-600 to-mint-600 rounded-[1.5rem] flex items-center justify-center flex-shrink-0 shadow-md group-hover:scale-110 transition-transform">
                   <Users className="w-7 h-7 text-white" strokeWidth={2} />
                 </div>
                 <div>
