@@ -44,13 +44,13 @@ export default function FAQs() {
   const [openIndex, setOpenIndex] = useState<number | null>(0);
 
   return (
-    <section id="faqs" className="py-20 px-6 bg-white dark:bg-gray-900 transition-colors">
+    <section id="faqs" className="py-20 px-6 bg-gradient-to-br from-lavender-50/40 via-warm-white to-sage-50/30">
       <div className="container mx-auto max-w-4xl">
         <div className="text-center mb-16">
-          <h2 className="text-4xl md:text-5xl font-bold text-blue-900 dark:text-blue-100 mb-4">
+          <h2 className="text-4xl md:text-5xl font-bold text-warm-gray mb-4">
             Frequently Asked Questions
           </h2>
-          <p className="text-xl text-blue-700 dark:text-blue-300">
+          <p className="text-xl text-warm-gray/70">
             Everything you need to know about MindShift
           </p>
         </div>
@@ -59,22 +59,22 @@ export default function FAQs() {
           {faqs.map((faq, index) => (
             <div
               key={index}
-              className="bg-white dark:bg-gray-800 border border-blue-100 dark:border-gray-700 rounded-2xl overflow-hidden shadow-sm hover:shadow-md transition-all"
+              className="bg-white/80 backdrop-blur-sm border border-sage-100/50 rounded-pebble overflow-hidden shadow-md hover:shadow-lg transition-all"
             >
               <button
                 onClick={() => setOpenIndex(openIndex === index ? null : index)}
-                className="w-full px-6 py-5 flex items-center justify-between text-left hover:bg-blue-50/50 dark:hover:bg-gray-700/50 transition-colors"
+                className="w-full px-6 py-5 flex items-center justify-between text-left hover:bg-sage-50/50 transition-colors"
               >
-                <span className="text-lg font-bold text-blue-900 dark:text-blue-100 pr-4">{faq.question}</span>
+                <span className="text-lg font-bold text-warm-gray pr-4">{faq.question}</span>
                 <ChevronDown
-                  className={`w-6 h-6 text-blue-600 dark:text-blue-400 flex-shrink-0 transition-transform ${
+                  className={`w-6 h-6 text-sage-600 flex-shrink-0 transition-transform ${
                     openIndex === index ? 'rotate-180' : ''
                   }`}
                 />
               </button>
               {openIndex === index && (
                 <div className="px-6 pb-5">
-                  <p className="text-blue-700 dark:text-blue-300 leading-relaxed">{faq.answer}</p>
+                  <p className="text-warm-gray/70 leading-relaxed">{faq.answer}</p>
                 </div>
               )}
             </div>
