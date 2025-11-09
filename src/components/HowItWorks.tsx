@@ -306,26 +306,54 @@ export default function HowItWorks() {
                 </div>
 
                 {!isLast && (
-                  <div className="absolute left-1/2 -translate-x-1/2 w-2 h-40 z-0" style={{ top: '65%' }}>
-                    <div
-                      className="w-full h-full bg-gradient-to-b from-sage-500 via-mint-400 to-sage-400 transition-all duration-700 rounded-full shadow-lg"
-                      style={{
-                        opacity: hasBeenActive ? 0.7 : 0.2,
-                        transform: `scaleY(${hasBeenActive ? 1 : 0.3})`,
-                        transformOrigin: 'top',
-                      }}
-                    />
-                    <div
-                      className="absolute top-0 left-1/2 -translate-x-1/2 w-4 h-4 rounded-full bg-sage-500 shadow-md transition-all duration-500"
-                      style={{ opacity: hasBeenActive ? 1 : 0.3 }}
-                    />
-                    <div
-                      className="absolute bottom-0 left-1/2 -translate-x-1/2 w-4 h-4 rounded-full bg-mint-500 shadow-md transition-all duration-500"
-                      style={{
-                        opacity: hasBeenActive && index < activeStep ? 1 : 0.3,
-                        transform: `scale(${hasBeenActive && index < activeStep ? 1.2 : 1})`,
-                      }}
-                    />
+                  <div className="absolute left-1/2 -translate-x-1/2 z-0" style={{ top: '70%', width: '200px', height: '160px' }}>
+                    <svg width="200" height="160" viewBox="0 0 200 160" className="overflow-visible">
+                      <defs>
+                        <linearGradient id={`connector-gradient-${index}`} x1="0%" y1="0%" x2="0%" y2="100%">
+                          <stop offset="0%" stopColor="#6b8a6b" stopOpacity={hasBeenActive ? "0.8" : "0.2"} />
+                          <stop offset="50%" stopColor="#7fb69e" stopOpacity={hasBeenActive ? "0.8" : "0.2"} />
+                          <stop offset="100%" stopColor="#6b8a6b" stopOpacity={hasBeenActive ? "0.8" : "0.2"} />
+                        </linearGradient>
+                      </defs>
+
+                      <path
+                        d={position.isLeft
+                          ? "M 60 0 Q 20 40, 40 80 Q 60 120, 100 160"
+                          : "M 140 0 Q 180 40, 160 80 Q 140 120, 100 160"
+                        }
+                        fill="none"
+                        stroke={`url(#connector-gradient-${index})`}
+                        strokeWidth="3"
+                        strokeLinecap="round"
+                        className="transition-all duration-700"
+                        style={{
+                          strokeDasharray: hasBeenActive ? "none" : "10 5",
+                          filter: hasBeenActive ? "drop-shadow(0 2px 4px rgba(107, 138, 107, 0.3))" : "none",
+                        }}
+                      />
+
+                      <circle
+                        cx={position.isLeft ? "60" : "140"}
+                        cy="0"
+                        r="5"
+                        fill="#6b8a6b"
+                        className="transition-all duration-500"
+                        style={{ opacity: hasBeenActive ? 1 : 0.3 }}
+                      />
+
+                      <circle
+                        cx="100"
+                        cy="160"
+                        r="5"
+                        fill="#7fb69e"
+                        className="transition-all duration-500"
+                        style={{
+                          opacity: hasBeenActive && index < activeStep ? 1 : 0.3,
+                          transform: `scale(${hasBeenActive && index < activeStep ? 1.2 : 1})`,
+                          transformOrigin: 'center',
+                        }}
+                      />
+                    </svg>
                   </div>
                 )}
               </div>
