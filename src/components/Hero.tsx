@@ -12,8 +12,8 @@ export default function Hero() {
       {/* Background Image with Overlay */}
       <div className="absolute inset-0">
         <img
-          src="/Gemini_Generated_Image_h27qxph27qxph27q.png"
-          alt="Person relaxing peacefully in warm golden hour light"
+          src="/unnamed copy copy.jpg"
+          alt="Person sitting peacefully on bench in serene park"
           className="w-full h-full object-cover"
         />
         <div className="absolute inset-0 bg-gradient-to-b from-amber-900/20 via-transparent to-amber-950/30"></div>
