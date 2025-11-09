@@ -103,7 +103,7 @@ export default function HowItWorks() {
   };
 
   return (
-    <section id="how-it-works" ref={sectionRef} className="relative py-32 px-6 bg-gradient-to-b from-warm-white via-sage-50/30 to-mint-50/20 overflow-hidden">
+    <section id="how-it-works" ref={sectionRef} className="relative py-32 px-6 bg-gradient-to-b from-warm-white via-amber-50/40 to-amber-100/20 overflow-hidden">
       <div className="absolute inset-0 pointer-events-none overflow-hidden">
         <div className="absolute top-1/4 right-16 w-20 h-20 opacity-40 animate-float">
           <MoodIcon mood="happy" style={{ animationDelay: '2s' }} />
@@ -124,9 +124,9 @@ export default function HowItWorks() {
         >
           <defs>
             <linearGradient id="pathGradient" x1="0%" y1="0%" x2="0%" y2="100%">
-              <stop offset="0%" stopColor="#88a788" stopOpacity="0.6" />
-              <stop offset="50%" stopColor="#5dd4ac" stopOpacity="0.5" />
-              <stop offset="100%" stopColor="#6b8a6b" stopOpacity="0.6" />
+              <stop offset="0%" stopColor="#d97706" stopOpacity="0.6" />
+              <stop offset="50%" stopColor="#f59e0b" stopOpacity="0.5" />
+              <stop offset="100%" stopColor="#b45309" stopOpacity="0.6" />
             </linearGradient>
             <filter id="glow">
               <feGaussianBlur stdDeviation="3" result="coloredBlur"/>
@@ -174,7 +174,7 @@ export default function HowItWorks() {
                   cx={(position.x / 100) * 1000}
                   cy={(position.y / 100) * 1000}
                   r="8"
-                  fill={isActive ? '#6b8a6b' : '#d1ddd1'}
+                  fill={isActive ? '#b45309' : '#fde68a'}
                   className="transition-all duration-500"
                 />
                 <circle
@@ -182,7 +182,7 @@ export default function HowItWorks() {
                   cy={(position.y / 100) * 1000}
                   r="14"
                   fill="none"
-                  stroke={isActive ? '#6b8a6b' : '#d1ddd1'}
+                  stroke={isActive ? '#b45309' : '#fde68a'}
                   strokeWidth="2"
                   opacity="0.4"
                   className="transition-all duration-500"
@@ -222,7 +222,7 @@ export default function HowItWorks() {
       <div className="container mx-auto max-w-7xl relative" style={{ zIndex: 1 }}>
         <div className="text-center mb-24 animate-fade-in">
           <div className="inline-flex items-center gap-2 mb-4">
-            <h2 className="text-4xl md:text-5xl font-bold text-forest">
+            <h2 className="text-4xl md:text-5xl font-bold text-amber-900">
               Your Path to Growth
             </h2>
           </div>
@@ -256,16 +256,16 @@ export default function HowItWorks() {
                   <div
                     className={`bg-white/80 backdrop-blur-sm p-8 rounded-[2rem] shadow-xl border-2 transition-all relative w-80 group hover:shadow-2xl hover:-translate-y-1 ${
                       isActive
-                        ? 'border-sage-400/60 shadow-sage-200/50'
+                        ? 'border-amber-400/60 shadow-amber-200/50'
                         : hasBeenActive
-                        ? 'border-sage-300/30'
-                        : 'border-sage-200/20'
+                        ? 'border-amber-300/30'
+                        : 'border-amber-200/20'
                     }`}
                     style={{
                       animationDelay: `${index * 0.1}s`,
                     }}
                   >
-                    <div className="absolute -top-5 -left-5 w-16 h-16 bg-gradient-to-br from-sage-500 to-mint-500 rounded-[1.5rem] flex items-center justify-center shadow-lg border-4 border-white group-hover:scale-110 transition-transform">
+                    <div className="absolute -top-5 -left-5 w-16 h-16 bg-gradient-to-br from-amber-600 to-amber-400 rounded-[1.5rem] flex items-center justify-center shadow-lg border-4 border-white group-hover:scale-110 transition-transform">
                       <Icon className="w-8 h-8 text-white" strokeWidth={2.5} />
                     </div>
 
@@ -273,15 +273,15 @@ export default function HowItWorks() {
                     <div className="flex items-center gap-2 mb-4 pt-6">
                       <div className="flex items-center gap-1.5">
                         <div className={`w-2 h-2 rounded-full transition-colors ${
-                          isActive ? 'bg-sage-500 animate-pulse' : hasBeenActive ? 'bg-sage-400' : 'bg-sage-200'
+                          isActive ? 'bg-amber-600 animate-pulse' : hasBeenActive ? 'bg-amber-500' : 'bg-amber-300'
                         }`} />
-                        <span className="text-xs font-bold text-forest/50 uppercase tracking-wider">
+                        <span className="text-xs font-bold text-amber-900/50 uppercase tracking-wider">
                           Step {step.number}
                         </span>
                       </div>
                     </div>
 
-                    <h3 className="text-2xl font-bold text-forest mb-4 leading-tight">
+                    <h3 className="text-2xl font-bold text-amber-900 mb-4 leading-tight">
                       {step.title}
                     </h3>
 
@@ -289,9 +289,9 @@ export default function HowItWorks() {
                       {step.description}
                     </p>
 
-                    <div className="absolute bottom-0 left-0 right-0 h-1 bg-gradient-to-r from-sage-400/20 via-mint-400/20 to-sage-400/20 rounded-b-[2rem] overflow-hidden">
+                    <div className="absolute bottom-0 left-0 right-0 h-1 bg-gradient-to-r from-amber-400/20 via-amber-500/20 to-amber-400/20 rounded-b-[2rem] overflow-hidden">
                       <div
-                        className="h-full bg-gradient-to-r from-sage-500 to-mint-500 transition-all duration-700 ease-out"
+                        className="h-full bg-gradient-to-r from-amber-600 to-amber-400 transition-all duration-700 ease-out"
                         style={{ width: isActive ? '100%' : hasBeenActive ? '100%' : '0%' }}
                       />
                     </div>
@@ -304,9 +304,9 @@ export default function HowItWorks() {
                     <svg width="200" height="160" viewBox="0 0 200 160" className="overflow-visible">
                       <defs>
                         <linearGradient id={`connector-gradient-${index}`} x1="0%" y1="0%" x2="0%" y2="100%">
-                          <stop offset="0%" stopColor="#6b8a6b" stopOpacity={hasBeenActive ? "0.8" : "0.2"} />
-                          <stop offset="50%" stopColor="#7fb69e" stopOpacity={hasBeenActive ? "0.8" : "0.2"} />
-                          <stop offset="100%" stopColor="#6b8a6b" stopOpacity={hasBeenActive ? "0.8" : "0.2"} />
+                          <stop offset="0%" stopColor="#d97706" stopOpacity={hasBeenActive ? "0.8" : "0.2"} />
+                          <stop offset="50%" stopColor="#f59e0b" stopOpacity={hasBeenActive ? "0.8" : "0.2"} />
+                          <stop offset="100%" stopColor="#d97706" stopOpacity={hasBeenActive ? "0.8" : "0.2"} />
                         </linearGradient>
                       </defs>
 
@@ -330,7 +330,7 @@ export default function HowItWorks() {
                         cx={position.isLeft ? "60" : "140"}
                         cy="0"
                         r="5"
-                        fill="#6b8a6b"
+                        fill="#d97706"
                         className="transition-all duration-500"
                         style={{ opacity: hasBeenActive ? 1 : 0.3 }}
                       />
@@ -339,7 +339,7 @@ export default function HowItWorks() {
                         cx="100"
                         cy="160"
                         r="5"
-                        fill="#7fb69e"
+                        fill="#f59e0b"
                         className="transition-all duration-500"
                         style={{
                           opacity: hasBeenActive && index < activeStep ? 1 : 0.3,
