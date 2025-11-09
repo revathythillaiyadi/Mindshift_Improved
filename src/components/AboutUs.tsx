@@ -3,7 +3,7 @@ import MoodIcon from './MoodIcon';
 
 export default function AboutUs() {
   return (
-    <section id="about" className="py-20 px-6 bg-gradient-to-b from-mint-50/20 via-warm-white to-sage-50/30 relative overflow-hidden">
+    <section id="about" className="py-20 px-6 section-liquid-blend relative overflow-hidden">
       <div className="container mx-auto max-w-7xl relative">
         <div className="grid md:grid-cols-2 gap-12 items-center">
           <div className="animate-fade-in">
@@ -33,9 +33,9 @@ export default function AboutUs() {
           </div>
 
           <div className="space-y-6">
-            <div className="bg-white/80 backdrop-blur-sm p-6 rounded-[2rem] border-2 border-sage-100/50 shadow-lg hover:shadow-xl hover:-translate-y-1 transition-all group relative overflow-hidden animate-fade-in" style={{ animationDelay: '0.1s' }}>
+            <div className="liquid-glass-card group relative overflow-hidden animate-fade-in" style={{ animationDelay: '0.1s' }}>
               <div className="flex items-start gap-4 relative">
-                <div className="w-14 h-14 bg-gradient-to-br from-sage-500 to-mint-500 rounded-[1.5rem] flex items-center justify-center flex-shrink-0 shadow-md group-hover:scale-110 transition-transform">
+                <div className="w-14 h-14 bg-gradient-to-br from-amber-600 to-amber-800 rounded-[1.5rem] flex items-center justify-center flex-shrink-0 shadow-md group-hover:scale-110 transition-transform">
                   <Shield className="w-7 h-7 text-white" strokeWidth={2} />
                 </div>
                 <div>
@@ -47,9 +47,9 @@ export default function AboutUs() {
               </div>
             </div>
 
-            <div className="bg-white/80 backdrop-blur-sm p-6 rounded-[2rem] border-2 border-mint-100/50 shadow-lg hover:shadow-xl hover:-translate-y-1 transition-all group relative overflow-hidden animate-fade-in" style={{ animationDelay: '0.2s' }}>
+            <div className="liquid-glass-card group relative overflow-hidden animate-fade-in" style={{ animationDelay: '0.2s' }}>
               <div className="flex items-start gap-4 relative">
-                <div className="w-14 h-14 bg-gradient-to-br from-mint-500 to-sage-500 rounded-[1.5rem] flex items-center justify-center flex-shrink-0 shadow-md group-hover:scale-110 transition-transform">
+                <div className="w-14 h-14 bg-gradient-to-br from-amber-700 to-amber-900 rounded-[1.5rem] flex items-center justify-center flex-shrink-0 shadow-md group-hover:scale-110 transition-transform">
                   <Award className="w-7 h-7 text-white" strokeWidth={2} />
                 </div>
                 <div>
@@ -61,9 +61,9 @@ export default function AboutUs() {
               </div>
             </div>
 
-            <div className="bg-white/80 backdrop-blur-sm p-6 rounded-[2rem] border-2 border-beige-100/50 shadow-lg hover:shadow-xl hover:-translate-y-1 transition-all group relative overflow-hidden animate-fade-in" style={{ animationDelay: '0.3s' }}>
+            <div className="liquid-glass-card group relative overflow-hidden animate-fade-in" style={{ animationDelay: '0.3s' }}>
               <div className="flex items-start gap-4 relative">
-                <div className="w-14 h-14 bg-gradient-to-br from-beige-500 to-sage-500 rounded-[1.5rem] flex items-center justify-center flex-shrink-0 shadow-md group-hover:scale-110 transition-transform">
+                <div className="w-14 h-14 bg-gradient-to-br from-amber-500 to-amber-700 rounded-[1.5rem] flex items-center justify-center flex-shrink-0 shadow-md group-hover:scale-110 transition-transform">
                   <Users className="w-7 h-7 text-white" strokeWidth={2} />
                 </div>
                 <div>
