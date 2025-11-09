@@ -12,8 +12,8 @@ export default function Hero() {
       {/* Background Image with Overlay */}
       <div className="absolute inset-0">
         <img
-          src="https://images.pexels.com/photos/2035066/pexels-photo-2035066.jpeg?auto=compress&cs=tinysrgb&w=1920"
-          alt="Person sitting on bench in garden"
+          src="https://images.pexels.com/photos/1576653/pexels-photo-1576653.jpeg?auto=compress&cs=tinysrgb&w=1920"
+          alt="Person sitting alone on bench in peaceful garden"
           className="w-full h-full object-cover"
         />
         <div className="absolute inset-0 bg-gradient-to-b from-black/40 via-black/30 to-black/40"></div>
