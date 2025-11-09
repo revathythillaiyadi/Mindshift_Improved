@@ -70,12 +70,12 @@ export default function HowItWorks() {
   }, []);
 
   const ringPositions = [
-    { cx: 50, cy: 50, r: 3 },
-    { cx: 50, cy: 50, r: 10 },
-    { cx: 50, cy: 50, r: 17 },
-    { cx: 50, cy: 50, r: 24 },
-    { cx: 50, cy: 50, r: 31 },
-    { cx: 50, cy: 50, r: 38 },
+    { cx: 50, cy: 50, r: 3, distance: 50 },
+    { cx: 50, cy: 50, r: 10, distance: 120 },
+    { cx: 50, cy: 50, r: 17, distance: 190 },
+    { cx: 50, cy: 50, r: 24, distance: 260 },
+    { cx: 50, cy: 50, r: 31, distance: 330 },
+    { cx: 50, cy: 50, r: 38, distance: 400 },
   ];
 
   return (
@@ -171,55 +171,61 @@ export default function HowItWorks() {
           </p>
         </div>
 
-        <div className="space-y-[40vh]">
+        <div className="space-y-[25vh]">
           {steps.map((step, index) => {
             const Icon = step.icon;
             const isEven = index % 2 === 0;
+            const ringDistance = ringPositions[index].distance;
 
             return (
               <div
                 key={step.number}
                 ref={(el) => (stepRefs.current[index] = el)}
-                className={`flex ${isEven ? 'justify-start' : 'justify-end'} relative`}
-                style={{ minHeight: '30vh' }}
+                className="flex justify-center items-center relative"
+                style={{ minHeight: '20vh' }}
               >
-                <div className={`max-w-lg w-full ${isEven ? 'md:mr-auto md:ml-0' : 'md:ml-auto md:mr-0'}`}>
-                  <div className="bg-warm-white p-8 md:p-10 rounded-3xl shadow-2xl border-2 border-forest/10 hover:shadow-3xl hover:border-forest/20 transition-all relative">
-                    <div className="absolute -top-6 -left-6 w-16 h-16 bg-forest rounded-full flex items-center justify-center shadow-xl border-4 border-warm-white">
-                      <Icon className="w-8 h-8 text-white" strokeWidth={2.5} />
+                <div
+                  className={`absolute ${isEven ? 'left-0' : 'right-0'}`}
+                  style={{
+                    [isEven ? 'left' : 'right']: `calc(50% - ${ringDistance}px)`,
+                  }}
+                >
+                  <div className="bg-warm-white p-6 rounded-2xl shadow-xl border-2 border-forest/10 hover:shadow-2xl hover:border-forest/20 transition-all relative w-72">
+                    <div className="absolute -top-4 -left-4 w-12 h-12 bg-forest rounded-full flex items-center justify-center shadow-lg border-3 border-warm-white">
+                      <Icon className="w-6 h-6 text-white" strokeWidth={2.5} />
                     </div>
 
-                    <div className="flex items-center gap-3 mb-4 pt-6">
-                      <span className="text-sm font-bold text-forest/40 uppercase tracking-wider">
+                    <div className="flex items-center gap-2 mb-3 pt-4">
+                      <span className="text-xs font-bold text-forest/40 uppercase tracking-wider">
                         Step {step.number}
                       </span>
                     </div>
 
-                    <h3 className="text-3xl font-bold text-forest mb-4">
+                    <h3 className="text-2xl font-bold text-forest mb-3">
                       {step.title}
                     </h3>
 
-                    <p className="text-gentle-gray/80 leading-relaxed text-lg">
+                    <p className="text-gentle-gray/80 leading-relaxed text-base">
                       {step.description}
                     </p>
 
                     <svg
                       className={`absolute top-1/2 -translate-y-1/2 ${
-                        isEven ? '-right-20' : '-left-20'
-                      } w-20 h-1 hidden lg:block`}
+                        isEven ? '-right-12' : '-left-12'
+                      } w-12 h-1 hidden lg:block`}
                       style={{
                         opacity: activeStep === index ? 1 : 0,
                         transition: 'opacity 0.7s ease',
                       }}
                     >
                       <line
-                        x1={isEven ? "0" : "20"}
+                        x1={isEven ? "0" : "12"}
                         y1="0.5"
-                        x2={isEven ? "20" : "0"}
+                        x2={isEven ? "12" : "0"}
                         y2="0.5"
                         stroke="#475b47"
                         strokeWidth="2"
-                        strokeDasharray="4 4"
+                        strokeDasharray="3 3"
                         className="animate-pulse-gentle"
                       />
                     </svg>
