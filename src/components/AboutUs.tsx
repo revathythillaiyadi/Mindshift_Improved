@@ -1,15 +1,8 @@
 import { Shield, Award, Users } from 'lucide-react';
-import MoodIcon from './MoodIcon';
 
 export default function AboutUs() {
   return (
     <section id="about" className="py-20 px-6 bg-gradient-to-b from-mint-50/20 via-warm-white to-sage-50/30 relative overflow-hidden">
-      <div className="absolute inset-0 pointer-events-none overflow-hidden">
-        <div className="absolute top-1/3 right-12 w-20 h-20 opacity-35 animate-float">
-          <MoodIcon mood="peaceful" style={{ animationDelay: '1s' }} />
-        </div>
-      </div>
-
       <div className="container mx-auto max-w-7xl relative">
         <div className="grid md:grid-cols-2 gap-12 items-center">
           <div className="animate-fade-in">

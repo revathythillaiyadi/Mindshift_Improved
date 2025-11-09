@@ -1,5 +1,4 @@
 import { Bot, BookText, Heart, Target, Radio } from 'lucide-react';
-import MoodIcon, { type MoodType } from './MoodIcon';
 
 const services = [
   {
@@ -32,12 +31,6 @@ const services = [
 export default function Services() {
   return (
     <section id="services" className="py-20 px-6 bg-gradient-to-b from-sage-50/30 via-warm-white to-mint-50/20 relative overflow-hidden">
-      <div className="absolute inset-0 pointer-events-none overflow-hidden">
-        <div className="absolute bottom-1/4 left-16 w-20 h-20 opacity-35 animate-float">
-          <MoodIcon mood="energetic" style={{ animationDelay: '1s' }} />
-        </div>
-      </div>
-
       <div className="container mx-auto max-w-7xl relative">
         <div className="text-center mb-16 animate-fade-in">
           <div className="inline-flex items-center gap-2 mb-4">
