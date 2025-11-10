@@ -1,16 +1,14 @@
 import { Shield, Award, Users } from 'lucide-react';
+import TreeRing from './TreeRing';
 
 export default function AboutUs() {
   return (
     <section id="about" className="py-20 px-6 bg-gradient-to-b from-mint-50/20 via-warm-white to-sage-50/30 relative overflow-hidden">
       <div className="absolute inset-0 pointer-events-none overflow-hidden">
-        <div className="absolute top-1/3 -right-20 w-[250px] h-[250px] opacity-30 animate-breathing">
-          <div className="tree-ring-complex">
-            <div className="ring ring-1"></div>
-            <div className="ring ring-2"></div>
-            <div className="ring ring-3"></div>
-          </div>
-        </div>
+        <TreeRing
+          ringCount={9}
+          className="absolute top-1/3 -right-20 w-[250px] h-[250px] opacity-40 animate-breathing"
+        />
       </div>
       <div className="container mx-auto max-w-7xl relative">
         <div className="grid md:grid-cols-2 gap-12 items-center">

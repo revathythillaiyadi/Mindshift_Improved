@@ -1,4 +1,5 @@
 import { useNavigate } from 'react-router-dom';
+import TreeRing from './TreeRing';
 
 export default function Hero() {
   const navigate = useNavigate();
@@ -11,30 +12,20 @@ export default function Hero() {
     <section className="relative min-h-[90vh] flex items-center justify-center px-6 overflow-hidden bg-white">
       {/* Tree Rings Background */}
       <div className="absolute inset-0 overflow-hidden">
-        <div className="absolute top-20 -left-20 w-[400px] h-[400px] animate-breathing">
-          <div className="tree-ring-complex">
-            <div className="ring ring-1"></div>
-            <div className="ring ring-2"></div>
-            <div className="ring ring-3"></div>
-            <div className="ring ring-4"></div>
-            <div className="ring ring-5"></div>
-          </div>
-        </div>
-        <div className="absolute -top-10 right-20 w-[300px] h-[300px] animate-breathing" style={{ animationDelay: '2s' }}>
-          <div className="tree-ring-complex">
-            <div className="ring ring-1"></div>
-            <div className="ring ring-2"></div>
-            <div className="ring ring-3"></div>
-            <div className="ring ring-4"></div>
-          </div>
-        </div>
-        <div className="absolute bottom-10 right-1/4 w-[250px] h-[250px] animate-breathing" style={{ animationDelay: '4s' }}>
-          <div className="tree-ring-complex">
-            <div className="ring ring-1"></div>
-            <div className="ring ring-2"></div>
-            <div className="ring ring-3"></div>
-          </div>
-        </div>
+        <TreeRing
+          ringCount={12}
+          className="absolute top-20 -left-20 w-[400px] h-[400px] animate-breathing opacity-60"
+        />
+        <TreeRing
+          ringCount={10}
+          className="absolute -top-10 right-20 w-[300px] h-[300px] animate-breathing opacity-50"
+          style={{ animationDelay: '2s' }}
+        />
+        <TreeRing
+          ringCount={8}
+          className="absolute bottom-10 right-1/4 w-[250px] h-[250px] animate-breathing opacity-45"
+          style={{ animationDelay: '4s' }}
+        />
       </div>
 
       {/* Content */}
