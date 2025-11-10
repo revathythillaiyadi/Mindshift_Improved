@@ -30,7 +30,7 @@ export default function SafetyGuarantee() {
           </p>
 
           <div className="grid md:grid-cols-3 gap-6">
-            <div className="text-center bg-sage-50/60 p-6 rounded-[2rem] border-2 border-sage-100/30 hover:shadow-lg hover:-translate-y-1 transition-all group animate-fade-in" style={{ animationDelay: '0.3s' }}>
+            <div className="text-center bg-sage-50 dark:bg-gray-700/50/60 p-6 rounded-[2rem] border-2 border-sage-100/30 hover:shadow-lg hover:-translate-y-1 transition-all group animate-fade-in" style={{ animationDelay: '0.3s' }}>
               <div className="inline-flex items-center justify-center w-14 h-14 bg-gradient-to-br from-sage-500 to-mint-500 rounded-full mb-4 shadow-md group-hover:scale-110 transition-transform">
                 <Phone className="w-7 h-7 text-white" strokeWidth={2} />
               </div>
@@ -40,7 +40,7 @@ export default function SafetyGuarantee() {
               </p>
             </div>
 
-            <div className="text-center bg-mint-50/60 p-6 rounded-[2rem] border-2 border-mint-100/30 hover:shadow-lg hover:-translate-y-1 transition-all group animate-fade-in" style={{ animationDelay: '0.4s' }}>
+            <div className="text-center bg-mint-50 dark:bg-gray-700/50/60 p-6 rounded-[2rem] border-2 border-mint-100/30 hover:shadow-lg hover:-translate-y-1 transition-all group animate-fade-in" style={{ animationDelay: '0.4s' }}>
               <div className="inline-flex items-center justify-center w-14 h-14 bg-gradient-to-br from-mint-500 to-sage-500 rounded-full mb-4 shadow-md group-hover:scale-110 transition-transform">
                 <Shield className="w-7 h-7 text-white" strokeWidth={2} />
               </div>
@@ -61,7 +61,7 @@ export default function SafetyGuarantee() {
             </div>
           </div>
 
-          <div className="mt-8 pt-8 border-t border-sage-200 text-center animate-fade-in" style={{ animationDelay: '0.6s' }}>
+          <div className="mt-8 pt-8 border-t border-sage-200 dark:border-gray-600 text-center animate-fade-in" style={{ animationDelay: '0.6s' }}>
             <p className="text-forest font-semibold mb-4 text-lg">
               If you're experiencing a crisis or thoughts of self-harm:
             </p>

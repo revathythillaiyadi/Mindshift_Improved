@@ -31,7 +31,7 @@ const services = [
 
 export default function Services() {
   return (
-    <section id="services" className="py-20 px-6 bg-gradient-to-b from-sage-50/30 via-warm-white to-mint-50/20 relative overflow-hidden">
+    <section id="services" className="py-20 px-6 bg-gradient-to-b from-sage-50/30 via-warm-white to-mint-50/20 dark:from-gray-900 dark:via-gray-800 dark:to-gray-900 relative overflow-hidden">
       <div className="absolute inset-0 pointer-events-none overflow-hidden">
         <TreeRing
           ringCount={7}
@@ -42,7 +42,7 @@ export default function Services() {
       <div className="container mx-auto max-w-7xl relative">
         <div className="text-center mb-16 animate-fade-in">
           <div className="inline-flex items-center gap-2 mb-4">
-            <h2 className="text-4xl md:text-5xl font-bold text-forest">
+            <h2 className="text-4xl md:text-5xl font-bold text-forest dark:text-sage-100 transition-colors">
               Your Personal Space for Growth
             </h2>
           </div>

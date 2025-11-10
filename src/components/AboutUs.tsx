@@ -3,7 +3,7 @@ import TreeRing from './TreeRing';
 
 export default function AboutUs() {
   return (
-    <section id="about" className="py-20 px-6 bg-gradient-to-b from-mint-50/20 via-warm-white to-sage-50/30 relative overflow-hidden">
+    <section id="about" className="py-20 px-6 bg-gradient-to-b from-mint-50/20 via-warm-white to-sage-50/30 dark:from-gray-800 dark:via-gray-900 dark:to-gray-800 relative overflow-hidden">
       <div className="absolute inset-0 pointer-events-none overflow-hidden">
         <TreeRing
           ringCount={9}
@@ -14,7 +14,7 @@ export default function AboutUs() {
         <div className="grid md:grid-cols-2 gap-12 items-center">
           <div className="animate-fade-in">
             <div className="inline-flex items-center gap-2 mb-6">
-              <h2 className="text-4xl md:text-5xl font-bold text-forest">
+              <h2 className="text-4xl md:text-5xl font-bold text-forest dark:text-sage-100 transition-colors">
                 About MindShift
               </h2>
             </div>

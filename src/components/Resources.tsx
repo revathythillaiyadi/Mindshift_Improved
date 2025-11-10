@@ -58,7 +58,7 @@ export default function Resources() {
                 </div>
                 <div className="flex-1">
                   <div className="flex items-center justify-between mb-2">
-                    <h3 className="text-xl font-bold text-warm-gray">{resource.title}</h3>
+                    <h3 className="text-xl font-bold text-warm-gray dark:text-gray-400 transition-colors">{resource.title}</h3>
                     <ExternalLink className="w-5 h-5 text-sage-600 group-hover:translate-x-1 transition-transform" />
                   </div>
                   <p className="text-warm-gray/70 leading-relaxed">{resource.description}</p>

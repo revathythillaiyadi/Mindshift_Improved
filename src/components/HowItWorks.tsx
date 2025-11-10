@@ -212,7 +212,7 @@ export default function HowItWorks() {
       <div className="container mx-auto max-w-7xl relative" style={{ zIndex: 1 }}>
         <div className="text-center mb-24 animate-fade-in">
           <div className="inline-flex items-center gap-2 mb-4">
-            <h2 className="text-4xl md:text-5xl font-bold text-forest">
+            <h2 className="text-4xl md:text-5xl font-bold text-forest dark:text-sage-100 transition-colors">
               Your Path to Growth
             </h2>
           </div>
@@ -249,7 +249,7 @@ export default function HowItWorks() {
                         ? 'border-sage-400/60 shadow-sage-200/50'
                         : hasBeenActive
                         ? 'border-sage-300/30'
-                        : 'border-sage-200/20'
+                        : 'border-sage-200 dark:border-gray-600/20'
                     }`}
                     style={{
                       animationDelay: `${index * 0.1}s`,
@@ -263,7 +263,7 @@ export default function HowItWorks() {
                     <div className="flex items-center gap-2 mb-4 pt-6">
                       <div className="flex items-center gap-1.5">
                         <div className={`w-2 h-2 rounded-full transition-colors ${
-                          isActive ? 'bg-sage-500 animate-pulse' : hasBeenActive ? 'bg-sage-400' : 'bg-sage-200'
+                          isActive ? 'bg-sage-50 dark:bg-gray-700/500 animate-pulse' : hasBeenActive ? 'bg-sage-400' : 'bg-sage-200'
                         }`} />
                         <span className="text-xs font-bold text-forest/50 uppercase tracking-wider">
                           Step {step.number}

@@ -23,7 +23,7 @@ export default function MeetNira() {
   }, [visibleMessages, messages.length]);
 
   return (
-    <section className="py-24 px-6 bg-gradient-to-b from-mint-50/20 via-warm-white to-sage-50/30 relative overflow-hidden">
+    <section className="py-24 px-6 bg-gradient-to-b from-mint-50/20 via-warm-white to-sage-50/30 dark:from-gray-800 dark:via-gray-900 dark:to-gray-800 relative overflow-hidden">
       <div className="absolute inset-0 pointer-events-none overflow-hidden">
         <TreeRing
           ringCount={10}
@@ -34,7 +34,7 @@ export default function MeetNira() {
 
       <div className="container mx-auto max-w-7xl">
         <div className="text-center mb-16 space-y-4 animate-fade-in">
-          <h2 className="text-4xl md:text-5xl font-bold text-soft-gray">
+          <h2 className="text-4xl md:text-5xl font-bold text-soft-gray dark:text-gray-300 transition-colors">
             meet nira, your companion
           </h2>
           <p className="text-xl text-forest/70 max-w-2xl mx-auto font-serif italic">
@@ -50,13 +50,13 @@ export default function MeetNira() {
             <div className="relative z-10 bg-white/70 backdrop-blur-xl rounded-[2.5rem] shadow-2xl border border-lavender-100/30 overflow-hidden">
               <div className="bg-forest p-6 flex items-center justify-between">
                 <div className="flex items-center gap-4">
-                  <div className="w-14 h-14 bg-white rounded-full flex items-center justify-center shadow-lg animate-pulse-gentle">
-                    <Bot className="w-8 h-8 text-forest" strokeWidth={1.5} />
+                  <div className="w-14 h-14 bg-white dark:bg-gray-800 rounded-full flex items-center justify-center shadow-lg animate-pulse-gentle">
+                    <Bot className="w-8 h-8 text-forest dark:text-sage-100 transition-colors" strokeWidth={1.5} />
                   </div>
                   <div>
                     <h3 className="text-white font-semibold text-lg tracking-wide">nira</h3>
                     <div className="flex items-center gap-2">
-                      <div className="w-2.5 h-2.5 bg-white rounded-full animate-pulse"></div>
+                      <div className="w-2.5 h-2.5 bg-white dark:bg-gray-800 rounded-full animate-pulse"></div>
                       <span className="text-white/90 text-sm lowercase">here with you</span>
                     </div>
                   </div>
@@ -98,10 +98,10 @@ export default function MeetNira() {
 
               <div className="p-6 bg-white/60 backdrop-blur-md border-t border-lavender-100/40">
                 <div className="flex items-center gap-3">
-                  <button className="p-3 hover:bg-sage-50/60 rounded-full transition-all" title="voice input">
+                  <button className="p-3 hover:bg-sage-50 dark:bg-gray-700/50/60 rounded-full transition-all" title="voice input">
                     <Mic className="w-5 h-5 text-sage-500/70" strokeWidth={1.5} />
                   </button>
-                  <button className="p-3 hover:bg-sage-50/60 rounded-full transition-all" title="add emoji">
+                  <button className="p-3 hover:bg-sage-50 dark:bg-gray-700/50/60 rounded-full transition-all" title="add emoji">
                     <Smile className="w-5 h-5 text-sage-500/70" strokeWidth={1.5} />
                   </button>
                   <input
