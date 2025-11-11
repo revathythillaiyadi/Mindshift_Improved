@@ -60,8 +60,8 @@ export default function ChatArea() {
   };
 
   return (
-    <div className="h-full flex flex-col bg-white dark:bg-gray-800 rounded-2xl shadow-lg border border-blue-100 dark:border-gray-700 overflow-hidden transition-colors">
-      <div className="bg-gradient-to-r from-blue-600 to-teal-600 p-4 flex items-center justify-between">
+    <div className="h-full flex flex-col bg-white dark:bg-gray-800 rounded-[1.5rem] shadow-lg border border-sage-100 dark:border-gray-700 overflow-hidden transition-colors">
+      <div className="bg-gradient-to-r from-sage-600 to-mint-600 p-4 flex items-center justify-between">
         <div className="flex items-center gap-3">
           <div className="w-10 h-10 bg-white rounded-full flex items-center justify-center">
             <Bot className="w-6 h-6 text-blue-600" />
@@ -75,7 +75,7 @@ export default function ChatArea() {
           </div>
         </div>
         <button
-          className="p-2 hover:bg-white/10 rounded-lg transition-colors"
+          className="p-2 hover:bg-white/10 rounded-[1rem] transition-colors"
           title="Audio settings"
         >
           <Volume2 className="w-5 h-5 text-white" />
@@ -91,7 +91,7 @@ export default function ChatArea() {
             <div
               className={`w-8 h-8 rounded-full flex items-center justify-center flex-shrink-0 ${
                 message.type === 'bot'
-                  ? 'bg-gradient-to-br from-blue-500 to-teal-500'
+                  ? 'bg-gradient-to-br from-sage-500 to-mint-500'
                   : 'bg-gradient-to-br from-blue-600 to-blue-700'
               }`}
             >
@@ -103,7 +103,7 @@ export default function ChatArea() {
             </div>
             <div className={`max-w-[70%] ${message.type === 'user' ? 'items-end' : 'items-start'} flex flex-col`}>
               <div
-                className={`px-4 py-3 rounded-2xl ${
+                className={`px-4 py-3 rounded-[1.5rem] ${
                   message.type === 'bot'
                     ? 'bg-white dark:bg-gray-700 text-gray-800 dark:text-gray-100 shadow-sm'
                     : 'bg-gradient-to-r from-blue-600 to-blue-700 text-white'
@@ -120,14 +120,14 @@ export default function ChatArea() {
         <div ref={messagesEndRef} />
       </div>
 
-      <div className="p-4 bg-white dark:bg-gray-800 border-t border-blue-100 dark:border-gray-700">
+      <div className="p-4 bg-white dark:bg-gray-800 border-t border-sage-100 dark:border-gray-700">
         <div className="flex items-end gap-2">
           <button
             onClick={() => setIsRecording(!isRecording)}
             className={`p-3 rounded-full transition-all ${
               isRecording
                 ? 'bg-red-500 hover:bg-red-600 animate-pulse'
-                : 'bg-gradient-to-r from-blue-600 to-teal-600 hover:shadow-lg'
+                : 'bg-gradient-to-r from-sage-600 to-mint-600 hover:shadow-lg'
             }`}
             title={isRecording ? 'Stop recording' : 'Voice input'}
           >
@@ -140,15 +140,15 @@ export default function ChatArea() {
               onChange={(e) => setInputText(e.target.value)}
               onKeyPress={handleKeyPress}
               placeholder="Type your message..."
-              className="w-full px-4 py-3 rounded-2xl border border-blue-200 dark:border-gray-600 dark:bg-gray-700 dark:text-white focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-transparent transition-colors text-sm resize-none"
+              className="w-full px-4 py-3 rounded-[1.5rem] border border-sage-200 dark:border-gray-600 dark:bg-gray-700 dark:text-white focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-transparent transition-colors text-sm resize-none"
               rows={2}
             />
             <div className="flex items-center justify-between px-2">
               <button
-                className="p-2 hover:bg-blue-50 dark:hover:bg-gray-700 rounded-lg transition-colors"
+                className="p-2 hover:bg-blue-50 dark:hover:bg-gray-700 rounded-[1rem] transition-colors"
                 title="Emoji picker"
               >
-                <Smile className="w-5 h-5 text-blue-600 dark:text-blue-400" />
+                <Smile className="w-5 h-5 text-sage-600 dark:text-sage-400" />
               </button>
               <span className="text-xs text-gray-500 dark:text-gray-400">
                 Press Enter to send
@@ -159,7 +159,7 @@ export default function ChatArea() {
           <button
             onClick={handleSendMessage}
             disabled={!inputText.trim()}
-            className="p-3 bg-gradient-to-r from-blue-600 to-teal-600 text-white rounded-full hover:shadow-lg transition-all disabled:opacity-50 disabled:cursor-not-allowed"
+            className="p-3 bg-gradient-to-r from-sage-600 to-mint-600 text-white rounded-full hover:shadow-lg transition-all disabled:opacity-50 disabled:cursor-not-allowed"
             title="Send message"
           >
             <Send className="w-6 h-6" />

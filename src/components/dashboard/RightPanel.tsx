@@ -67,23 +67,23 @@ export default function RightPanel({ selectedRegion }: RightPanelProps) {
 
   return (
     <>
-      <aside className="w-80 bg-white/80 dark:bg-gray-800/80 backdrop-blur-sm border-l border-blue-100 dark:border-gray-700 overflow-y-auto transition-colors">
+      <aside className="w-80 bg-white/80 dark:bg-gray-800/80 backdrop-blur-sm border-l border-sage-100 dark:border-gray-700 overflow-y-auto transition-colors">
         <div className="p-6 space-y-6">
           <button
             onClick={() => setShowSOSModal(true)}
-            className="w-full py-4 bg-gradient-to-r from-red-500 to-orange-500 text-white rounded-xl font-bold text-lg shadow-lg hover:shadow-xl transition-all hover:scale-105 flex items-center justify-center gap-2"
+            className="w-full py-4 bg-gradient-to-r from-red-500 to-orange-500 text-white rounded-[1rem] font-bold text-lg shadow-lg hover:shadow-xl transition-all hover:scale-105 flex items-center justify-center gap-2"
           >
             <AlertCircle className="w-6 h-6" />
             SOS - Get Help Now
           </button>
 
-          <div className="bg-gradient-to-br from-blue-50 to-teal-50 dark:from-gray-700 dark:to-gray-600 rounded-xl p-4 transition-colors">
+          <div className="bg-gradient-to-br from-blue-50 to-teal-50 dark:from-gray-700 dark:to-gray-600 rounded-[1rem] p-4 transition-colors">
             <div className="flex items-center gap-2 mb-3">
               <Flame className="w-5 h-5 text-orange-500" />
               <h3 className="font-semibold text-gray-800 dark:text-white">Current Streak</h3>
             </div>
             <div className="flex items-baseline gap-2">
-              <span className="text-4xl font-bold bg-gradient-to-r from-blue-600 to-teal-600 bg-clip-text text-transparent">
+              <span className="text-4xl font-bold bg-gradient-to-r from-sage-600 to-mint-600 bg-clip-text text-transparent">
                 7
               </span>
               <span className="text-gray-600 dark:text-gray-300">days</span>
@@ -93,9 +93,9 @@ export default function RightPanel({ selectedRegion }: RightPanelProps) {
             </p>
           </div>
 
-          <div className="bg-white dark:bg-gray-700 rounded-xl p-4 border border-blue-100 dark:border-gray-600 transition-colors">
+          <div className="bg-white dark:bg-gray-700 rounded-[1rem] p-4 border border-blue-100 dark:border-gray-600 transition-colors">
             <div className="flex items-center gap-2 mb-4">
-              <TrendingUp className="w-5 h-5 text-blue-600 dark:text-blue-400" />
+              <TrendingUp className="w-5 h-5 text-sage-600 dark:text-sage-400" />
               <h3 className="font-semibold text-gray-800 dark:text-white">Mood Tracker</h3>
             </div>
             <div className="space-y-2">
@@ -103,7 +103,7 @@ export default function RightPanel({ selectedRegion }: RightPanelProps) {
                 {moodData.map((day) => (
                   <div key={day.date} className="flex-1 flex flex-col items-center gap-1">
                     <div
-                      className="w-full bg-gradient-to-t from-blue-500 to-teal-500 rounded-t-lg transition-all hover:opacity-80"
+                      className="w-full bg-gradient-to-t from-sage-500 to-mint-500 rounded-t-lg transition-all hover:opacity-80"
                       style={{ height: `${(day.mood / maxMood) * 100}%` }}
                     />
                     <span className="text-xs text-gray-600 dark:text-gray-400">{day.date}</span>
@@ -117,43 +117,43 @@ export default function RightPanel({ selectedRegion }: RightPanelProps) {
             </div>
           </div>
 
-          <div className="bg-white dark:bg-gray-700 rounded-xl p-4 border border-blue-100 dark:border-gray-600 transition-colors">
+          <div className="bg-white dark:bg-gray-700 rounded-[1rem] p-4 border border-blue-100 dark:border-gray-600 transition-colors">
             <div className="flex items-center gap-2 mb-4">
-              <Target className="w-5 h-5 text-blue-600 dark:text-blue-400" />
+              <Target className="w-5 h-5 text-sage-600 dark:text-sage-400" />
               <h3 className="font-semibold text-gray-800 dark:text-white">Goals Progress</h3>
             </div>
             <div className="space-y-3">
               <div>
                 <div className="flex items-center justify-between mb-1">
                   <span className="text-sm text-gray-700 dark:text-gray-300">Daily Check-in</span>
-                  <span className="text-sm font-medium text-blue-600 dark:text-blue-400">7/7</span>
+                  <span className="text-sm font-medium text-sage-600 dark:text-sage-400">7/7</span>
                 </div>
                 <div className="h-2 bg-blue-100 dark:bg-gray-600 rounded-full overflow-hidden">
-                  <div className="h-full bg-gradient-to-r from-blue-500 to-teal-500 rounded-full" style={{ width: '100%' }} />
+                  <div className="h-full bg-gradient-to-r from-sage-500 to-mint-500 rounded-full" style={{ width: '100%' }} />
                 </div>
               </div>
               <div>
                 <div className="flex items-center justify-between mb-1">
                   <span className="text-sm text-gray-700 dark:text-gray-300">Journal Entries</span>
-                  <span className="text-sm font-medium text-blue-600 dark:text-blue-400">4/10</span>
+                  <span className="text-sm font-medium text-sage-600 dark:text-sage-400">4/10</span>
                 </div>
                 <div className="h-2 bg-blue-100 dark:bg-gray-600 rounded-full overflow-hidden">
-                  <div className="h-full bg-gradient-to-r from-blue-500 to-teal-500 rounded-full" style={{ width: '40%' }} />
+                  <div className="h-full bg-gradient-to-r from-sage-500 to-mint-500 rounded-full" style={{ width: '40%' }} />
                 </div>
               </div>
               <div>
                 <div className="flex items-center justify-between mb-1">
                   <span className="text-sm text-gray-700 dark:text-gray-300">Mindfulness Minutes</span>
-                  <span className="text-sm font-medium text-blue-600 dark:text-blue-400">45/60</span>
+                  <span className="text-sm font-medium text-sage-600 dark:text-sage-400">45/60</span>
                 </div>
                 <div className="h-2 bg-blue-100 dark:bg-gray-600 rounded-full overflow-hidden">
-                  <div className="h-full bg-gradient-to-r from-blue-500 to-teal-500 rounded-full" style={{ width: '75%' }} />
+                  <div className="h-full bg-gradient-to-r from-sage-500 to-mint-500 rounded-full" style={{ width: '75%' }} />
                 </div>
               </div>
             </div>
           </div>
 
-          <div className="bg-gradient-to-br from-amber-50 to-yellow-50 dark:from-amber-900/20 dark:to-yellow-900/20 rounded-xl p-4 border border-amber-200 dark:border-amber-800 transition-colors">
+          <div className="bg-gradient-to-br from-amber-50 to-yellow-50 dark:from-amber-900/20 dark:to-yellow-900/20 rounded-[1rem] p-4 border border-amber-200 dark:border-amber-800 transition-colors">
             <div className="flex items-start gap-3">
               <Bell className="w-5 h-5 text-amber-600 dark:text-amber-400 flex-shrink-0 mt-1" />
               <div>
@@ -165,24 +165,24 @@ export default function RightPanel({ selectedRegion }: RightPanelProps) {
             </div>
           </div>
 
-          <div className="bg-white dark:bg-gray-700 rounded-xl p-4 border border-blue-100 dark:border-gray-600 transition-colors">
+          <div className="bg-white dark:bg-gray-700 rounded-[1rem] p-4 border border-blue-100 dark:border-gray-600 transition-colors">
             <h3 className="font-semibold text-gray-800 dark:text-white mb-3">Recent Achievements</h3>
             <div className="space-y-2">
-              <div className="flex items-center gap-3 p-2 bg-blue-50 dark:bg-gray-600 rounded-lg">
+              <div className="flex items-center gap-3 p-2 bg-blue-50 dark:bg-gray-600 rounded-[1rem]">
                 <span className="text-2xl">🎯</span>
                 <div className="flex-1">
                   <p className="text-sm font-medium text-gray-800 dark:text-white">7-Day Streak!</p>
                   <p className="text-xs text-gray-600 dark:text-gray-400">Checked in daily</p>
                 </div>
               </div>
-              <div className="flex items-center gap-3 p-2 bg-blue-50 dark:bg-gray-600 rounded-lg">
+              <div className="flex items-center gap-3 p-2 bg-blue-50 dark:bg-gray-600 rounded-[1rem]">
                 <span className="text-2xl">📝</span>
                 <div className="flex-1">
                   <p className="text-sm font-medium text-gray-800 dark:text-white">Journaling Pro</p>
                   <p className="text-xs text-gray-600 dark:text-gray-400">10 entries written</p>
                 </div>
               </div>
-              <div className="flex items-center gap-3 p-2 bg-blue-50 dark:bg-gray-600 rounded-lg">
+              <div className="flex items-center gap-3 p-2 bg-blue-50 dark:bg-gray-600 rounded-[1rem]">
                 <span className="text-2xl">🌟</span>
                 <div className="flex-1">
                   <p className="text-sm font-medium text-gray-800 dark:text-white">Mood Improver</p>
@@ -196,7 +196,7 @@ export default function RightPanel({ selectedRegion }: RightPanelProps) {
 
       {showSOSModal && (
         <div className="fixed inset-0 bg-black/50 flex items-center justify-center z-50 p-4">
-          <div className="bg-white dark:bg-gray-800 rounded-2xl shadow-2xl max-w-md w-full p-6 transition-colors">
+          <div className="bg-white dark:bg-gray-800 rounded-[1.5rem] shadow-2xl max-w-md w-full p-6 transition-colors">
             <div className="flex items-center gap-3 mb-4">
               <div className="w-12 h-12 bg-red-100 dark:bg-red-900/30 rounded-full flex items-center justify-center">
                 <AlertCircle className="w-6 h-6 text-red-600 dark:text-red-400" />
@@ -209,7 +209,7 @@ export default function RightPanel({ selectedRegion }: RightPanelProps) {
             </p>
 
             <div className="space-y-4 mb-6">
-              <div className="p-4 bg-red-50 dark:bg-red-900/20 rounded-lg border border-red-200 dark:border-red-800">
+              <div className="p-4 bg-red-50 dark:bg-red-900/20 rounded-[1rem] border border-red-200 dark:border-red-800">
                 <h3 className="font-semibold text-red-900 dark:text-red-200 mb-2">Crisis Hotline</h3>
                 <a
                   href={`tel:${contacts.crisis.split(' ')[0]}`}
@@ -219,7 +219,7 @@ export default function RightPanel({ selectedRegion }: RightPanelProps) {
                 </a>
               </div>
 
-              <div className="p-4 bg-amber-50 dark:bg-amber-900/20 rounded-lg border border-amber-200 dark:border-amber-800">
+              <div className="p-4 bg-amber-50 dark:bg-amber-900/20 rounded-[1rem] border border-amber-200 dark:border-amber-800">
                 <h3 className="font-semibold text-amber-900 dark:text-amber-200 mb-2">Support Hotline</h3>
                 <a
                   href={`tel:${contacts.hotline.split(' ')[0]}`}
@@ -229,11 +229,11 @@ export default function RightPanel({ selectedRegion }: RightPanelProps) {
                 </a>
               </div>
 
-              <div className="p-4 bg-blue-50 dark:bg-blue-900/20 rounded-lg border border-blue-200 dark:border-blue-800">
+              <div className="p-4 bg-sage-50 dark:bg-sage-900/20 rounded-[1rem] border border-blue-200 dark:border-blue-800">
                 <h3 className="font-semibold text-blue-900 dark:text-blue-200 mb-2">Emergency Services</h3>
                 <a
                   href={`tel:${contacts.emergency}`}
-                  className="text-lg font-bold text-blue-600 dark:text-blue-400 hover:underline"
+                  className="text-lg font-bold text-sage-600 dark:text-sage-400 hover:underline"
                 >
                   {contacts.emergency}
                 </a>
@@ -243,11 +243,11 @@ export default function RightPanel({ selectedRegion }: RightPanelProps) {
             <div className="flex gap-3">
               <button
                 onClick={() => setShowSOSModal(false)}
-                className="flex-1 px-6 py-3 bg-gray-100 dark:bg-gray-700 text-gray-700 dark:text-gray-300 rounded-lg hover:bg-gray-200 dark:hover:bg-gray-600 transition-colors font-medium"
+                className="flex-1 px-6 py-3 bg-gray-100 dark:bg-gray-700 text-gray-700 dark:text-gray-300 rounded-[1rem] hover:bg-gray-200 dark:hover:bg-gray-600 transition-colors font-medium"
               >
                 Close
               </button>
-              <button className="flex-1 px-6 py-3 bg-gradient-to-r from-red-600 to-orange-600 text-white rounded-lg hover:shadow-lg transition-all font-medium">
+              <button className="flex-1 px-6 py-3 bg-gradient-to-r from-red-600 to-orange-600 text-white rounded-[1rem] hover:shadow-lg transition-all font-medium">
                 Call Now
               </button>
             </div>
