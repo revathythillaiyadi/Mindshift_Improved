@@ -61,16 +61,16 @@ export default function ChatArea() {
 
   return (
     <div className="h-full flex flex-col bg-warm-white dark:bg-gray-800 rounded-2xl shadow-xl border border-sage-100/50 dark:border-gray-700 overflow-hidden transition-colors">
-      <div className="bg-gradient-to-r from-forest to-sage-600 p-6 flex items-center justify-between">
+      <div className="bg-gradient-to-r from-[#FF9F9B] to-[#FFD4C4] p-6 flex items-center justify-between">
         <div className="flex items-center gap-4">
           <div className="w-14 h-14 bg-white rounded-2xl flex items-center justify-center shadow-lg">
-            <Brain className="w-8 h-8 text-forest" />
+            <Brain className="w-8 h-8 text-[#FF9F9B]" />
           </div>
           <div>
             <h3 className="text-white font-bold text-lg lowercase">nira</h3>
             <div className="flex items-center gap-2">
-              <div className="w-2.5 h-2.5 bg-mint-400 rounded-full animate-gentle-pulse shadow-sm"></div>
-              <span className="text-sage-100 text-sm lowercase">here for you</span>
+              <div className="w-2.5 h-2.5 bg-white/90 rounded-full animate-gentle-pulse shadow-sm"></div>
+              <span className="text-white/95 text-sm lowercase">here for you</span>
             </div>
           </div>
         </div>
@@ -82,7 +82,7 @@ export default function ChatArea() {
         </button>
       </div>
 
-      <div className="flex-1 overflow-y-auto p-8 space-y-6 bg-gradient-to-b from-sage-50/30 via-warm-white to-mint-50/20 dark:from-gray-900 dark:to-gray-800">
+      <div className="flex-1 overflow-y-auto p-8 space-y-6 bg-gradient-to-b from-[#FFF9F5]/40 via-warm-white to-[#FFF5F0]/30 dark:from-gray-900 dark:to-gray-800">
         {messages.map((message) => (
           <div
             key={message.id}
@@ -91,8 +91,8 @@ export default function ChatArea() {
             <div
               className={`w-10 h-10 rounded-2xl flex items-center justify-center flex-shrink-0 shadow-md ${
                 message.type === 'bot'
-                  ? 'bg-gradient-to-br from-forest to-sage-600'
-                  : 'bg-gradient-to-br from-beige-400 to-beige-500'
+                  ? 'bg-gradient-to-br from-[#FF9F9B] to-[#FFD4C4]'
+                  : 'bg-gradient-to-br from-[#E6E6FA] to-[#D8BFD8]'
               }`}
             >
               {message.type === 'bot' ? (
@@ -105,13 +105,13 @@ export default function ChatArea() {
               <div
                 className={`px-6 py-4 rounded-2xl shadow-md ${
                   message.type === 'bot'
-                    ? 'bg-sage-100 dark:bg-gray-700 text-forest dark:text-gray-100 border border-sage-200/50 dark:border-gray-600'
-                    : 'bg-beige-100 dark:bg-beige-800 text-soft-gray dark:text-white border border-beige-200/50 dark:border-beige-700'
+                    ? 'bg-gradient-to-br from-[#FFF5F0] to-[#FFE8DC] dark:bg-gray-700 text-gray-800 dark:text-gray-100 border border-[#FFD4C4]/40 dark:border-gray-600'
+                    : 'bg-gradient-to-br from-[#F5F0FF] to-[#F0E8FF] dark:bg-gray-700 text-gray-800 dark:text-white border border-[#E6E6FA]/40 dark:border-gray-600'
                 }`}
               >
                 <p className="text-base leading-relaxed">{message.text}</p>
               </div>
-              <span className="text-xs text-sage-500 dark:text-gray-400 px-3">
+              <span className="text-xs text-gray-500 dark:text-gray-400 px-3">
                 {message.timestamp.toLocaleTimeString([], { hour: '2-digit', minute: '2-digit' })}
               </span>
             </div>
@@ -126,8 +126,8 @@ export default function ChatArea() {
             onClick={() => setIsRecording(!isRecording)}
             className={`p-3.5 rounded-2xl transition-all shadow-md ${
               isRecording
-                ? 'bg-red-500 hover:bg-red-600 animate-pulse'
-                : 'bg-gradient-to-br from-forest to-sage-600 hover:shadow-lg hover:scale-105'
+                ? 'bg-[#FF6B6B] hover:bg-[#FA8072] animate-pulse'
+                : 'bg-gradient-to-br from-[#FF9F9B] to-[#FFD4C4] hover:shadow-lg hover:scale-105'
             }`}
             title={isRecording ? 'Stop recording' : 'Voice input'}
           >
@@ -140,17 +140,17 @@ export default function ChatArea() {
               onChange={(e) => setInputText(e.target.value)}
               onKeyPress={handleKeyPress}
               placeholder="share your thoughts with nira..."
-              className="w-full px-6 py-4 rounded-2xl border border-sage-300 dark:border-gray-600 dark:bg-gray-700 dark:text-white focus:outline-none focus:ring-2 focus:ring-forest focus:border-transparent transition-colors text-base resize-none shadow-sm placeholder-sage-400 dark:placeholder-gray-500 lowercase"
+              className="w-full px-6 py-4 rounded-2xl border border-[#FFE8DC] dark:border-gray-600 dark:bg-gray-700 dark:text-white focus:outline-none focus:ring-2 focus:ring-[#FF9F9B] focus:border-transparent transition-colors text-base resize-none shadow-sm placeholder-gray-400 dark:placeholder-gray-500 lowercase"
               rows={2}
             />
             <div className="flex items-center justify-between px-3">
               <button
-                className="p-2 hover:bg-sage-100 dark:hover:bg-gray-700 rounded-xl transition-all hover:scale-105"
+                className="p-2 hover:bg-[#FFF5F0] dark:hover:bg-gray-700 rounded-xl transition-all hover:scale-105"
                 title="Emoji picker"
               >
-                <Smile className="w-5 h-5 text-forest dark:text-sage-400" />
+                <Smile className="w-5 h-5 text-[#FF9F9B] dark:text-[#FFD4C4]" />
               </button>
-              <span className="text-xs text-sage-500 dark:text-gray-400 lowercase">
+              <span className="text-xs text-gray-500 dark:text-gray-400 lowercase">
                 press enter to send
               </span>
             </div>
@@ -159,7 +159,7 @@ export default function ChatArea() {
           <button
             onClick={handleSendMessage}
             disabled={!inputText.trim()}
-            className="p-3.5 bg-gradient-to-br from-forest to-sage-600 text-white rounded-2xl hover:shadow-lg transition-all disabled:opacity-40 disabled:cursor-not-allowed hover:scale-105 shadow-md"
+            className="p-3.5 bg-gradient-to-br from-[#FF9F9B] to-[#FFD4C4] text-white rounded-2xl hover:shadow-lg transition-all disabled:opacity-40 disabled:cursor-not-allowed hover:scale-105 shadow-md"
             title="Send message"
           >
             <Send className="w-6 h-6" />

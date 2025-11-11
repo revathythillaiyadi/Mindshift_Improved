@@ -40,7 +40,7 @@ export default function Dashboard() {
         />
       </div>
 
-      <div className="flex h-screen bg-gradient-to-br from-warm-white via-mint-50/20 to-sage-50/30 dark:from-gray-900 dark:via-gray-800 dark:to-gray-900 transition-colors relative">
+      <div className="flex h-screen bg-gradient-to-br from-[#FFFBF5] via-[#FFF9F5]/30 to-[#FFF5F0]/20 dark:from-gray-900 dark:via-gray-800 dark:to-gray-900 transition-colors relative">
         <Sidebar currentView={currentView} onViewChange={setCurrentView} />
 
         <div className="flex-1 flex flex-col overflow-hidden">

@@ -90,22 +90,22 @@ export default function RightPanel({ selectedRegion }: RightPanelProps) {
         <div className="p-8 space-y-8">
           <button
             onClick={() => setShowSOSModal(true)}
-            className="w-full py-4 bg-gradient-to-r from-red-500 to-orange-500 text-white rounded-[1rem] font-bold text-lg shadow-lg hover:shadow-xl transition-all hover:scale-105 flex items-center justify-center gap-2"
+            className="w-full py-4 bg-gradient-to-r from-[#FF6B6B] to-[#FA8072] text-white rounded-2xl font-bold text-lg shadow-lg hover:shadow-xl transition-all hover:scale-[1.02] flex items-center justify-center gap-2 animate-sos-pulse"
           >
             <AlertCircle className="w-6 h-6" />
             SOS - Get Help Now
           </button>
 
           <div
-            className={`bg-gradient-to-br from-sage-50 to-mint-50 dark:from-gray-700 dark:to-gray-600 rounded-[1.5rem] p-4 transition-all cursor-pointer ${streakCelebration ? 'animate-streak-glow animate-streak-pop' : ''}`}
+            className={`bg-gradient-to-br from-[#E8F5E9] via-[#F1F8E9] to-[#E0F2F1] dark:from-gray-700/80 dark:via-gray-600/80 dark:to-gray-700/80 rounded-2xl p-5 transition-all cursor-pointer shadow-sm hover:shadow-md ${streakCelebration ? 'animate-streak-glow animate-streak-pop' : ''}`}
             onClick={triggerStreakCelebration}
           >
             <div className="flex items-center gap-2 mb-3">
-              <Flame className="w-5 h-5 text-orange-500" />
+              <Flame className="w-5 h-5 text-[#FF9F9B]" />
               <h3 className="font-semibold text-gray-800 dark:text-white lowercase">current streak</h3>
             </div>
             <div className="flex items-baseline gap-2">
-              <span className="text-4xl font-bold bg-gradient-to-r from-sage-600 to-mint-600 bg-clip-text text-transparent">
+              <span className="text-4xl font-bold bg-gradient-to-r from-[#FF9F9B] to-[#FFD4C4] bg-clip-text text-transparent">
                 7
               </span>
               <span className="text-gray-600 dark:text-gray-300 lowercase">days</span>
@@ -115,9 +115,9 @@ export default function RightPanel({ selectedRegion }: RightPanelProps) {
             </p>
           </div>
 
-          <div className="bg-white dark:bg-gray-700 rounded-[1rem] p-4 border border-blue-100 dark:border-gray-600 transition-colors">
+          <div className="bg-gradient-to-br from-white via-[#FFF9F5] to-white dark:from-gray-700 dark:via-gray-700/80 dark:to-gray-700 rounded-2xl p-5 border border-[#FFE8DC]/40 dark:border-gray-600 transition-colors shadow-sm">
             <div className="flex items-center gap-2 mb-4">
-              <TrendingUp className="w-5 h-5 text-sage-600 dark:text-sage-400" />
+              <TrendingUp className="w-5 h-5 text-[#FF9F9B]" />
               <h3 className="font-semibold text-gray-800 dark:text-white lowercase">mood tracker</h3>
             </div>
             <div className="space-y-2">
@@ -125,7 +125,7 @@ export default function RightPanel({ selectedRegion }: RightPanelProps) {
                 {moodData.map((day) => (
                   <div key={day.date} className="flex-1 flex flex-col items-center gap-1">
                     <div
-                      className="w-full bg-gradient-to-t from-sage-500 to-mint-500 rounded-t-lg transition-all hover:opacity-80"
+                      className="w-full bg-gradient-to-t from-[#FF9F9B] to-[#FFD4C4] rounded-t-lg transition-all hover:opacity-80 hover:scale-105"
                       style={{ height: `${(day.mood / maxMood) * 100}%` }}
                     />
                     <span className="text-xs text-gray-600 dark:text-gray-400">{day.date}</span>
@@ -134,14 +134,14 @@ export default function RightPanel({ selectedRegion }: RightPanelProps) {
               </div>
               <div className="flex items-center justify-between text-xs text-gray-500 dark:text-gray-400">
                 <span>last 7 days</span>
-                <span className="text-teal-600 dark:text-teal-400 font-medium">trending up</span>
+                <span className="text-[#FF9F9B] dark:text-[#FFD4C4] font-medium">trending up</span>
               </div>
             </div>
           </div>
 
-          <div className="bg-white dark:bg-gray-700 rounded-[1.5rem] p-4 border border-sage-100 dark:border-gray-600 transition-colors shadow-sm">
+          <div className="bg-gradient-to-br from-white via-[#F5F9FF] to-white dark:from-gray-700 dark:via-gray-700/80 dark:to-gray-700 rounded-2xl p-5 border border-[#E6E6FA]/40 dark:border-gray-600 transition-colors shadow-sm">
             <div className="flex items-center gap-2 mb-4">
-              <Target className="w-5 h-5 text-sage-600 dark:text-sage-400" />
+              <Target className="w-5 h-5 text-[#E6E6FA]" />
               <h3 className="font-semibold text-gray-800 dark:text-white lowercase">goals progress</h3>
             </div>
             <div className="space-y-4">
@@ -150,12 +150,12 @@ export default function RightPanel({ selectedRegion }: RightPanelProps) {
                   <div className="flex items-center gap-2">
                     <button
                       onClick={() => toggleGoalCompletion('daily-checkin')}
-                      className="relative w-5 h-5 rounded-full border-2 border-sage-500 dark:border-sage-400 transition-all hover:scale-110"
+                      className="relative w-5 h-5 rounded-full border-2 border-[#FF9F9B] dark:border-[#FFD4C4] transition-all hover:scale-110"
                     >
                       {completedGoals.has('daily-checkin') && (
                         <div className="absolute inset-0">
                           <svg className="w-full h-full" viewBox="0 0 24 24">
-                            <circle cx="12" cy="12" r="10" fill="currentColor" className="text-sage-500 dark:text-sage-400 animate-checkmark-circle" />
+                            <circle cx="12" cy="12" r="10" fill="currentColor" className="text-[#FF9F9B] dark:text-[#FFD4C4] animate-checkmark-circle" />
                             <path d="M7 13l3 3 7-7" stroke="white" strokeWidth="2" fill="none" strokeLinecap="round" strokeLinejoin="round" className="animate-checkmark-draw" strokeDasharray="100" />
                           </svg>
                         </div>
@@ -163,10 +163,10 @@ export default function RightPanel({ selectedRegion }: RightPanelProps) {
                     </button>
                     <span className="text-sm text-gray-700 dark:text-gray-300 lowercase">daily check-in</span>
                   </div>
-                  <span className="text-sm font-medium text-sage-600 dark:text-sage-400">7/7</span>
+                  <span className="text-sm font-medium text-[#FF9F9B] dark:text-[#FFD4C4]">7/7</span>
                 </div>
-                <div className="h-2 bg-sage-100 dark:bg-gray-600 rounded-full overflow-hidden">
-                  <div className="h-full bg-gradient-to-r from-sage-500 to-mint-500 rounded-full transition-all duration-500" style={{ width: '100%' }} />
+                <div className="h-2 bg-[#FFE8DC]/30 dark:bg-gray-600 rounded-full overflow-hidden">
+                  <div className="h-full bg-gradient-to-r from-[#FF9F9B] to-[#FFD4C4] rounded-full transition-all duration-500" style={{ width: '100%' }} />
                 </div>
               </div>
               <div>
@@ -174,12 +174,12 @@ export default function RightPanel({ selectedRegion }: RightPanelProps) {
                   <div className="flex items-center gap-2">
                     <button
                       onClick={() => toggleGoalCompletion('journal-entries')}
-                      className="relative w-5 h-5 rounded-full border-2 border-sage-500 dark:border-sage-400 transition-all hover:scale-110"
+                      className="relative w-5 h-5 rounded-full border-2 border-[#FF9F9B] dark:border-[#FFD4C4] transition-all hover:scale-110"
                     >
                       {completedGoals.has('journal-entries') && (
                         <div className="absolute inset-0">
                           <svg className="w-full h-full" viewBox="0 0 24 24">
-                            <circle cx="12" cy="12" r="10" fill="currentColor" className="text-sage-500 dark:text-sage-400 animate-checkmark-circle" />
+                            <circle cx="12" cy="12" r="10" fill="currentColor" className="text-[#FF9F9B] dark:text-[#FFD4C4] animate-checkmark-circle" />
                             <path d="M7 13l3 3 7-7" stroke="white" strokeWidth="2" fill="none" strokeLinecap="round" strokeLinejoin="round" className="animate-checkmark-draw" strokeDasharray="100" />
                           </svg>
                         </div>
@@ -187,10 +187,10 @@ export default function RightPanel({ selectedRegion }: RightPanelProps) {
                     </button>
                     <span className="text-sm text-gray-700 dark:text-gray-300 lowercase">journal entries</span>
                   </div>
-                  <span className="text-sm font-medium text-sage-600 dark:text-sage-400">4/10</span>
+                  <span className="text-sm font-medium text-[#FF9F9B] dark:text-[#FFD4C4]">4/10</span>
                 </div>
-                <div className="h-2 bg-sage-100 dark:bg-gray-600 rounded-full overflow-hidden">
-                  <div className="h-full bg-gradient-to-r from-sage-500 to-mint-500 rounded-full transition-all duration-500" style={{ width: '40%' }} />
+                <div className="h-2 bg-[#FFE8DC]/30 dark:bg-gray-600 rounded-full overflow-hidden">
+                  <div className="h-full bg-gradient-to-r from-[#FF9F9B] to-[#FFD4C4] rounded-full transition-all duration-500" style={{ width: '40%' }} />
                 </div>
               </div>
               <div>
@@ -198,12 +198,12 @@ export default function RightPanel({ selectedRegion }: RightPanelProps) {
                   <div className="flex items-center gap-2">
                     <button
                       onClick={() => toggleGoalCompletion('mindfulness')}
-                      className="relative w-5 h-5 rounded-full border-2 border-sage-500 dark:border-sage-400 transition-all hover:scale-110"
+                      className="relative w-5 h-5 rounded-full border-2 border-[#FF9F9B] dark:border-[#FFD4C4] transition-all hover:scale-110"
                     >
                       {completedGoals.has('mindfulness') && (
                         <div className="absolute inset-0">
                           <svg className="w-full h-full" viewBox="0 0 24 24">
-                            <circle cx="12" cy="12" r="10" fill="currentColor" className="text-sage-500 dark:text-sage-400 animate-checkmark-circle" />
+                            <circle cx="12" cy="12" r="10" fill="currentColor" className="text-[#FF9F9B] dark:text-[#FFD4C4] animate-checkmark-circle" />
                             <path d="M7 13l3 3 7-7" stroke="white" strokeWidth="2" fill="none" strokeLinecap="round" strokeLinejoin="round" className="animate-checkmark-draw" strokeDasharray="100" />
                           </svg>
                         </div>
@@ -211,18 +211,18 @@ export default function RightPanel({ selectedRegion }: RightPanelProps) {
                     </button>
                     <span className="text-sm text-gray-700 dark:text-gray-300 lowercase">mindfulness minutes</span>
                   </div>
-                  <span className="text-sm font-medium text-sage-600 dark:text-sage-400">45/60</span>
+                  <span className="text-sm font-medium text-[#FF9F9B] dark:text-[#FFD4C4]">45/60</span>
                 </div>
-                <div className="h-2 bg-sage-100 dark:bg-gray-600 rounded-full overflow-hidden">
-                  <div className="h-full bg-gradient-to-r from-sage-500 to-mint-500 rounded-full transition-all duration-500" style={{ width: '75%' }} />
+                <div className="h-2 bg-[#FFE8DC]/30 dark:bg-gray-600 rounded-full overflow-hidden">
+                  <div className="h-full bg-gradient-to-r from-[#FF9F9B] to-[#FFD4C4] rounded-full transition-all duration-500" style={{ width: '75%' }} />
                 </div>
               </div>
             </div>
           </div>
 
-          <div className="bg-gradient-to-br from-amber-50 to-yellow-50 dark:from-amber-900/20 dark:to-yellow-900/20 rounded-[1rem] p-4 border border-amber-200 dark:border-amber-800 transition-colors">
+          <div className="bg-gradient-to-br from-[#FFF9F0] via-[#FFF5E8] to-[#FFFBF5] dark:from-amber-900/20 dark:via-amber-800/20 dark:to-amber-900/20 rounded-2xl p-5 border border-[#FFE8D6]/50 dark:border-amber-800 transition-colors shadow-sm">
             <div className="flex items-start gap-3">
-              <Bell className="w-5 h-5 text-amber-600 dark:text-amber-400 flex-shrink-0 mt-1" />
+              <Bell className="w-5 h-5 text-[#FFD4C4] dark:text-[#FFD4C4] flex-shrink-0 mt-1" />
               <div>
                 <h3 className="font-semibold text-gray-800 dark:text-white mb-1">Daily Check-in</h3>
                 <p className="text-sm text-gray-600 dark:text-gray-300">
@@ -232,24 +232,24 @@ export default function RightPanel({ selectedRegion }: RightPanelProps) {
             </div>
           </div>
 
-          <div className="bg-white dark:bg-gray-700 rounded-[1rem] p-4 border border-blue-100 dark:border-gray-600 transition-colors">
+          <div className="bg-gradient-to-br from-white via-[#FFF0F5] to-white dark:from-gray-700 dark:via-gray-700/80 dark:to-gray-700 rounded-2xl p-5 border border-[#FFE8F0]/40 dark:border-gray-600 transition-colors shadow-sm">
             <h3 className="font-semibold text-gray-800 dark:text-white mb-3">Recent Achievements</h3>
             <div className="space-y-2">
-              <div className="flex items-center gap-3 p-2 bg-blue-50 dark:bg-gray-600 rounded-[1rem]">
+              <div className="flex items-center gap-3 p-3 bg-gradient-to-r from-[#FFF9F5] to-[#FFF5F0] dark:bg-gray-600 rounded-xl hover:shadow-sm transition-all">
                 <span className="text-2xl">🎯</span>
                 <div className="flex-1">
                   <p className="text-sm font-medium text-gray-800 dark:text-white">7-Day Streak!</p>
                   <p className="text-xs text-gray-600 dark:text-gray-400">Checked in daily</p>
                 </div>
               </div>
-              <div className="flex items-center gap-3 p-2 bg-blue-50 dark:bg-gray-600 rounded-[1rem]">
+              <div className="flex items-center gap-3 p-3 bg-gradient-to-r from-[#FFF9F5] to-[#FFF5F0] dark:bg-gray-600 rounded-xl hover:shadow-sm transition-all">
                 <span className="text-2xl">📝</span>
                 <div className="flex-1">
                   <p className="text-sm font-medium text-gray-800 dark:text-white">Journaling Pro</p>
                   <p className="text-xs text-gray-600 dark:text-gray-400">10 entries written</p>
                 </div>
               </div>
-              <div className="flex items-center gap-3 p-2 bg-blue-50 dark:bg-gray-600 rounded-[1rem]">
+              <div className="flex items-center gap-3 p-3 bg-gradient-to-r from-[#FFF9F5] to-[#FFF5F0] dark:bg-gray-600 rounded-xl hover:shadow-sm transition-all">
                 <span className="text-2xl">🌟</span>
                 <div className="flex-1">
                   <p className="text-sm font-medium text-gray-800 dark:text-white">Mood Improver</p>

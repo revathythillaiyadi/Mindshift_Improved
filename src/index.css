@@ -43,6 +43,10 @@
     animation: pulseGentle 3s ease-in-out infinite;
   }
 
+  .animate-sos-pulse {
+    animation: sosPulse 2s ease-in-out infinite;
+  }
+
   .animate-grow-vine {
     animation: growVine 2s ease-out forwards;
   }
@@ -111,6 +115,17 @@
     50% {
       opacity: 1;
       transform: scale(1.03);
+    }
+  }
+
+  @keyframes sosPulse {
+    0%, 100% {
+      transform: scale(1);
+      box-shadow: 0 10px 15px -3px rgba(255, 107, 107, 0.3), 0 4px 6px -4px rgba(255, 107, 107, 0.2);
+    }
+    50% {
+      transform: scale(1.05);
+      box-shadow: 0 20px 25px -5px rgba(255, 107, 107, 0.4), 0 10px 10px -5px rgba(255, 107, 107, 0.3);
     }
   }
 
