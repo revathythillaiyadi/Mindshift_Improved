@@ -17,7 +17,7 @@ export default function Dashboard() {
 
   return (
     <div className="min-h-screen relative overflow-hidden">
-      <div className="absolute inset-0 pointer-events-none overflow-hidden opacity-[0.15] dark:opacity-[0.08]">
+      <div className="absolute inset-0 pointer-events-none overflow-hidden opacity-60 dark:opacity-40">
         <TreeRing
           ringCount={15}
           className="absolute -top-32 -left-32 w-[500px] h-[500px] rotate-12"

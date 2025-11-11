@@ -473,22 +473,26 @@
 
   .tree-ring-path {
     fill: none;
-    stroke: rgba(45, 95, 79, 0.15);
-    stroke-width: 1.5;
+    stroke: rgba(71, 91, 71, 0.4);
+    stroke-width: 2;
     stroke-linecap: round;
     vector-effect: non-scaling-stroke;
   }
 
+  .dark .tree-ring-path {
+    stroke: rgba(107, 138, 107, 0.25);
+  }
+
   .tree-ring-path-thin {
-    stroke-width: 1;
+    stroke-width: 1.5;
   }
 
   .tree-ring-path-thick {
-    stroke-width: 2;
+    stroke-width: 2.5;
   }
 
   .tree-ring-path-bold {
-    stroke-width: 2.5;
+    stroke-width: 3;
   }
 }
 
