@@ -5,20 +5,94 @@
 @tailwind utilities;
 
 @layer base {
+  :root {
+    --color-deep-emerald: #187E5F;
+    --color-rich-teal: #0B5844;
+    --color-dark-ocean: #00381F;
+
+    --color-primary-white: #FDFEFE;
+    --color-soft-cream: #F8FAF9;
+    --color-light-sage: #E8F5F0;
+    --color-pale-mint: #D4EDE5;
+
+    --color-forest-green: #4e824f;
+    --color-soft-mint: #76ac6d;
+    --color-sage-muted: #66887f;
+    --color-cool-sage: #a4c1c3;
+    --color-pale-sage: #92bc88;
+
+    --color-text-primary: #2c4943;
+    --color-text-secondary: #315545;
+    --color-text-tertiary: #66887f;
+    --color-text-muted: #a4c1c3;
+
+    --color-warning: #FF8C42;
+    --color-error: #E76F51;
+    --color-success: #76ac6d;
+    --color-info: #a4c1c3;
+
+    --bg-primary: var(--color-primary-white);
+    --bg-secondary: var(--color-soft-cream);
+    --bg-elevated: var(--color-light-sage);
+    --bg-hover: var(--color-pale-mint);
+
+    --text-primary: var(--color-text-primary);
+    --text-secondary: var(--color-text-secondary);
+    --text-tertiary: var(--color-text-tertiary);
+    --text-muted: var(--color-text-muted);
+
+    --border-color: var(--color-light-sage);
+    --shadow-color: rgba(44, 73, 67, 0.08);
+  }
+
+  .dark {
+    --color-dark-primary-bg: #2c4943;
+    --color-dark-secondary-bg: #315545;
+    --color-dark-elevated-bg: #396746;
+    --color-dark-lighter-bg: #46644e;
+
+    --color-dark-text-primary: #e8f5f0;
+    --color-dark-text-secondary: #c4d9d3;
+    --color-dark-text-tertiary: #a4c1c3;
+    --color-dark-text-muted: #78968b;
+
+    --bg-primary: var(--color-dark-primary-bg);
+    --bg-secondary: var(--color-dark-secondary-bg);
+    --bg-elevated: var(--color-dark-elevated-bg);
+    --bg-hover: var(--color-dark-lighter-bg);
+
+    --text-primary: var(--color-dark-text-primary);
+    --text-secondary: var(--color-dark-text-secondary);
+    --text-tertiary: var(--color-dark-text-tertiary);
+    --text-muted: var(--color-dark-text-muted);
+
+    --border-color: var(--color-dark-lighter-bg);
+    --shadow-color: rgba(0, 0, 0, 0.15);
+  }
+
   html {
     scroll-behavior: smooth;
   }
 
   body {
     @apply font-body antialiased;
-    background-color: #FAF9F7;
-    color: #5A5A5A;
+    background-color: var(--bg-primary);
+    color: var(--text-primary);
     letter-spacing: 0.01em;
   }
 
   h1, h2, h3, h4, h5, h6 {
     @apply font-sans;
     letter-spacing: -0.02em;
+    color: var(--text-primary);
+  }
+
+  @media (prefers-reduced-motion: reduce) {
+    *, *::before, *::after {
+      animation-duration: 0.01ms !important;
+      animation-iteration-count: 1 !important;
+      transition-duration: 0.01ms !important;
+    }
   }
 }
 
