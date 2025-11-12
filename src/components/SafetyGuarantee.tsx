@@ -35,7 +35,7 @@ export default function SafetyGuarantee() {
                 <Phone className="w-7 h-7 text-white" strokeWidth={2} />
               </div>
               <h3 className="text-forest font-bold text-lg mb-2">24/7 Crisis Access</h3>
-              <p className="text-gentle-gray/70 text-sm leading-relaxed">
+              <p className="text-black-g/70 text-sm leading-relaxed">
                 Immediate support connects you to emergency resources anytime, day or night
               </p>
             </div>
