@@ -25,9 +25,9 @@ export default function Sidebar({ currentView, onViewChange }: SidebarProps) {
   };
 
   const navItems = [
-    { id: 'chat', label: 'Chat With NIRA', icon: MessageSquare, color: 'text-emerald-600 dark:text-emerald-400', hoverBg: 'hover:bg-emerald-50 dark:hover:bg-emerald-900/20', activeBg: 'bg-emerald-50 dark:bg-emerald-900/30', activeBar: 'bg-emerald-600 dark:bg-emerald-400' },
-    { id: 'journal', label: 'Journal', icon: BookOpen, color: 'text-amber-600 dark:text-amber-400', hoverBg: 'hover:bg-amber-50 dark:hover:bg-amber-900/20', activeBg: 'bg-amber-50 dark:bg-amber-900/30', activeBar: 'bg-amber-600 dark:bg-amber-400' },
-    { id: 'goals', label: 'Goals & Progress', icon: Target, color: 'text-blue-600 dark:text-blue-400', hoverBg: 'hover:bg-blue-50 dark:hover:bg-blue-900/20', activeBg: 'bg-blue-50 dark:bg-blue-900/30', activeBar: 'bg-blue-600 dark:bg-blue-400' },
+    { id: 'chat', label: 'Chat With NIRA', icon: MessageSquare, color: 'text-sage-600 dark:text-sage-400', hoverBg: 'hover:bg-sage-50 dark:hover:bg-gray-700/50', activeBg: 'bg-sage-50 dark:bg-gray-700/30', activeBar: 'bg-sage-600 dark:bg-sage-400' },
+    { id: 'journal', label: 'Journal', icon: BookOpen, color: 'text-sage-600 dark:text-sage-400', hoverBg: 'hover:bg-sage-50 dark:hover:bg-gray-700/50', activeBg: 'bg-sage-50 dark:bg-gray-700/30', activeBar: 'bg-sage-600 dark:bg-sage-400' },
+    { id: 'goals', label: 'Goals & Progress', icon: Target, color: 'text-sage-600 dark:text-sage-400', hoverBg: 'hover:bg-sage-50 dark:hover:bg-gray-700/50', activeBg: 'bg-sage-50 dark:bg-gray-700/30', activeBar: 'bg-sage-600 dark:bg-sage-400' },
     { id: 'settings', label: 'Settings', icon: Settings, color: 'text-sage-600 dark:text-sage-400', hoverBg: 'hover:bg-sage-50 dark:hover:bg-gray-700/50', activeBg: 'bg-sage-100 dark:bg-gray-700', activeBar: 'bg-forest dark:bg-sage-400' },
   ];
 
