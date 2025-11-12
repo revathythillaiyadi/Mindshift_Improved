@@ -805,6 +805,39 @@
     animation-duration: 2.2s;
     animation-delay: 0.1s;
   }
+
+  .badge-glow {
+    box-shadow: 0 0 20px rgba(251, 191, 36, 0.4),
+                0 0 40px rgba(251, 191, 36, 0.2),
+                0 4px 12px rgba(0, 0, 0, 0.1);
+  }
+
+  .badge-glow:hover {
+    box-shadow: 0 0 30px rgba(251, 191, 36, 0.6),
+                0 0 60px rgba(251, 191, 36, 0.3),
+                0 6px 16px rgba(0, 0, 0, 0.15);
+  }
+
+  @keyframes badge-earn {
+    0% {
+      transform: scale(0.5) rotate(-180deg);
+      opacity: 0;
+    }
+    50% {
+      transform: scale(1.2) rotate(10deg);
+    }
+    70% {
+      transform: scale(0.95) rotate(-5deg);
+    }
+    100% {
+      transform: scale(1) rotate(0deg);
+      opacity: 1;
+    }
+  }
+
+  .animate-badge-earn {
+    animation: badge-earn 0.8s cubic-bezier(0.34, 1.56, 0.64, 1) forwards;
+  }
 }
 
 @supports (animation-timeline: view()) {

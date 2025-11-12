@@ -1,5 +1,6 @@
 import { AlertCircle, TrendingUp, Flame, Target, Bell, ChevronDown, ChevronUp, Award, Activity } from 'lucide-react';
 import { useState, useEffect } from 'react';
+import MilestonesAchievements from './MilestonesAchievements';
 
 interface RightPanelProps {
   selectedRegion: string;
@@ -106,8 +107,8 @@ export default function RightPanel({ selectedRegion }: RightPanelProps) {
   ];
 
   const weeklyStats = {
-    totalCheckIns: 7,
-    journalEntries: 4,
+    totalCheckIns: 12,
+    journalEntries: 8,
     mindfulnessMinutes: 45,
     moodImprovement: 15,
     entriesIncrease: 3,
@@ -168,6 +169,12 @@ export default function RightPanel({ selectedRegion }: RightPanelProps) {
               </div>
             )}
           </div>
+
+          <MilestonesAchievements
+            streakDays={streakDays}
+            journalEntries={weeklyStats.journalEntries}
+            totalCheckIns={weeklyStats.totalCheckIns}
+          />
 
           <div className="bg-white dark:bg-gray-700 rounded-xl border border-sage-100 dark:border-gray-600 overflow-hidden transition-all shadow-sm hover:shadow-md">
             <button
