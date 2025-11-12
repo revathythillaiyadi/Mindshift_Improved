@@ -1,8 +1,26 @@
 import { useNavigate } from 'react-router-dom';
+import { useState, useEffect } from 'react';
 import TreeRing from './TreeRing';
 
 export default function Hero() {
   const navigate = useNavigate();
+  const [displayedText, setDisplayedText] = useState('');
+  const fullText = "hey, feeling a little heavy lately?";
+  const typingSpeed = 50;
+
+  useEffect(() => {
+    let currentIndex = 0;
+    const timer = setInterval(() => {
+      if (currentIndex <= fullText.length) {
+        setDisplayedText(fullText.slice(0, currentIndex));
+        currentIndex++;
+      } else {
+        clearInterval(timer);
+      }
+    }, typingSpeed);
+
+    return () => clearInterval(timer);
+  }, []);
 
   const handleStartJourney = () => {
     navigate('/signup');
@@ -32,8 +50,9 @@ export default function Hero() {
       <div className="container mx-auto max-w-5xl relative z-10">
         <div className="text-center space-y-8 animate-fade-in">
           {/* Headline */}
-          <h1 className="text-4xl md:text-6xl lg:text-7xl font-bold leading-tight tracking-tight text-forest dark:text-sage-100 transition-colors">
-            hey, feeling a little heavy lately?
+          <h1 className="text-4xl md:text-6xl lg:text-7xl font-bold leading-tight tracking-tight text-forest dark:text-sage-100 transition-colors min-h-[1.2em]">
+            {displayedText}
+            <span className="animate-pulse">|</span>
           </h1>
 
           {/* Sub-headline */}

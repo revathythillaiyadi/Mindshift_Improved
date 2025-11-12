@@ -6,6 +6,7 @@ interface Message {
   type: 'user' | 'bot';
   text: string;
   timestamp: Date;
+  isTyping?: boolean;
 }
 
 export default function ChatArea() {
@@ -19,6 +20,7 @@ export default function ChatArea() {
   ]);
   const [inputText, setInputText] = useState('');
   const [isRecording, setIsRecording] = useState(false);
+  const [typingMessages, setTypingMessages] = useState<Set<string>>(new Set());
   const messagesEndRef = useRef<HTMLDivElement>(null);
 
   const scrollToBottom = () => {
@@ -41,13 +43,46 @@ export default function ChatArea() {
       setInputText('');
 
       setTimeout(() => {
+        const botResponseId = (Date.now() + 1).toString();
+        const fullText = "I hear you. Let's work through this together. Can you tell me more about what's on your mind?";
+
         const botResponse: Message = {
-          id: (Date.now() + 1).toString(),
+          id: botResponseId,
           type: 'bot',
-          text: "I hear you. Let's work through this together. Can you tell me more about what's on your mind?",
+          text: '',
           timestamp: new Date(),
+          isTyping: true,
         };
         setMessages(prev => [...prev, botResponse]);
+        setTypingMessages(prev => new Set(prev).add(botResponseId));
+
+        let currentIndex = 0;
+        const typingInterval = setInterval(() => {
+          if (currentIndex <= fullText.length) {
+            setMessages(prev =>
+              prev.map(msg =>
+                msg.id === botResponseId
+                  ? { ...msg, text: fullText.slice(0, currentIndex) }
+                  : msg
+              )
+            );
+            currentIndex++;
+          } else {
+            clearInterval(typingInterval);
+            setMessages(prev =>
+              prev.map(msg =>
+                msg.id === botResponseId
+                  ? { ...msg, isTyping: false }
+                  : msg
+              )
+            );
+            setTypingMessages(prev => {
+              const newSet = new Set(prev);
+              newSet.delete(botResponseId);
+              return newSet;
+            });
+          }
+        }, 30);
       }, 1000);
     }
   };
@@ -109,7 +144,10 @@ export default function ChatArea() {
                     : 'bg-beige-100 dark:bg-beige-800 text-soft-gray dark:text-white border border-beige-200/50 dark:border-beige-700'
                 }`}
               >
-                <p className="text-base leading-relaxed">{message.text}</p>
+                <p className="text-base leading-relaxed">
+                  {message.text}
+                  {message.isTyping && <span className="animate-pulse ml-1">|</span>}
+                </p>
               </div>
               <span className="text-xs text-sage-500 dark:text-gray-400 px-3">
                 {message.timestamp.toLocaleTimeString([], { hour: '2-digit', minute: '2-digit' })}
