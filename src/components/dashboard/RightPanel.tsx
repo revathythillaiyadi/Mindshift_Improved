@@ -1,4 +1,4 @@
-import { AlertCircle, TrendingUp, Flame, Target, Bell, ChevronDown, ChevronUp, Award, Activity, Sparkles } from 'lucide-react';
+import { AlertCircle, TrendingUp, Flame, Target, Bell, ChevronDown, ChevronUp, Award, Activity, Sparkles, Trophy, CheckCircle, Circle } from 'lucide-react';
 import { useState, useEffect } from 'react';
 import MilestonesAchievements from './MilestonesAchievements';
 import DailyQuote from './DailyQuote';
@@ -351,86 +351,102 @@ export default function RightPanel({ selectedRegion }: RightPanelProps) {
               <div className="px-4 pb-4 space-y-4">
                 <div className="group">
                   <div className="flex items-center justify-between mb-2">
-                    <div className="flex items-center gap-2">
-                      <button
-                        onClick={() => toggleGoalCompletion('daily-checkin')}
-                        className="relative w-5 h-5 rounded-full border-2 border-sage-500 dark:border-sage-400 transition-all hover:scale-110"
-                        title="Complete to earn Consistency Champion badge"
-                      >
-                        {completedGoals.has('daily-checkin') && (
-                          <div className="absolute inset-0">
-                            <svg className="w-full h-full" viewBox="0 0 24 24">
-                              <circle cx="12" cy="12" r="10" fill="currentColor" className="text-sage-500 dark:text-sage-400 animate-checkmark-circle" />
-                              <path d="M7 13l3 3 7-7" stroke="white" strokeWidth="2" fill="none" strokeLinecap="round" strokeLinejoin="round" className="animate-checkmark-draw" strokeDasharray="100" />
-                            </svg>
-                          </div>
-                        )}
-                      </button>
-                      <span className="text-sm text-gray-700 dark:text-gray-300">Daily Check-in</span>
+                    <div className="flex items-center gap-2.5">
+                      <div className="w-7 h-7 rounded-full bg-[#76ac6d] flex items-center justify-center">
+                        <CheckCircle className="w-5 h-5 text-white" fill="white" />
+                      </div>
+                      <span className="text-sm text-gray-700 dark:text-gray-300 font-medium">Daily Check-in</span>
                     </div>
-                    <span className="text-sm font-semibold text-sage-600 dark:text-sage-400">7/7 (100%)</span>
-                  </div>
-                  <div className="h-2.5 bg-sage-100 dark:bg-gray-600 rounded-full overflow-hidden relative group-hover:animate-celebration-bounce">
-                    <div className="h-full bg-gradient-to-r from-sage-500 to-mint-500 rounded-full transition-all duration-500 group-hover:shadow-lg" style={{ width: '100%' }} />
-                  </div>
-                  <p className="text-xs text-sage-600 dark:text-sage-400 mt-1 font-medium">
-                    Reward: Consistency Champion Badge 🏆
-                  </p>
-                </div>
-                <div className="group">
-                  <div className="flex items-center justify-between mb-2">
-                    <div className="flex items-center gap-2">
-                      <button
-                        onClick={() => toggleGoalCompletion('journal-entries')}
-                        className="relative w-5 h-5 rounded-full border-2 border-sage-500 dark:border-sage-400 transition-all hover:scale-110"
-                        title="Complete to earn Reflective Writer badge"
-                      >
-                        {completedGoals.has('journal-entries') && (
-                          <div className="absolute inset-0">
-                            <svg className="w-full h-full" viewBox="0 0 24 24">
-                              <circle cx="12" cy="12" r="10" fill="currentColor" className="text-sage-500 dark:text-sage-400 animate-checkmark-circle" />
-                              <path d="M7 13l3 3 7-7" stroke="white" strokeWidth="2" fill="none" strokeLinecap="round" strokeLinejoin="round" className="animate-checkmark-draw" strokeDasharray="100" />
-                            </svg>
-                          </div>
-                        )}
-                      </button>
-                      <span className="text-sm text-gray-700 dark:text-gray-300">Journal Entries</span>
-                    </div>
-                    <span className="text-sm font-semibold text-sage-600 dark:text-sage-400">4/10 (40%)</span>
+                    <span className="text-sm font-semibold text-[#76ac6d]">100%</span>
                   </div>
                   <div className="h-2.5 bg-sage-100 dark:bg-gray-600 rounded-full overflow-hidden relative">
-                    <div className="h-full bg-gradient-to-r from-sage-500 to-mint-500 rounded-full transition-all duration-500" style={{ width: '40%' }} />
+                    <div className="h-full bg-gradient-to-r from-[#76ac6d] to-[#4e824f] rounded-full transition-all duration-500" style={{ width: '100%' }} />
                   </div>
-                  <p className="text-xs text-sage-600 dark:text-sage-400 mt-1 font-medium">
-                    Reward: Reflective Writer Badge 📝
+                  <p className="text-xs text-[#76ac6d] mt-1.5 font-medium flex items-center gap-1">
+                    <Trophy className="w-3.5 h-3.5" />
+                    Reward: Consistency Champion Badge
                   </p>
                 </div>
                 <div className="group">
                   <div className="flex items-center justify-between mb-2">
-                    <div className="flex items-center gap-2">
-                      <button
-                        onClick={() => toggleGoalCompletion('mindfulness')}
-                        className="relative w-5 h-5 rounded-full border-2 border-sage-500 dark:border-sage-400 transition-all hover:scale-110"
-                        title="Complete to earn Mindful Master badge"
-                      >
-                        {completedGoals.has('mindfulness') && (
-                          <div className="absolute inset-0">
-                            <svg className="w-full h-full" viewBox="0 0 24 24">
-                              <circle cx="12" cy="12" r="10" fill="currentColor" className="text-sage-500 dark:text-sage-400 animate-checkmark-circle" />
-                              <path d="M7 13l3 3 7-7" stroke="white" strokeWidth="2" fill="none" strokeLinecap="round" strokeLinejoin="round" className="animate-checkmark-draw" strokeDasharray="100" />
-                            </svg>
-                          </div>
-                        )}
-                      </button>
-                      <span className="text-sm text-gray-700 dark:text-gray-300">Mindfulness Minutes</span>
+                    <div className="flex items-center gap-2.5">
+                      <div className="relative w-7 h-7">
+                        <svg className="w-full h-full -rotate-90" viewBox="0 0 36 36">
+                          <circle
+                            cx="18"
+                            cy="18"
+                            r="16"
+                            fill="none"
+                            className="stroke-sage-200 dark:stroke-gray-600"
+                            strokeWidth="3"
+                          />
+                          <circle
+                            cx="18"
+                            cy="18"
+                            r="16"
+                            fill="none"
+                            className="stroke-[#FF8C42]"
+                            strokeWidth="3"
+                            strokeDasharray="100"
+                            strokeDashoffset="60"
+                            strokeLinecap="round"
+                          />
+                        </svg>
+                        <div className="absolute inset-0 flex items-center justify-center">
+                          <span className="text-[10px] font-bold text-[#FF8C42]">40</span>
+                        </div>
+                      </div>
+                      <span className="text-sm text-gray-700 dark:text-gray-300 font-medium">Journal Entries</span>
                     </div>
-                    <span className="text-sm font-semibold text-sage-600 dark:text-sage-400">45/60 (75%)</span>
+                    <span className="text-sm font-semibold text-[#FF8C42]">40%</span>
                   </div>
-                  <div className="h-2.5 bg-sage-100 dark:bg-gray-600 rounded-full overflow-hidden relative group-hover:animate-pulse">
-                    <div className="h-full bg-gradient-to-r from-sage-500 to-mint-500 rounded-full transition-all duration-500" style={{ width: '75%' }} />
+                  <div className="h-2.5 bg-sage-100 dark:bg-gray-600 rounded-full overflow-hidden relative">
+                    <div className="h-full bg-gradient-to-r from-[#FF8C42] to-[#ff7a28] rounded-full transition-all duration-500" style={{ width: '40%' }} />
                   </div>
-                  <p className="text-xs text-sage-600 dark:text-sage-400 mt-1 font-medium">
-                    Reward: Mindful Master Badge 🧘
+                  <p className="text-xs text-[#FF8C42] mt-1.5 font-medium flex items-center gap-1">
+                    <Target className="w-3.5 h-3.5" />
+                    Reward: Reflective Writer Badge
+                  </p>
+                </div>
+                <div className="group">
+                  <div className="flex items-center justify-between mb-2">
+                    <div className="flex items-center gap-2.5">
+                      <div className="relative w-7 h-7">
+                        <svg className="w-full h-full -rotate-90" viewBox="0 0 36 36">
+                          <circle
+                            cx="18"
+                            cy="18"
+                            r="16"
+                            fill="none"
+                            className="stroke-sage-200 dark:stroke-gray-600"
+                            strokeWidth="3"
+                          />
+                          <circle
+                            cx="18"
+                            cy="18"
+                            r="16"
+                            fill="none"
+                            className="stroke-[#187E5F]"
+                            strokeWidth="3"
+                            strokeDasharray="100"
+                            strokeDashoffset="25"
+                            strokeLinecap="round"
+                          />
+                        </svg>
+                        <div className="absolute inset-0 flex items-center justify-center">
+                          <span className="text-[10px] font-bold text-[#187E5F]">75</span>
+                        </div>
+                      </div>
+                      <span className="text-sm text-gray-700 dark:text-gray-300 font-medium">Mindfulness Minutes</span>
+                    </div>
+                    <span className="text-sm font-semibold text-[#187E5F]">75%</span>
+                  </div>
+                  <div className="h-2.5 bg-sage-100 dark:bg-gray-600 rounded-full overflow-hidden relative">
+                    <div className="h-full bg-gradient-to-r from-[#187E5F] to-[#0B5844] rounded-full transition-all duration-500" style={{ width: '75%' }} />
+                  </div>
+                  <p className="text-xs text-[#187E5F] mt-1.5 font-medium flex items-center gap-1">
+                    <Target className="w-3.5 h-3.5" />
+                    Reward: Mindful Master Badge
                   </p>
                 </div>
               </div>
@@ -443,20 +459,32 @@ export default function RightPanel({ selectedRegion }: RightPanelProps) {
               className="w-full px-4 py-3 flex items-center justify-between hover:bg-sage-50/50 dark:hover:bg-gray-600/50 transition-colors"
             >
               <div className="flex items-center gap-2">
-                <Bell className="w-5 h-5 text-amber-500" />
+                <div className="relative">
+                  <Bell className="w-5 h-5 text-amber-500" />
+                  <span className="absolute -top-1 -right-1 w-2 h-2 bg-amber-500 rounded-full animate-gentle-pulse"></span>
+                </div>
                 <h3 className="text-base font-semibold text-gray-800 dark:text-white">Daily Reminder</h3>
               </div>
-              {expandedSections.has('reminder') ? (
-                <ChevronUp className="w-4 h-4 text-gray-500" />
-              ) : (
-                <ChevronDown className="w-4 h-4 text-gray-500" />
-              )}
+              <div className="flex items-center gap-2">
+                {!expandedSections.has('reminder') && (
+                  <span className="text-xs text-amber-600 dark:text-amber-400 font-medium">Next: 2:00 PM</span>
+                )}
+                {expandedSections.has('reminder') ? (
+                  <ChevronUp className="w-4 h-4 text-gray-500" />
+                ) : (
+                  <ChevronDown className="w-4 h-4 text-gray-500" />
+                )}
+              </div>
             </button>
             {expandedSections.has('reminder') && (
-              <div className="px-4 pb-4 bg-gradient-to-br from-amber-50/30 to-yellow-50/30 dark:from-amber-900/10 dark:to-yellow-900/10">
+              <div className="px-4 pb-4 bg-gradient-to-br from-amber-50/30 to-yellow-50/30 dark:from-amber-900/10 dark:to-yellow-900/10 space-y-3">
                 <p className="text-sm text-gray-600 dark:text-gray-300">
                   How are you feeling today? Take a moment to chat with NIRA.
                 </p>
+                <div className="flex items-center justify-between pt-2 border-t border-amber-200 dark:border-amber-800">
+                  <span className="text-xs text-gray-500 dark:text-gray-400">Next reminder</span>
+                  <span className="text-sm font-semibold text-amber-600 dark:text-amber-400">2:00 PM</span>
+                </div>
               </div>
             )}
           </div>
