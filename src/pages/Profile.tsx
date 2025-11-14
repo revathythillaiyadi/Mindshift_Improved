@@ -1,5 +1,6 @@
 import { useState, useEffect } from 'react';
-import { User, Mail, Calendar, MapPin, Bell, Moon, Sun, Monitor, Shield, Download, Trash2, Award, MessageSquare, BookOpen, Target, Flame, Camera, Check } from 'lucide-react';
+import { User, Mail, Calendar, MapPin, Bell, Moon, Sun, Monitor, Shield, Download, Trash2, Award, MessageSquare, BookOpen, Target, Flame, Camera, Check, ArrowLeft } from 'lucide-react';
+import { useNavigate } from 'react-router-dom';
 import { supabase } from '../lib/supabase';
 import { useAuth } from '../contexts/AuthContext';
 import TreeRing from '../components/TreeRing';
@@ -24,6 +25,7 @@ interface Statistics {
 
 export default function Profile() {
   const { user } = useAuth();
+  const navigate = useNavigate();
   const [profile, setProfile] = useState<ProfileData>({
     full_name: '',
     email: user?.email || '',
@@ -174,9 +176,18 @@ export default function Profile() {
       </div>
 
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-8 relative z-10">
-        <h1 className="text-[24px] font-bold text-gray-900 dark:text-white mb-8">
-          My Profile
-        </h1>
+        <div className="flex items-center gap-4 mb-8">
+          <button
+            onClick={() => navigate('/dashboard')}
+            className="flex items-center justify-center w-10 h-10 rounded-lg border-2 border-sage-200 dark:border-gray-600 hover:bg-sage-100 dark:hover:bg-gray-700 transition-all hover:scale-105 group"
+            title="Back to Dashboard"
+          >
+            <ArrowLeft className="w-5 h-5 text-sage-600 dark:text-sage-400 group-hover:text-[#187E5F] dark:group-hover:text-sage-300 transition-colors" />
+          </button>
+          <h1 className="text-[24px] font-bold text-gray-900 dark:text-white">
+            My Profile
+          </h1>
+        </div>
 
         <div className="grid grid-cols-1 lg:grid-cols-2 gap-6">
           <div className="space-y-6">
