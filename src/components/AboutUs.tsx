@@ -20,21 +20,12 @@ export default function AboutUs() {
             </div>
             <div className="space-y-4 text-lg text-warm-gray/80 leading-relaxed">
               <p>
-                MindShift is dedicated to making evidence-based mental health support accessible to everyone.
-                Our platform combines thoughtful artificial intelligence with proven therapeutic techniques
-                to help you navigate life's challenges with confidence and clarity.
+                MindShift is your personal space for growth and well-being. We’ve dedicated ourselves to making compassionate, evidence-based mental health support readily available to everyone, right when you need it. Our unique platform seamlessly integrates thoughtful artificial intelligence with time-tested therapeutic techniques like Neural Linguistic Programming and Positive Psychology.
               </p>
               <p>
-                Founded by mental health professionals and researchers, MindShift is built on the principles
-                of cognitive behavioral therapy and positive psychology. Our companion NIRA is designed with
-                thousands of therapeutic conversations in mind, continuously refined to provide empathetic,
-                personalized support.
+                At the heart of MindShift is NIRA, your empathetic AI companion. Designed by mental health professionals and researchers, NIRA provides a safe, judgment-free space where you can explore your feelings, reframe your thoughts, build resilience, and develop healthier thinking patterns. We believe true wellness flourishes when you feel understood and empowered, and NIRA is here to support every step of your journey with personalized care and unwavering empathy
               </p>
-              <p>
-                We believe that mental wellness should be within reach for everyone, which is why we've created
-                a safe, judgment-free space where you can explore your thoughts, build resilience, and develop
-                healthier thinking patterns at your own pace.
-              </p>
+            
             </div>
           </div>
 
