@@ -319,14 +319,14 @@ export default function Sidebar({ currentView, onViewChange }: SidebarProps) {
 
       <button
         onClick={toggleCollapse}
-        className="absolute -right-3 top-6 w-6 h-6 bg-[#187E5F] dark:bg-sage-600 hover:bg-forest dark:hover:bg-sage-700 text-white rounded-full flex items-center justify-center shadow-lg transition-all duration-200 hover:scale-110 z-10"
+        className="absolute -right-[18px] top-1/2 -translate-y-1/2 w-9 h-9 bg-white dark:bg-gray-800 border border-sage-100 dark:border-gray-700 hover:bg-sage-50 dark:hover:bg-gray-700 text-sage-600 dark:text-sage-400 rounded-full flex items-center justify-center shadow-lg hover:shadow-xl transition-all duration-200 hover:scale-110 z-20 focus:outline-none focus:ring-2 focus:ring-[#187E5F] focus:ring-offset-2"
         aria-label={isCollapsed ? 'Expand sidebar' : 'Collapse sidebar'}
         title={isCollapsed ? 'Expand sidebar' : 'Collapse sidebar'}
       >
         {isCollapsed ? (
-          <ChevronRight className="w-4 h-4" />
+          <ChevronRight className="w-[18px] h-[18px]" strokeWidth={2.5} />
         ) : (
-          <ChevronLeft className="w-4 h-4" />
+          <ChevronLeft className="w-[18px] h-[18px]" strokeWidth={2.5} />
         )}
       </button>
     </aside>
