@@ -1,6 +1,7 @@
 import { AlertCircle, TrendingUp, Flame, Target, Bell, ChevronDown, ChevronUp, Award, Activity } from 'lucide-react';
 import { useState, useEffect } from 'react';
 import MilestonesAchievements from './MilestonesAchievements';
+import DailyQuote from './DailyQuote';
 
 interface RightPanelProps {
   selectedRegion: string;
@@ -118,11 +119,11 @@ export default function RightPanel({ selectedRegion }: RightPanelProps) {
 
   return (
     <>
-      <aside className="w-96 bg-white/95 dark:bg-gray-800/95 backdrop-blur-sm border-l border-sage-100/50 dark:border-gray-700 overflow-y-auto transition-colors">
-        <div className="p-6 space-y-4">
+      <aside className="w-96 bg-white/95 dark:bg-gray-800/95 backdrop-blur-sm border-l border-sage-100/50 dark:border-gray-700 overflow-y-auto custom-scrollbar transition-colors">
+        <div className="p-6 pr-4 space-y-5">
           <button
             onClick={() => setShowSOSModal(true)}
-            className="w-full py-3 bg-gradient-to-r from-orange-500 to-amber-500 text-white rounded-xl font-semibold text-base shadow-lg hover:shadow-xl transition-all hover:scale-[1.02] flex items-center justify-center gap-2"
+            className="w-full py-3 bg-gradient-to-r from-orange-500 to-amber-500 text-white rounded-xl font-semibold text-base shadow-[0_4px_12px_rgba(255,140,66,0.35)] hover:shadow-xl transition-all hover:scale-[1.02] hover:-translate-y-[1px] animate-gentle-pulse flex items-center justify-center gap-2"
             style={{ backgroundColor: '#FF8C42', backgroundImage: 'linear-gradient(135deg, #FF8C42 0%, #FFB347 100%)' }}
           >
             <AlertCircle className="w-5 h-5" />
@@ -169,6 +170,8 @@ export default function RightPanel({ selectedRegion }: RightPanelProps) {
               </div>
             )}
           </div>
+
+          <DailyQuote />
 
           <MilestonesAchievements
             streakDays={streakDays}
