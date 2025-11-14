@@ -1,5 +1,6 @@
 import { useState, useEffect, useRef } from 'react';
-import { Bot, User, Mic, Smile, Send, Volume2, Brain, Wind, Heart, Sparkles, AlertCircle } from 'lucide-react';
+import { Bot, User, Mic, Smile, Send, Volume2, Brain, Wind, Heart, Sparkles, AlertCircle, BookOpen } from 'lucide-react';
+import { useNavigate } from 'react-router-dom';
 
 interface Message {
   id: string;
@@ -10,6 +11,7 @@ interface Message {
 }
 
 export default function ChatArea() {
+  const navigate = useNavigate();
   const [messages, setMessages] = useState<Message[]>([]);
   const [inputText, setInputText] = useState('');
   const [isRecording, setIsRecording] = useState(false);
@@ -347,6 +349,18 @@ export default function ChatArea() {
           >
             <Send className="w-6 h-6 text-white" />
           </button>
+        </div>
+
+        <div
+          onClick={() => navigate('/dashboard?tab=journal')}
+          className="mt-4 bg-[#F8FAF9] dark:bg-[rgba(24,126,95,0.08)] rounded-[10px] px-4 py-3 cursor-pointer hover:bg-[#E8F5F0] dark:hover:bg-[rgba(24,126,95,0.12)] transition-all duration-200 hover:-translate-y-0.5"
+        >
+          <div className="flex items-center justify-center gap-2">
+            <BookOpen className="w-4 h-4 text-[#2c4943] dark:text-sage-300" />
+            <span className="text-[13px] text-[#2c4943] dark:text-sage-200">
+              Want to reflect deeper? <span className="font-semibold text-[#187E5F] dark:text-sage-300">Start a journal entry.</span>
+            </span>
+          </div>
         </div>
       </div>
     </div>

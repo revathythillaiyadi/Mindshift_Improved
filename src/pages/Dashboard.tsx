@@ -1,4 +1,5 @@
-import { useState } from 'react';
+import { useState, useEffect } from 'react';
+import { useSearchParams } from 'react-router-dom';
 import DashboardHeader from '../components/dashboard/DashboardHeader';
 import Sidebar from '../components/dashboard/Sidebar';
 import ChatArea from '../components/dashboard/ChatArea';
@@ -12,9 +13,23 @@ import { useTheme } from '../contexts/ThemeContext';
 type View = 'chat' | 'journal' | 'settings' | 'goals';
 
 export default function Dashboard() {
+  const [searchParams] = useSearchParams();
   const [currentView, setCurrentView] = useState<View>('chat');
   const [selectedRegion, setSelectedRegion] = useState('US');
   const { isDark, toggleTheme } = useTheme();
+
+  useEffect(() => {
+    const tab = searchParams.get('tab');
+    if (tab === 'journal') {
+      setCurrentView('journal');
+      setTimeout(() => {
+        const textarea = document.querySelector('textarea[placeholder="Write your thoughts..."]') as HTMLTextAreaElement;
+        if (textarea) {
+          textarea.focus();
+        }
+      }, 100);
+    }
+  }, [searchParams]);
 
   return (
     <div className="min-h-screen relative overflow-hidden">
