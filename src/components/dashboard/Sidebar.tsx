@@ -127,7 +127,7 @@ export default function Sidebar({ currentView, onViewChange }: SidebarProps) {
             title={pinnedChats.has(chat.id) ? 'Unpin' : 'Pin to top'}
             aria-label={pinnedChats.has(chat.id) ? 'Unpin conversation' : 'Pin conversation'}
           >
-            <Pin className="w-3.5 h-3.5 text-sage-600 dark:text-sage-400" />
+            <Pin className="w-3.5 h-3.5 text-sage-600 dark:text-sage-400" size={14} strokeWidth={2} />
           </button>
           <button
             onClick={(e) => {
@@ -138,7 +138,7 @@ export default function Sidebar({ currentView, onViewChange }: SidebarProps) {
             title="Delete chat"
             aria-label="Delete conversation"
           >
-            <Trash2 className="w-3.5 h-3.5 text-red-600 dark:text-red-400" />
+            <Trash2 className="w-3.5 h-3.5 text-red-600 dark:text-red-400" size={14} strokeWidth={2} />
           </button>
         </div>
       </div>
@@ -187,18 +187,19 @@ export default function Sidebar({ currentView, onViewChange }: SidebarProps) {
                   <div className="absolute left-0 top-1/2 -translate-y-1/2 w-1 h-8 bg-[#187E5F] dark:bg-sage-400 rounded-r-full transition-all duration-300" />
                 )}
                 <Icon
-                  className={`w-5 h-5 flex-shrink-0 transition-colors duration-200 ${
+                  className={`w-5 h-5 flex-shrink-0 transition-all duration-200 ${
                     isActive ? 'text-[#187E5F] dark:text-sage-400' : 'text-[#66887f] dark:text-gray-400 group-hover:text-[#187E5F]'
                   }`}
                   strokeWidth={2}
                   fill={isActive ? 'currentColor' : 'none'}
+                  size={20}
                 />
                 <span className={`text-sm transition-colors duration-200 ${
                   isActive ? 'text-[#187E5F] dark:text-sage-400' : 'text-sage-600 dark:text-gray-400'
                 }`}>{item.label}</span>
                 {item.badge && (
                   <div
-                    className="ml-auto w-5 h-5 bg-[#187E5F] text-white rounded-full flex items-center justify-center text-xs font-bold animate-pulse"
+                    className="ml-auto w-[18px] h-[18px] bg-[#FF8C42] text-white rounded-full flex items-center justify-center text-[10px] font-bold animate-pulse"
                     aria-label={`${item.badge} new items`}
                   >
                     {item.badge}
@@ -223,13 +224,13 @@ export default function Sidebar({ currentView, onViewChange }: SidebarProps) {
               title="Start new conversation"
               aria-label="Start new conversation"
             >
-              <Plus className="w-5 h-5 text-[#187E5F] dark:text-sage-400 transition-colors" />
+              <Plus className="w-5 h-5 text-[#187E5F] dark:text-sage-400 transition-colors" size={20} strokeWidth={2} />
             </button>
           </div>
         </div>
 
         <div className="relative group">
-          <Search className="absolute left-3 top-1/2 -translate-y-1/2 w-[18px] h-[18px] text-[#66887f] group-focus-within:text-[#187E5F] transition-colors duration-200" />
+          <Search className="absolute left-3 top-1/2 -translate-y-1/2 w-[18px] h-[18px] text-[#66887f] group-focus-within:text-[#187E5F] transition-colors duration-200" size={18} strokeWidth={2} />
           <input
             type="text"
             placeholder="Search conversations..."

@@ -1,4 +1,4 @@
-import { Moon, Sun, User, ChevronDown, LogOut, Settings, UserCircle, BookOpen } from 'lucide-react';
+import { Moon, Sun, User, ChevronDown, LogOut, Settings, UserCircle, BookOpen, Flag } from 'lucide-react';
 import { useState, useEffect, useRef } from 'react';
 import { useNavigate } from 'react-router-dom';
 import { useAuth } from '../../contexts/AuthContext';
@@ -119,22 +119,23 @@ export default function DashboardHeader({
         <div className="flex items-center gap-4">
           <button
             onClick={onJournalClick}
-            className="flex items-center gap-2 px-4 py-2 bg-gradient-to-r from-sage-500 to-mint-500 text-white rounded-xl hover:shadow-lg transition-all hover:scale-105 font-medium"
+            className="flex items-center gap-2 px-4 py-2 bg-gradient-to-r from-[#187E5F] to-[#0B5844] text-white rounded-xl hover:shadow-lg transition-all hover:scale-105 hover:from-[#0B5844] hover:to-[#187E5F] font-medium"
             title="Open Journal"
           >
-            <BookOpen className="w-4 h-4" />
+            <BookOpen className="w-5 h-5" strokeWidth={2} />
             <span className="text-sm">Journal</span>
           </button>
 
           <div className="relative" ref={regionMenuRef}>
             <button
               onClick={() => setShowRegionMenu(!showRegionMenu)}
-              className="flex items-center gap-2 px-4 py-2 rounded-[1rem] border-2 border-sage-200 dark:border-gray-600 hover:bg-sage-50 dark:hover:bg-gray-700 transition-colors lowercase"
+              className="flex items-center gap-2 px-4 py-2.5 rounded-[1rem] border-2 border-sage-200 dark:border-gray-600 hover:bg-sage-50 dark:hover:bg-gray-700 transition-colors lowercase"
             >
+              <Flag className="w-4 h-4 text-sage-500 dark:text-gray-400" strokeWidth={2} />
               <span className="text-sm font-medium text-soft-gray dark:text-gray-200">
                 {regions.find(r => r.code === selectedRegion)?.name || 'Select Region'}
               </span>
-              <ChevronDown className="w-4 h-4 text-sage-500 dark:text-gray-400" />
+              <ChevronDown className="w-4 h-4 text-sage-500 dark:text-gray-400" strokeWidth={2} />
             </button>
 
             {showRegionMenu && (
@@ -159,34 +160,34 @@ export default function DashboardHeader({
 
           <button
             onClick={onDarkModeToggle}
-            className="p-2 rounded-[1rem] border-2 border-sage-200 dark:border-gray-600 hover:bg-sage-50 dark:hover:bg-gray-700 transition-colors"
+            className="w-10 h-10 flex items-center justify-center rounded-[1rem] border-2 border-sage-200 dark:border-gray-600 hover:bg-sage-50 dark:hover:bg-gray-700 transition-colors"
             title={darkMode ? 'Switch to Light Mode' : 'Switch to Dark Mode'}
           >
             {darkMode ? (
-              <Sun className="w-5 h-5 text-yellow-500" />
+              <Sun className="w-5 h-5 text-yellow-500" strokeWidth={2} />
             ) : (
-              <Moon className="w-5 h-5 text-sage-600" />
+              <Moon className="w-5 h-5 text-sage-600" strokeWidth={2} />
             )}
           </button>
 
           <div className="relative" ref={profileMenuRef}>
             <button
               onClick={() => setShowProfileMenu(!showProfileMenu)}
-              className="flex items-center gap-2 p-2 rounded-[1rem] border-2 border-sage-200 dark:border-gray-600 hover:bg-sage-50 dark:hover:bg-gray-700 transition-colors"
+              className="flex items-center justify-center w-10 h-10 rounded-[1rem] border-2 border-sage-200 dark:border-gray-600 hover:bg-sage-50/50 dark:hover:bg-gray-700/50 transition-all"
             >
               <div className="w-8 h-8 bg-gradient-to-br from-sage-500 to-mint-500 rounded-full flex items-center justify-center">
-                <User className="w-5 h-5 text-white" />
+                <User className="w-5 h-5 text-white" strokeWidth={2} />
               </div>
             </button>
 
             {showProfileMenu && (
               <div className="fixed right-6 mt-14 w-52 bg-white dark:bg-gray-800 rounded-2xl shadow-2xl border-2 border-sage-200 dark:border-gray-600 py-3 z-[1000]">
                 <button className="w-full text-left px-5 py-3 hover:bg-sage-100 dark:hover:bg-gray-700 transition-all text-soft-gray dark:text-gray-200 flex items-center gap-3 rounded-xl mx-2 lowercase text-base">
-                  <UserCircle className="w-5 h-5" />
+                  <UserCircle className="w-5 h-5" strokeWidth={2} />
                   <span>my profile</span>
                 </button>
                 <button className="w-full text-left px-5 py-3 hover:bg-sage-100 dark:hover:bg-gray-700 transition-all text-soft-gray dark:text-gray-200 flex items-center gap-3 rounded-xl mx-2 lowercase text-base">
-                  <Settings className="w-5 h-5" />
+                  <Settings className="w-5 h-5" strokeWidth={2} />
                   <span>account settings</span>
                 </button>
                 <div className="my-3 h-px bg-sage-200 dark:bg-gray-600 mx-4"></div>
@@ -194,7 +195,7 @@ export default function DashboardHeader({
                   onClick={handleSignOut}
                   className="w-full text-left px-5 py-3 hover:bg-red-50 dark:hover:bg-red-900/20 transition-all text-red-600 dark:text-red-400 flex items-center gap-3 font-semibold rounded-xl mx-2 lowercase text-base"
                 >
-                  <LogOut className="w-5 h-5" />
+                  <LogOut className="w-5 h-5" strokeWidth={2} />
                   <span>log out</span>
                 </button>
               </div>
