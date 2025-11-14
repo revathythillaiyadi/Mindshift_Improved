@@ -1,5 +1,5 @@
 import { useState, useEffect } from 'react';
-import { Calendar, Mic, Type, Edit3, Trash2, Download, ChevronLeft, ChevronRight, Search, ChevronDown, BookOpen, Lock, HelpCircle, Loader2, Edit, FileText } from 'lucide-react';
+import { Calendar, Mic, Type, Edit3, Trash2, Download, ChevronLeft, ChevronRight, Search, ChevronDown, BookOpen, Lock, HelpCircle, Loader2, Edit, FileText, Bold, Italic, Underline, List, ListOrdered, Heading1, Heading2, Heading3 } from 'lucide-react';
 
 interface JournalEntry {
   id: string;
@@ -86,6 +86,8 @@ export default function JournalArea() {
   const [showShortcutsModal, setShowShortcutsModal] = useState(false);
   const [isSaving, setIsSaving] = useState(false);
   const [lastSaved, setLastSaved] = useState<Date | null>(null);
+  const [showToolbar, setShowToolbar] = useState(false);
+  const [textareaRef, setTextareaRef] = useState<HTMLTextAreaElement | null>(null);
 
   const emojiOptions = ['📝', '🌟', '💭', '🌸', '🎯', '💪', '🌈', '🦋', '🌿', '✨'];
 
@@ -232,13 +234,78 @@ export default function JournalArea() {
   const grouped = groupedEntries();
   const hasNoEntries = entries.length === 0;
 
+  const insertFormatting = (format: string) => {
+    if (!textareaRef) return;
+
+    const start = textareaRef.selectionStart;
+    const end = textareaRef.selectionEnd;
+    const selectedText = newEntry.content.substring(start, end);
+    const beforeText = newEntry.content.substring(0, start);
+    const afterText = newEntry.content.substring(end);
+
+    let newText = '';
+    let cursorOffset = 0;
+
+    switch (format) {
+      case 'bold':
+        newText = `**${selectedText || 'bold text'}**`;
+        cursorOffset = selectedText ? newText.length : 2;
+        break;
+      case 'italic':
+        newText = `*${selectedText || 'italic text'}*`;
+        cursorOffset = selectedText ? newText.length : 1;
+        break;
+      case 'underline':
+        newText = `__${selectedText || 'underlined text'}__`;
+        cursorOffset = selectedText ? newText.length : 2;
+        break;
+      case 'h1':
+        newText = `\n# ${selectedText || 'Heading 1'}\n`;
+        cursorOffset = selectedText ? newText.length : 3;
+        break;
+      case 'h2':
+        newText = `\n## ${selectedText || 'Heading 2'}\n`;
+        cursorOffset = selectedText ? newText.length : 4;
+        break;
+      case 'h3':
+        newText = `\n### ${selectedText || 'Heading 3'}\n`;
+        cursorOffset = selectedText ? newText.length : 5;
+        break;
+      case 'ul':
+        newText = `\n- ${selectedText || 'List item'}\n`;
+        cursorOffset = selectedText ? newText.length : 3;
+        break;
+      case 'ol':
+        newText = `\n1. ${selectedText || 'List item'}\n`;
+        cursorOffset = selectedText ? newText.length : 4;
+        break;
+      default:
+        return;
+    }
+
+    const updatedContent = beforeText + newText + afterText;
+    setNewEntry({ ...newEntry, content: updatedContent });
+
+    setTimeout(() => {
+      if (textareaRef) {
+        textareaRef.focus();
+        const newPosition = start + cursorOffset;
+        textareaRef.setSelectionRange(newPosition, newPosition);
+      }
+    }, 0);
+  };
+
   return (
     <div className="h-full grid grid-cols-1 lg:grid-cols-2 gap-6">
       <div className="space-y-6">
-        <div className="bg-white dark:bg-gray-800 rounded-[1.5rem] shadow-lg border border-sage-100 dark:border-gray-700 p-6 transition-colors">
-          <h2 className="text-xl font-semibold text-gray-800 dark:text-white mb-4">
-            New Journal Entry
+        <div className="bg-gradient-to-br from-[#faf8f3] via-[#fefdfb] to-[#f9f7f0] dark:bg-gray-800 rounded-[1.5rem] shadow-[0_8px_30px_rgba(0,0,0,0.12)] border-2 border-[#e8d5b7]/40 dark:border-gray-700 p-6 transition-colors relative overflow-hidden" style={{ backgroundImage: 'url("data:image/svg+xml,%3Csvg width="100" height="100" xmlns="http://www.w3.org/2000/svg"%3E%3Cdefs%3E%3Cpattern id="paper" x="0" y="0" width="100" height="100" patternUnits="userSpaceOnUse"%3E%3Cline x1="0" y1="30" x2="100" y2="30" stroke="%23e5d4b8" stroke-width="0.5" opacity="0.3"/%3E%3C/pattern%3E%3C/defs%3E%3Crect width="100" height="100" fill="url(%23paper)"/%3E%3C/svg%3E")' }}>
+          <div className="absolute top-0 left-0 w-full h-1 bg-gradient-to-r from-[#8b7355] via-[#a0826d] to-[#8b7355] opacity-20"></div>
+          <h2 className="text-2xl font-serif text-[#5d4e37] dark:text-white mb-1 tracking-wide" style={{ fontFamily: 'Georgia, serif' }}>
+            Dear Diary
           </h2>
+          <p className="text-xs text-[#8b7355] dark:text-gray-400 mb-4 italic" style={{ fontFamily: 'Georgia, serif' }}>
+            {new Date().toLocaleDateString('en-US', { weekday: 'long', year: 'numeric', month: 'long', day: 'numeric' })}
+          </p>
 
           <div className="flex gap-2 mb-4 flex-wrap">
             <button
@@ -332,20 +399,105 @@ export default function JournalArea() {
 
             <input
               type="text"
-              placeholder="Entry title..."
+              placeholder="Give this entry a title..."
               value={newEntry.title}
               onChange={(e) => setNewEntry({ ...newEntry, title: e.target.value })}
-              className="w-full px-4 py-3 rounded-[1rem] border border-sage-200 dark:border-gray-600 dark:bg-gray-700 dark:text-white focus:outline-none focus:ring-2 focus:ring-[#187E5F] transition-colors"
+              className="w-full px-4 py-3 rounded-lg border-b-2 border-l-0 border-r-0 border-t-0 border-[#d4c4a8] dark:border-gray-600 bg-transparent dark:bg-gray-700 dark:text-white focus:outline-none focus:border-[#8b7355] transition-colors text-lg font-serif text-[#5d4e37] dark:text-white"
+              style={{ fontFamily: 'Georgia, serif' }}
             />
 
             {inputMode === 'text' && (
-              <textarea
-                placeholder="Write your thoughts..."
-                value={newEntry.content}
-                onChange={(e) => setNewEntry({ ...newEntry, content: e.target.value })}
-                className="w-full px-4 py-3 rounded-[1rem] border border-sage-200 dark:border-gray-600 dark:bg-gray-700 dark:text-white focus:outline-none focus:ring-2 focus:ring-[#187E5F] transition-colors resize-none"
-                rows={8}
-              />
+              <div className="relative">
+                {showToolbar && (
+                  <div className="mb-2 p-2 bg-[#f5ede1]/80 dark:bg-gray-700 rounded-lg border border-[#e8d5b7] dark:border-gray-600 flex flex-wrap gap-1 shadow-sm">
+                    <button
+                      onClick={() => insertFormatting('bold')}
+                      className="p-2 hover:bg-[#e8d5b7] dark:hover:bg-gray-600 rounded transition-colors"
+                      title="Bold (Markdown: **text**)"
+                      type="button"
+                    >
+                      <Bold className="w-4 h-4 text-[#5d4e37] dark:text-gray-300" />
+                    </button>
+                    <button
+                      onClick={() => insertFormatting('italic')}
+                      className="p-2 hover:bg-[#e8d5b7] dark:hover:bg-gray-600 rounded transition-colors"
+                      title="Italic (Markdown: *text*)"
+                      type="button"
+                    >
+                      <Italic className="w-4 h-4 text-[#5d4e37] dark:text-gray-300" />
+                    </button>
+                    <button
+                      onClick={() => insertFormatting('underline')}
+                      className="p-2 hover:bg-[#e8d5b7] dark:hover:bg-gray-600 rounded transition-colors"
+                      title="Underline (Markdown: __text__)"
+                      type="button"
+                    >
+                      <Underline className="w-4 h-4 text-[#5d4e37] dark:text-gray-300" />
+                    </button>
+                    <div className="w-px h-6 bg-[#d4c4a8] dark:bg-gray-600 my-auto mx-1"></div>
+                    <button
+                      onClick={() => insertFormatting('h1')}
+                      className="p-2 hover:bg-[#e8d5b7] dark:hover:bg-gray-600 rounded transition-colors"
+                      title="Heading 1 (Markdown: # text)"
+                      type="button"
+                    >
+                      <Heading1 className="w-4 h-4 text-[#5d4e37] dark:text-gray-300" />
+                    </button>
+                    <button
+                      onClick={() => insertFormatting('h2')}
+                      className="p-2 hover:bg-[#e8d5b7] dark:hover:bg-gray-600 rounded transition-colors"
+                      title="Heading 2 (Markdown: ## text)"
+                      type="button"
+                    >
+                      <Heading2 className="w-4 h-4 text-[#5d4e37] dark:text-gray-300" />
+                    </button>
+                    <button
+                      onClick={() => insertFormatting('h3')}
+                      className="p-2 hover:bg-[#e8d5b7] dark:hover:bg-gray-600 rounded transition-colors"
+                      title="Heading 3 (Markdown: ### text)"
+                      type="button"
+                    >
+                      <Heading3 className="w-4 h-4 text-[#5d4e37] dark:text-gray-300" />
+                    </button>
+                    <div className="w-px h-6 bg-[#d4c4a8] dark:bg-gray-600 my-auto mx-1"></div>
+                    <button
+                      onClick={() => insertFormatting('ul')}
+                      className="p-2 hover:bg-[#e8d5b7] dark:hover:bg-gray-600 rounded transition-colors"
+                      title="Bullet List (Markdown: - item)"
+                      type="button"
+                    >
+                      <List className="w-4 h-4 text-[#5d4e37] dark:text-gray-300" />
+                    </button>
+                    <button
+                      onClick={() => insertFormatting('ol')}
+                      className="p-2 hover:bg-[#e8d5b7] dark:hover:bg-gray-600 rounded transition-colors"
+                      title="Numbered List (Markdown: 1. item)"
+                      type="button"
+                    >
+                      <ListOrdered className="w-4 h-4 text-[#5d4e37] dark:text-gray-300" />
+                    </button>
+                  </div>
+                )}
+                <textarea
+                  ref={setTextareaRef}
+                  placeholder="Pour your heart out... What's on your mind today?"
+                  value={newEntry.content}
+                  onChange={(e) => setNewEntry({ ...newEntry, content: e.target.value })}
+                  onFocus={() => setShowToolbar(true)}
+                  className="w-full px-4 py-4 rounded-lg border-2 border-[#e8d5b7]/60 dark:border-gray-600 bg-[#fffef9]/50 dark:bg-gray-700 dark:text-white focus:outline-none focus:border-[#c9b896] transition-colors resize-none leading-relaxed text-[#3d3428] dark:text-white shadow-inner"
+                  style={{
+                    fontFamily: 'Georgia, serif',
+                    fontSize: '15px',
+                    lineHeight: '1.8',
+                    backgroundImage: 'repeating-linear-gradient(transparent, transparent 28px, #e8d5b7 28px, #e8d5b7 29px)',
+                    backgroundAttachment: 'local'
+                  }}
+                  rows={10}
+                />
+                <div className="absolute bottom-2 right-2 text-xs text-[#a0826d] dark:text-gray-500 bg-[#faf8f3]/80 dark:bg-gray-800/80 px-2 py-1 rounded">
+                  {getWordCount(newEntry.content)} words
+                </div>
+              </div>
             )}
 
             {inputMode === 'voice' && (
@@ -405,8 +557,8 @@ export default function JournalArea() {
           </div>
         </div>
 
-        <div className="bg-white dark:bg-gray-800 rounded-[1.5rem] shadow-lg border border-sage-100 dark:border-gray-700 p-6 transition-colors">
-          <h3 className="text-lg font-semibold text-gray-800 dark:text-white mb-4">Stats</h3>
+        <div className="bg-gradient-to-br from-[#faf8f3] via-[#fefdfb] to-[#f9f7f0] dark:bg-gray-800 rounded-[1.5rem] shadow-[0_8px_30px_rgba(0,0,0,0.12)] border-2 border-[#e8d5b7]/40 dark:border-gray-700 p-6 transition-colors">
+          <h3 className="text-lg font-serif text-[#5d4e37] dark:text-white mb-4" style={{ fontFamily: 'Georgia, serif' }}>Your Journey</h3>
           <div className="grid grid-cols-2 gap-4">
             <div className="bg-sage-50 dark:bg-gray-700 rounded-xl p-4 text-center">
               <div className="text-[18px] font-bold text-[#187E5F] dark:text-sage-400">{totalEntries}</div>
@@ -427,9 +579,9 @@ export default function JournalArea() {
           </div>
         </div>
 
-        <div className="bg-white dark:bg-gray-800 rounded-[1.5rem] shadow-lg border border-sage-100 dark:border-gray-700 p-6 transition-colors">
+        <div className="bg-gradient-to-br from-[#faf8f3] via-[#fefdfb] to-[#f9f7f0] dark:bg-gray-800 rounded-[1.5rem] shadow-[0_8px_30px_rgba(0,0,0,0.12)] border-2 border-[#e8d5b7]/40 dark:border-gray-700 p-6 transition-colors">
           <div className="flex items-center justify-between mb-4">
-            <h3 className="text-lg font-semibold text-gray-800 dark:text-white">Calendar View</h3>
+            <h3 className="text-lg font-serif text-[#5d4e37] dark:text-white" style={{ fontFamily: 'Georgia, serif' }}>Calendar View</h3>
             <div className="flex items-center gap-2">
               <button
                 onClick={() => setCurrentMonth(new Date(currentMonth.getFullYear(), currentMonth.getMonth() - 1))}
@@ -474,10 +626,11 @@ export default function JournalArea() {
         </div>
       </div>
 
-      <div className="bg-white dark:bg-gray-800 rounded-[1.5rem] shadow-lg border border-sage-100 dark:border-gray-700 p-6 transition-colors flex flex-col">
+      <div className="bg-gradient-to-br from-[#faf8f3] via-[#fefdfb] to-[#f9f7f0] dark:bg-gray-800 rounded-[1.5rem] shadow-[0_8px_30px_rgba(0,0,0,0.12)] border-2 border-[#e8d5b7]/40 dark:border-gray-700 p-6 transition-colors flex flex-col relative overflow-hidden" style={{ backgroundImage: 'url("data:image/svg+xml,%3Csvg width="100" height="100" xmlns="http://www.w3.org/2000/svg"%3E%3Cdefs%3E%3Cpattern id="paper" x="0" y="0" width="100" height="100" patternUnits="userSpaceOnUse"%3E%3Cline x1="0" y1="30" x2="100" y2="30" stroke="%23e5d4b8" stroke-width="0.5" opacity="0.3"/%3E%3C/pattern%3E%3C/defs%3E%3Crect width="100" height="100" fill="url(%23paper)"/%3E%3C/svg%3E")' }}>
+        <div className="absolute top-0 left-0 w-full h-1 bg-gradient-to-r from-[#8b7355] via-[#a0826d] to-[#8b7355] opacity-20"></div>
         <div className="flex items-center gap-2 mb-4">
-          <Calendar className="w-5 h-5 text-sage-600 dark:text-sage-400" />
-          <h2 className="text-xl font-semibold text-gray-800 dark:text-white">Journal Entries</h2>
+          <Calendar className="w-5 h-5 text-[#8b7355] dark:text-sage-400" />
+          <h2 className="text-xl font-serif text-[#5d4e37] dark:text-white" style={{ fontFamily: 'Georgia, serif' }}>Past Entries</h2>
         </div>
 
         <div className="space-y-3 mb-4">
@@ -488,7 +641,7 @@ export default function JournalArea() {
               placeholder="Search your journal..."
               value={searchQuery}
               onChange={(e) => setSearchQuery(e.target.value)}
-              className="w-full pl-10 pr-4 py-2.5 rounded-xl border border-sage-200 dark:border-gray-600 dark:bg-gray-700 dark:text-white focus:outline-none focus:ring-2 focus:ring-[#187E5F] transition-colors text-sm"
+              className="w-full pl-10 pr-4 py-2.5 rounded-xl border border-[#e8d5b7] dark:border-gray-600 bg-[#fffef9]/50 dark:bg-gray-700 dark:text-white focus:outline-none focus:ring-2 focus:ring-[#c9b896] transition-colors text-sm text-[#3d3428] dark:text-white"
             />
           </div>
 
@@ -496,7 +649,7 @@ export default function JournalArea() {
             <div className="relative">
               <button
                 onClick={() => setShowSortDropdown(!showSortDropdown)}
-                className="flex items-center gap-2 px-3 py-2 rounded-xl border border-sage-200 dark:border-gray-600 hover:bg-sage-50 dark:hover:bg-gray-700 transition-colors text-sm"
+                className="flex items-center gap-2 px-3 py-2 rounded-xl border border-[#e8d5b7] dark:border-gray-600 hover:bg-[#f5ede1] dark:hover:bg-gray-700 transition-colors text-sm"
               >
                 <span className="text-gray-700 dark:text-gray-300">
                   {sortBy === 'recent' ? 'Most Recent' : sortBy === 'oldest' ? 'Oldest' : 'Most Read'}
@@ -556,13 +709,14 @@ export default function JournalArea() {
                     {groupEntries.map((entry) => (
                       <div
                         key={entry.id}
-                        className="group relative bg-white dark:bg-[#315545] p-4 rounded-xl border border-sage-100 dark:border-gray-700 hover:border-[#187E5F] dark:hover:border-[#187E5F] transition-all cursor-pointer hover:-translate-y-0.5 hover:shadow-[0_4px_12px_rgba(24,126,95,0.15)]"
+                        className="group relative bg-[#fffef9] dark:bg-[#315545] p-4 rounded-xl border-2 border-[#e8d5b7]/60 dark:border-gray-700 hover:border-[#c9b896] dark:hover:border-[#187E5F] transition-all cursor-pointer hover:-translate-y-0.5 hover:shadow-[0_6px_20px_rgba(139,115,85,0.15)] shadow-[0_2px_8px_rgba(139,115,85,0.08)]"
+                        style={{ backgroundImage: 'linear-gradient(to bottom, #fffef9 0%, #fdfcf7 100%)' }}
                       >
                         <div className="flex items-start justify-between mb-2">
                           <div className="flex items-center gap-3 flex-1">
                             <span className="text-2xl">{entry.emoji}</span>
                             <div className="flex-1 min-w-0">
-                              <h3 className="font-semibold text-gray-800 dark:text-white truncate">{entry.title}</h3>
+                              <h3 className="font-serif text-[#5d4e37] dark:text-white truncate" style={{ fontFamily: 'Georgia, serif', fontSize: '16px' }}>{entry.title}</h3>
                               <p className="text-xs text-gray-500 dark:text-gray-400">
                                 {entry.date.toLocaleDateString('en-US', { month: 'short', day: 'numeric', year: 'numeric' })}
                               </p>
@@ -584,7 +738,7 @@ export default function JournalArea() {
                             </button>
                           </div>
                         </div>
-                        <p className="text-sm text-gray-700 dark:text-gray-300 leading-relaxed line-clamp-2 mb-2">
+                        <p className="text-sm text-[#3d3428] dark:text-gray-300 leading-relaxed line-clamp-2 mb-2 font-serif" style={{ fontFamily: 'Georgia, serif' }}>
                           {entry.content}
                         </p>
                         <div className="flex items-center gap-3 text-[12px] text-[#78968b] dark:text-gray-400">
