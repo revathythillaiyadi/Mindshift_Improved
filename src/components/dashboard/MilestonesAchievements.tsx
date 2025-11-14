@@ -18,37 +18,61 @@ interface MilestonesAchievementsProps {
   totalCheckIns: number;
 }
 
-const FootprintsIcon = () => (
-  <svg width="40" height="40" viewBox="0 0 40 40" fill="none" xmlns="http://www.w3.org/2000/svg">
-    <path d="M12 8C12 8 10 10 10 13C10 16 12 18 14 18C16 18 18 16 18 13C18 10 16 8 16 8" fill="white" stroke="white" strokeWidth="1.5" strokeLinecap="round"/>
-    <ellipse cx="11" cy="10" rx="1.5" ry="2" fill="white"/>
-    <ellipse cx="13" cy="9" rx="1.5" ry="2" fill="white"/>
-    <ellipse cx="15" cy="9.5" rx="1.5" ry="2" fill="white"/>
-    <path d="M22 22C22 22 20 24 20 27C20 30 22 32 24 32C26 32 28 30 28 27C28 24 26 22 26 22" fill="white" stroke="white" strokeWidth="1.5" strokeLinecap="round"/>
-    <ellipse cx="21" cy="24" rx="1.5" ry="2" fill="white"/>
-    <ellipse cx="23" cy="23" rx="1.5" ry="2" fill="white"/>
-    <ellipse cx="25" cy="23.5" rx="1.5" ry="2" fill="white"/>
-  </svg>
-);
+const SproutIcon = ({ tier }: { tier: 'bronze' | 'silver' | 'gold' }) => {
+  const leafColors = {
+    bronze: '#8B4513',
+    silver: '#A8A8A8',
+    gold: '#FFA500'
+  };
 
-const ShieldCheckIcon = () => (
-  <svg width="40" height="40" viewBox="0 0 40 40" fill="none" xmlns="http://www.w3.org/2000/svg">
-    <path d="M20 4L8 10V18C8 26 14 32 20 36C26 32 32 26 32 18V10L20 4Z" fill="white" stroke="white" strokeWidth="2" strokeLinejoin="round"/>
-    <path d="M14 20L18 24L26 16" stroke="#FFD700" strokeWidth="2.5" strokeLinecap="round" strokeLinejoin="round"/>
-    <circle cx="18" cy="13" r="1.5" fill="#FFD700"/>
-    <circle cx="22" cy="13" r="1.5" fill="#FFD700"/>
-    <circle cx="26" cy="17" r="1.5" fill="#FFD700"/>
-  </svg>
-);
+  const stemColor = tier === 'gold' ? '#4CAF50' : tier === 'silver' ? '#6B8E6B' : '#5A7D5A';
 
-const BrainHeartIcon = ({ isEarned }: { isEarned: boolean }) => {
-  const accentColor = isEarned ? "#C0C0C0" : "#808080";
   return (
     <svg width="40" height="40" viewBox="0 0 40 40" fill="none" xmlns="http://www.w3.org/2000/svg">
-      <path d="M20 12C20 12 16 8 12 8C8 8 6 10 6 14C6 18 8 20 10 22C12 24 16 26 20 28C24 26 28 24 30 22C32 20 34 18 34 14C34 10 32 8 28 8C24 8 20 12 20 12Z" fill="white" stroke="white" strokeWidth="1.5" strokeLinejoin="round"/>
-      <circle cx="15" cy="16" r="2" fill={accentColor}/>
-      <circle cx="25" cy="16" r="2" fill={accentColor}/>
-      <path d="M16 20C16 20 18 22 20 22C22 22 24 20 24 20" stroke={accentColor} strokeWidth="1.5" strokeLinecap="round"/>
+      <path
+        d="M20 32 C20 32, 18 28, 18 24 C18 20, 20 16, 20 12"
+        stroke={stemColor}
+        strokeWidth="2.5"
+        strokeLinecap="round"
+      />
+      <ellipse
+        cx="15"
+        cy="18"
+        rx="5"
+        ry="7"
+        fill="white"
+        transform="rotate(-25 15 18)"
+        opacity="0.95"
+      />
+      <path
+        d="M15 18 C15 18, 12 15, 10 12 C8 9, 10 6, 13 8 C16 10, 15 18, 15 18"
+        fill={leafColors[tier]}
+        stroke="white"
+        strokeWidth="1"
+      />
+      <ellipse
+        cx="25"
+        cy="18"
+        rx="5"
+        ry="7"
+        fill="white"
+        transform="rotate(25 25 18)"
+        opacity="0.95"
+      />
+      <path
+        d="M25 18 C25 18, 28 15, 30 12 C32 9, 30 6, 27 8 C24 10, 25 18, 25 18"
+        fill={leafColors[tier]}
+        stroke="white"
+        strokeWidth="1"
+      />
+      <ellipse
+        cx="20"
+        cy="12"
+        rx="4"
+        ry="6"
+        fill={leafColors[tier]}
+        opacity="0.9"
+      />
     </svg>
   );
 };
@@ -140,17 +164,8 @@ export default function MilestonesAchievements({
     }
   }, [streakDays, journalEntries, totalCheckIns]);
 
-  const getBadgeIcon = (badgeId: string, isEarned: boolean) => {
-    switch (badgeId) {
-      case 'first-step':
-        return <FootprintsIcon />;
-      case 'week-warrior':
-        return <ShieldCheckIcon />;
-      case 'thoughtful':
-        return <BrainHeartIcon isEarned={isEarned} />;
-      default:
-        return <Trophy className="w-10 h-10 text-white" />;
-    }
+  const getBadgeIcon = (badge: Badge) => {
+    return <SproutIcon tier={badge.tier} />;
   };
 
   return (
@@ -211,7 +226,7 @@ export default function MilestonesAchievements({
                       }
                     }}
                   >
-                    {getBadgeIcon(badge.id, badge.isEarned)}
+                    {getBadgeIcon(badge)}
 
                     {!badge.isEarned && (
                       <div className="absolute inset-0 flex items-center justify-center bg-black bg-opacity-40 rounded-full">

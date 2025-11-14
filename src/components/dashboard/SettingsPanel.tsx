@@ -1,11 +1,93 @@
-import { Volume2, Image, Mic, CloudRain, Wind, Droplets, Bird, Music, Piano } from 'lucide-react';
-import { useState } from 'react';
+import { Volume2, Image, Mic, CloudRain, Wind, Droplets, Bird, Music, Piano, Check, AlertCircle } from 'lucide-react';
+import { useState, useEffect } from 'react';
+import { supabase } from '../../lib/supabase';
+import { useAuth } from '../../contexts/AuthContext';
 
 export default function SettingsPanel() {
+  const { user } = useAuth();
   const [ambientSound, setAmbientSound] = useState<string | null>(null);
   const [soundVolume, setSoundVolume] = useState(50);
   const [backgroundTheme, setBackgroundTheme] = useState('nature');
   const [voiceOption, setVoiceOption] = useState('female');
+  const [saveStatus, setSaveStatus] = useState<'idle' | 'saving' | 'saved' | 'error'>('idle');
+  const [isLoading, setIsLoading] = useState(true);
+
+  useEffect(() => {
+    loadPreferences();
+  }, [user]);
+
+  const loadPreferences = async () => {
+    if (!user) return;
+
+    try {
+      const { data, error } = await supabase
+        .from('user_preferences')
+        .select('*')
+        .eq('user_id', user.id)
+        .maybeSingle();
+
+      if (error) throw error;
+
+      if (data) {
+        setAmbientSound(data.ambient_sound);
+        setSoundVolume(data.sound_volume || 50);
+        setBackgroundTheme(data.background_theme || 'nature');
+        setVoiceOption(data.voice_option || 'female');
+      }
+    } catch (error) {
+      console.error('Error loading preferences:', error);
+    } finally {
+      setIsLoading(false);
+    }
+  };
+
+  const savePreferences = async () => {
+    if (!user) return;
+
+    setSaveStatus('saving');
+
+    try {
+      const { error } = await supabase
+        .from('user_preferences')
+        .upsert({
+          user_id: user.id,
+          ambient_sound: ambientSound,
+          sound_volume: soundVolume,
+          background_theme: backgroundTheme,
+          voice_option: voiceOption,
+        });
+
+      if (error) throw error;
+
+      setSaveStatus('saved');
+      setTimeout(() => setSaveStatus('idle'), 2000);
+    } catch (error) {
+      console.error('Error saving preferences:', error);
+      setSaveStatus('error');
+      setTimeout(() => setSaveStatus('idle'), 3000);
+    }
+  };
+
+  const resetToDefaults = async () => {
+    setAmbientSound(null);
+    setSoundVolume(50);
+    setBackgroundTheme('nature');
+    setVoiceOption('female');
+
+    if (user) {
+      try {
+        await supabase
+          .from('user_preferences')
+          .delete()
+          .eq('user_id', user.id);
+
+        setSaveStatus('saved');
+        setTimeout(() => setSaveStatus('idle'), 2000);
+      } catch (error) {
+        console.error('Error resetting preferences:', error);
+      }
+    }
+  };
 
   const ambientSounds = [
     { id: 'rain', name: 'Rain', icon: CloudRain },
@@ -177,13 +259,44 @@ export default function SettingsPanel() {
         </div>
       </div>
 
-      <div className="flex justify-end gap-3">
-        <button className="px-6 py-3 bg-gray-100 dark:bg-gray-700 text-gray-700 dark:text-gray-300 rounded-[1rem] hover:bg-gray-200 dark:hover:bg-gray-600 transition-colors font-medium">
-          Reset to Defaults
-        </button>
-        <button className="px-6 py-3 bg-gradient-to-r from-sage-600 to-mint-600 text-white rounded-[1rem] hover:shadow-lg transition-all font-medium">
-          Save Settings
-        </button>
+      <div className="flex justify-between items-center gap-3">
+        <div className="flex items-center gap-2">
+          {saveStatus === 'saved' && (
+            <div className="flex items-center gap-2 text-green-600 dark:text-green-400 animate-fade-in">
+              <Check className="w-5 h-5" />
+              <span className="text-sm font-medium">Settings saved!</span>
+            </div>
+          )}
+          {saveStatus === 'error' && (
+            <div className="flex items-center gap-2 text-red-600 dark:text-red-400 animate-fade-in">
+              <AlertCircle className="w-5 h-5" />
+              <span className="text-sm font-medium">Error saving settings</span>
+            </div>
+          )}
+        </div>
+        <div className="flex gap-3">
+          <button
+            onClick={resetToDefaults}
+            disabled={saveStatus === 'saving'}
+            className="px-6 py-3 bg-gray-100 dark:bg-gray-700 text-gray-700 dark:text-gray-300 rounded-[1rem] hover:bg-gray-200 dark:hover:bg-gray-600 transition-colors font-medium disabled:opacity-50 disabled:cursor-not-allowed"
+          >
+            Reset to Defaults
+          </button>
+          <button
+            onClick={savePreferences}
+            disabled={saveStatus === 'saving'}
+            className="px-6 py-3 bg-gradient-to-r from-sage-600 to-mint-600 text-white rounded-[1rem] hover:shadow-lg transition-all font-medium disabled:opacity-50 disabled:cursor-not-allowed flex items-center gap-2"
+          >
+            {saveStatus === 'saving' ? (
+              <>
+                <div className="w-4 h-4 border-2 border-white border-t-transparent rounded-full animate-spin" />
+                Saving...
+              </>
+            ) : (
+              'Save Settings'
+            )}
+          </button>
+        </div>
       </div>
     </div>
   );
