@@ -59,6 +59,16 @@ export default function DashboardHeader({
     navigate('/login');
   };
 
+  const handleNavigateToProfile = () => {
+    setShowProfileMenu(false);
+    navigate('/profile');
+  };
+
+  const handleNavigateToSettings = () => {
+    setShowProfileMenu(false);
+    navigate('/dashboard?view=settings');
+  };
+
   useEffect(() => {
     async function fetchUserProfile() {
       if (user) {
@@ -183,11 +193,17 @@ export default function DashboardHeader({
 
             {showProfileMenu && (
               <div className="fixed right-6 mt-14 w-52 bg-white dark:bg-gray-800 rounded-2xl shadow-2xl border-2 border-sage-200 dark:border-gray-600 py-3 z-[1000]">
-                <button className="w-full text-left px-5 py-3 hover:bg-sage-100 dark:hover:bg-gray-700 transition-all text-soft-gray dark:text-gray-200 flex items-center gap-3 rounded-xl mx-2 text-base">
+                <button
+                  onClick={handleNavigateToProfile}
+                  className="w-full text-left px-5 py-3 hover:bg-sage-100 dark:hover:bg-gray-700 transition-all text-soft-gray dark:text-gray-200 flex items-center gap-3 rounded-xl mx-2 text-base"
+                >
                   <UserCircle className="w-5 h-5" strokeWidth={2} />
                   <span>My Profile</span>
                 </button>
-                <button className="w-full text-left px-5 py-3 hover:bg-sage-100 dark:hover:bg-gray-700 transition-all text-soft-gray dark:text-gray-200 flex items-center gap-3 rounded-xl mx-2 text-base">
+                <button
+                  onClick={handleNavigateToSettings}
+                  className="w-full text-left px-5 py-3 hover:bg-sage-100 dark:hover:bg-gray-700 transition-all text-soft-gray dark:text-gray-200 flex items-center gap-3 rounded-xl mx-2 text-base"
+                >
                   <Settings className="w-5 h-5" strokeWidth={2} />
                   <span>Account Settings</span>
                 </button>

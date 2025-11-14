@@ -21,6 +21,8 @@ export default function Dashboard() {
 
   useEffect(() => {
     const tab = searchParams.get('tab');
+    const view = searchParams.get('view');
+
     if (tab === 'journal') {
       setCurrentView('journal');
       setTimeout(() => {
@@ -29,6 +31,8 @@ export default function Dashboard() {
           textarea.focus();
         }
       }, 100);
+    } else if (view === 'settings') {
+      setCurrentView('settings');
     }
   }, [searchParams]);
 
