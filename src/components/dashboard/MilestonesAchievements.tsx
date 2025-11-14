@@ -41,14 +41,17 @@ const ShieldCheckIcon = () => (
   </svg>
 );
 
-const BrainHeartIcon = () => (
-  <svg width="40" height="40" viewBox="0 0 40 40" fill="none" xmlns="http://www.w3.org/2000/svg">
-    <path d="M20 12C20 12 16 8 12 8C8 8 6 10 6 14C6 18 8 20 10 22C12 24 16 26 20 28C24 26 28 24 30 22C32 20 34 18 34 14C34 10 32 8 28 8C24 8 20 12 20 12Z" fill="white" stroke="white" strokeWidth="1.5" strokeLinejoin="round"/>
-    <circle cx="15" cy="16" r="2" fill="#C0C0C0"/>
-    <circle cx="25" cy="16" r="2" fill="#C0C0C0"/>
-    <path d="M16 20C16 20 18 22 20 22C22 22 24 20 24 20" stroke="#C0C0C0" strokeWidth="1.5" strokeLinecap="round"/>
-  </svg>
-);
+const BrainHeartIcon = ({ isEarned }: { isEarned: boolean }) => {
+  const accentColor = isEarned ? "#C0C0C0" : "#808080";
+  return (
+    <svg width="40" height="40" viewBox="0 0 40 40" fill="none" xmlns="http://www.w3.org/2000/svg">
+      <path d="M20 12C20 12 16 8 12 8C8 8 6 10 6 14C6 18 8 20 10 22C12 24 16 26 20 28C24 26 28 24 30 22C32 20 34 18 34 14C34 10 32 8 28 8C24 8 20 12 20 12Z" fill="white" stroke="white" strokeWidth="1.5" strokeLinejoin="round"/>
+      <circle cx="15" cy="16" r="2" fill={accentColor}/>
+      <circle cx="25" cy="16" r="2" fill={accentColor}/>
+      <path d="M16 20C16 20 18 22 20 22C22 22 24 20 24 20" stroke={accentColor} strokeWidth="1.5" strokeLinecap="round"/>
+    </svg>
+  );
+};
 
 export default function MilestonesAchievements({
   streakDays,
@@ -86,10 +89,29 @@ export default function MilestonesAchievements({
     },
   ];
 
-  const tierGradients = {
-    bronze: 'from-[#CD7F32] to-[#B87333]',
-    silver: 'from-[#C0C0C0] to-[#A8A8A8]',
-    gold: 'from-[#FFD700] to-[#FFA500]',
+  const tierStyles = {
+    bronze: {
+      gradient: 'radial-gradient(circle, #CD7F32 0%, #B87333 50%, #8B4513 100%)',
+      shadow: '0 4px 8px rgba(139, 69, 19, 0.4), inset 0 2px 4px rgba(255,255,255,0.3)',
+      hoverShadow: '0 6px 12px rgba(139, 69, 19, 0.5), inset 0 2px 4px rgba(255,255,255,0.4)',
+      progressGradient: 'from-[#CD7F32] to-[#B87333]',
+    },
+    silver: {
+      gradient: 'radial-gradient(circle, #C0C0C0 0%, #A8A8A8 50%, #989898 100%)',
+      shadow: '0 4px 8px rgba(192, 192, 192, 0.4), inset 0 2px 4px rgba(255,255,255,0.3)',
+      hoverShadow: '0 6px 12px rgba(192, 192, 192, 0.5), inset 0 2px 4px rgba(255,255,255,0.4)',
+      progressGradient: 'from-[#C0C0C0] to-[#A8A8A8]',
+    },
+    gold: {
+      gradient: 'radial-gradient(circle, #FFD700 0%, #FFA500 50%, #FF8C00 100%)',
+      shadow: '0 6px 12px rgba(255, 215, 0, 0.5), inset 0 2px 4px rgba(255,255,255,0.4)',
+      hoverShadow: '0 8px 16px rgba(255, 215, 0, 0.6), inset 0 2px 4px rgba(255,255,255,0.5)',
+      progressGradient: 'from-[#FFD700] to-[#FFA500]',
+    },
+  };
+
+  const lockedStyle = {
+    gradient: 'radial-gradient(circle, #808080 0%, #606060 100%)',
   };
 
   const earnedBadges = badges.filter(b => b.isEarned);
@@ -119,16 +141,13 @@ export default function MilestonesAchievements({
   }, [streakDays, journalEntries, totalCheckIns]);
 
   const getBadgeIcon = (badgeId: string, isEarned: boolean) => {
-    const opacity = isEarned ? 1 : 0.4;
-    const filter = isEarned ? 'none' : 'grayscale(100%)';
-
     switch (badgeId) {
       case 'first-step':
-        return <div style={{ opacity, filter }}><FootprintsIcon /></div>;
+        return <FootprintsIcon />;
       case 'week-warrior':
-        return <div style={{ opacity, filter }}><ShieldCheckIcon /></div>;
+        return <ShieldCheckIcon />;
       case 'thoughtful':
-        return <div style={{ opacity, filter }}><BrainHeartIcon /></div>;
+        return <BrainHeartIcon isEarned={isEarned} />;
       default:
         return <Trophy className="w-10 h-10 text-white" />;
     }
@@ -171,34 +190,43 @@ export default function MilestonesAchievements({
                 }`}
               >
                 <div className="relative">
-                  <div
-                    className={`relative w-20 h-20 rounded-full flex items-center justify-center transition-all duration-300 ${
+                  <button
+                    className={`relative w-20 h-20 rounded-full flex items-center justify-center transition-all duration-300 cursor-pointer ${
                       badge.isEarned
-                        ? `bg-gradient-to-br ${tierGradients[badge.tier]} shadow-[0_4px_12px_rgba(0,0,0,0.2)] hover:shadow-[0_6px_16px_rgba(0,0,0,0.25)] hover:scale-110`
-                        : 'bg-gray-300 dark:bg-gray-700 opacity-40 hover:opacity-60'
+                        ? 'animate-badge-float hover:-translate-y-1'
+                        : 'opacity-40 hover:opacity-60'
                     }`}
                     style={{
-                      boxShadow: badge.isEarned
-                        ? '0 4px 12px rgba(0,0,0,0.2), inset 0 2px 4px rgba(255,255,255,0.3)'
-                        : 'none'
+                      background: badge.isEarned ? tierStyles[badge.tier].gradient : lockedStyle.gradient,
+                      boxShadow: badge.isEarned ? tierStyles[badge.tier].shadow : 'none',
+                    }}
+                    onMouseEnter={(e) => {
+                      if (badge.isEarned) {
+                        e.currentTarget.style.boxShadow = tierStyles[badge.tier].hoverShadow;
+                      }
+                    }}
+                    onMouseLeave={(e) => {
+                      if (badge.isEarned) {
+                        e.currentTarget.style.boxShadow = tierStyles[badge.tier].shadow;
+                      }
                     }}
                   >
                     {getBadgeIcon(badge.id, badge.isEarned)}
 
                     {!badge.isEarned && (
                       <div className="absolute inset-0 flex items-center justify-center bg-black bg-opacity-40 rounded-full">
-                        <Lock className="w-5 h-5 text-white" />
+                        <Lock className="w-6 h-6 text-white opacity-70" />
                       </div>
                     )}
 
-                    {badge.isEarned && (
+                    {badge.isEarned && badge.tier === 'gold' && (
                       <>
-                        <div className="absolute -top-1 -right-1 w-3 h-3 bg-yellow-300 rounded-full animate-sparkle" style={{ animationDelay: '0s' }} />
-                        <div className="absolute top-0 -left-1 w-2 h-2 bg-yellow-200 rounded-full animate-sparkle" style={{ animationDelay: '0.5s' }} />
-                        <div className="absolute -bottom-1 right-2 w-2.5 h-2.5 bg-yellow-400 rounded-full animate-sparkle" style={{ animationDelay: '1s' }} />
+                        <div className="absolute -top-1 -right-1 text-xl animate-sparkle" style={{ animationDelay: '0s' }}>✨</div>
+                        <div className="absolute top-1 -left-2 text-lg animate-sparkle" style={{ animationDelay: '0.5s' }}>✨</div>
+                        <div className="absolute -bottom-1 right-1 text-lg animate-sparkle" style={{ animationDelay: '1s' }}>✨</div>
                       </>
                     )}
-                  </div>
+                  </button>
                 </div>
 
                 <div className="text-center mt-3 max-w-[90px]">
@@ -223,7 +251,7 @@ export default function MilestonesAchievements({
                       <div className="mt-2">
                         <div className="w-full bg-gray-700 rounded-full h-2 mb-1">
                           <div
-                            className={`bg-gradient-to-r ${tierGradients[badge.tier]} h-2 rounded-full transition-all duration-300`}
+                            className={`bg-gradient-to-r ${tierStyles[badge.tier].progressGradient} h-2 rounded-full transition-all duration-300`}
                             style={{
                               width: `${
                                 (badge.progress.current / badge.progress.total) * 100
