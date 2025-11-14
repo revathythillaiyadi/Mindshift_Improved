@@ -14,7 +14,9 @@ export default function ChatArea() {
   const [inputText, setInputText] = useState('');
   const [isRecording, setIsRecording] = useState(false);
   const [typingMessages, setTypingMessages] = useState<Set<string>>(new Set());
-  const [showVoiceTooltip, setShowVoiceTooltip] = useState(true);
+  const [showVoiceTooltip, setShowVoiceTooltip] = useState(() => {
+    return !localStorage.getItem('voice-tooltip-seen');
+  });
   const messagesEndRef = useRef<HTMLDivElement>(null);
 
   const scrollToBottom = () => {
@@ -217,35 +219,37 @@ export default function ChatArea() {
             <button
               onClick={() => {
                 setIsRecording(!isRecording);
-                setShowVoiceTooltip(false);
+                if (showVoiceTooltip) {
+                  localStorage.setItem('voice-tooltip-seen', 'true');
+                  setShowVoiceTooltip(false);
+                }
               }}
               className={`p-5 rounded-2xl transition-all shadow-lg group relative ${
                 isRecording
-                  ? 'bg-red-500 hover:bg-red-600 animate-pulse'
-                  : 'bg-gradient-to-br from-sage-600 to-mint-600 hover:shadow-xl animate-voice-pulse'
+                  ? 'bg-red-500 hover:bg-red-600'
+                  : 'bg-gradient-to-br from-sage-600 to-mint-600 hover:shadow-xl'
               }`}
-              style={!isRecording ? { boxShadow: '0 0 0 0 rgba(24, 126, 95, 0.4)' } : {}}
+              style={!isRecording ? {
+                animation: 'voice-glow-pulse 2s ease-in-out infinite'
+              } : {}}
               title={isRecording ? 'Stop recording' : 'Speak your thoughts'}
             >
               <Mic className="w-8 h-8 text-white" />
-              {!isRecording && (
-                <>
-                  <div className="absolute inset-0 rounded-2xl animate-voice-ring" style={{
-                    boxShadow: '0 0 0 0 rgba(24, 126, 95, 0.6)',
-                    pointerEvents: 'none'
-                  }}></div>
-                  <span className="absolute -bottom-8 left-1/2 -translate-x-1/2 opacity-0 group-hover:opacity-100 transition-opacity text-xs text-sage-600 dark:text-sage-400 whitespace-nowrap bg-white dark:bg-gray-700 px-2 py-1 rounded shadow-md">
-                    Speak your thoughts
-                  </span>
-                </>
+              {isRecording && (
+                <div className="absolute -bottom-2 left-1/2 -translate-x-1/2 flex gap-0.5">
+                  <div className="w-1 bg-white rounded-full animate-waveform-1" style={{ height: '12px' }}></div>
+                  <div className="w-1 bg-white rounded-full animate-waveform-2" style={{ height: '16px' }}></div>
+                  <div className="w-1 bg-white rounded-full animate-waveform-3" style={{ height: '20px' }}></div>
+                  <div className="w-1 bg-white rounded-full animate-waveform-2" style={{ height: '16px' }}></div>
+                  <div className="w-1 bg-white rounded-full animate-waveform-1" style={{ height: '12px' }}></div>
+                </div>
+              )}
+              {!isRecording && showVoiceTooltip && (
+                <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 bg-[#187E5F]/95 text-white px-3 py-1.5 rounded-lg text-xs font-medium whitespace-nowrap pointer-events-none">
+                  Tap to speak
+                </div>
               )}
             </button>
-            {!isRecording && showVoiceTooltip && (
-              <div className="absolute -top-12 left-1/2 -translate-x-1/2 bg-[#187E5F] text-white px-3 py-2 rounded-lg shadow-lg text-xs whitespace-nowrap animate-tooltip-appear">
-                Tap to speak
-                <div className="absolute bottom-0 left-1/2 -translate-x-1/2 translate-y-1/2 rotate-45 w-2 h-2 bg-[#187E5F]"></div>
-              </div>
-            )}
           </div>
 
           <div className="flex-1 flex flex-col gap-3">
@@ -289,10 +293,13 @@ export default function ChatArea() {
             />
             <div className="flex items-center justify-between px-3">
               <button
-                className="p-2 hover:bg-sage-100 dark:hover:bg-gray-700 rounded-xl transition-all hover:scale-105"
-                title="Emoji picker"
+                className="p-2.5 hover:bg-[rgba(24,126,95,0.1)] dark:hover:bg-gray-700 rounded-xl transition-all hover:scale-105 group relative"
+                title="Add emoji"
               >
-                <Smile className="w-5 h-5 text-sage-600 dark:text-sage-400" />
+                <Smile className="w-6 h-6 text-[#187E5F] dark:text-sage-400" />
+                <span className="absolute -top-10 left-1/2 -translate-x-1/2 opacity-0 group-hover:opacity-100 transition-opacity text-xs text-white bg-gray-800 dark:bg-gray-900 px-2 py-1 rounded shadow-md whitespace-nowrap pointer-events-none">
+                  Add emoji
+                </span>
               </button>
               <span className="text-xs text-sage-500 dark:text-gray-400 lowercase">
                 press enter to send
