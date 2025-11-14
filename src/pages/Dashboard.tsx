@@ -7,6 +7,7 @@ import JournalArea from '../components/dashboard/JournalArea';
 import RightPanel from '../components/dashboard/RightPanel';
 import SettingsPanel from '../components/dashboard/SettingsPanel';
 import QuickMoodInput from '../components/dashboard/QuickMoodInput';
+import AffirmationFooter from '../components/dashboard/AffirmationFooter';
 import TreeRing from '../components/TreeRing';
 import { useTheme } from '../contexts/ThemeContext';
 
@@ -80,6 +81,8 @@ export default function Dashboard() {
                   Goals & Progress view coming soon...
                 </div>
               )}
+
+              <AffirmationFooter />
             </main>
 
             <RightPanel selectedRegion={selectedRegion} />
