@@ -1,5 +1,5 @@
 import { useState, useEffect } from 'react';
-import { Lock, Trophy } from 'lucide-react';
+import { Lock, Trophy, Brain } from 'lucide-react';
 
 interface Badge {
   id: string;
@@ -18,62 +18,11 @@ interface MilestonesAchievementsProps {
   totalCheckIns: number;
 }
 
-const SproutIcon = ({ tier }: { tier: 'bronze' | 'silver' | 'gold' }) => {
-  const leafColors = {
-    bronze: '#8B4513',
-    silver: '#A8A8A8',
-    gold: '#FFA500'
-  };
-
-  const stemColor = tier === 'gold' ? '#4CAF50' : tier === 'silver' ? '#6B8E6B' : '#5A7D5A';
-
+const MindShiftLogo = () => {
   return (
-    <svg width="40" height="40" viewBox="0 0 40 40" fill="none" xmlns="http://www.w3.org/2000/svg">
-      <path
-        d="M20 32 C20 32, 18 28, 18 24 C18 20, 20 16, 20 12"
-        stroke={stemColor}
-        strokeWidth="2.5"
-        strokeLinecap="round"
-      />
-      <ellipse
-        cx="15"
-        cy="18"
-        rx="5"
-        ry="7"
-        fill="white"
-        transform="rotate(-25 15 18)"
-        opacity="0.95"
-      />
-      <path
-        d="M15 18 C15 18, 12 15, 10 12 C8 9, 10 6, 13 8 C16 10, 15 18, 15 18"
-        fill={leafColors[tier]}
-        stroke="white"
-        strokeWidth="1"
-      />
-      <ellipse
-        cx="25"
-        cy="18"
-        rx="5"
-        ry="7"
-        fill="white"
-        transform="rotate(25 25 18)"
-        opacity="0.95"
-      />
-      <path
-        d="M25 18 C25 18, 28 15, 30 12 C32 9, 30 6, 27 8 C24 10, 25 18, 25 18"
-        fill={leafColors[tier]}
-        stroke="white"
-        strokeWidth="1"
-      />
-      <ellipse
-        cx="20"
-        cy="12"
-        rx="4"
-        ry="6"
-        fill={leafColors[tier]}
-        opacity="0.9"
-      />
-    </svg>
+    <div className="bg-emerald p-2 rounded-lg">
+      <Brain className="w-8 h-8 text-white" strokeWidth={2.5} />
+    </div>
   );
 };
 
@@ -165,7 +114,7 @@ export default function MilestonesAchievements({
   }, [streakDays, journalEntries, totalCheckIns]);
 
   const getBadgeIcon = (badge: Badge) => {
-    return <SproutIcon tier={badge.tier} />;
+    return <MindShiftLogo />;
   };
 
   return (
