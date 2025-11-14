@@ -5,6 +5,7 @@ import App from './App.tsx';
 import Login from './pages/Login.tsx';
 import SignUp from './pages/SignUp.tsx';
 import Dashboard from './pages/Dashboard.tsx';
+import Profile from './pages/Profile.tsx';
 import { AuthProvider, useAuth } from './contexts/AuthContext.tsx';
 import { ThemeProvider } from './contexts/ThemeContext.tsx';
 import './index.css';
@@ -47,6 +48,7 @@ createRoot(document.getElementById('root')!).render(
             <Route path="/login" element={<PublicRoute><Login /></PublicRoute>} />
             <Route path="/signup" element={<PublicRoute><SignUp /></PublicRoute>} />
             <Route path="/dashboard" element={<ProtectedRoute><Dashboard /></ProtectedRoute>} />
+            <Route path="/profile" element={<ProtectedRoute><Profile /></ProtectedRoute>} />
           </Routes>
         </AuthProvider>
       </ThemeProvider>

@@ -1,5 +1,6 @@
-import { MessageSquare, BookOpen, Settings, Target, Trash2, Plus, Brain, Search, Pin, ChevronLeft, ChevronRight } from 'lucide-react';
+import { MessageSquare, BookOpen, Settings, Target, Trash2, Plus, Brain, Search, Pin, ChevronLeft, ChevronRight, User } from 'lucide-react';
 import { useState, useEffect } from 'react';
+import { useNavigate } from 'react-router-dom';
 
 interface SidebarProps {
   currentView: string;
@@ -13,6 +14,7 @@ interface ChatSession {
 }
 
 export default function Sidebar({ currentView, onViewChange }: SidebarProps) {
+  const navigate = useNavigate();
   const [isCollapsed, setIsCollapsed] = useState(false);
   const [chatHistory, setChatHistory] = useState<ChatSession[]>([
     { id: '1', title: 'dealing with work stress and burnout', timestamp: '2 hours ago' },
@@ -97,6 +99,7 @@ export default function Sidebar({ currentView, onViewChange }: SidebarProps) {
     { id: 'journal', label: 'Journal', icon: BookOpen, badge: '1' },
     { id: 'goals', label: 'Goals & Progress', icon: Target },
     { id: 'settings', label: 'Settings', icon: Settings },
+    { id: 'profile', label: 'My Profile', icon: User },
   ];
 
   const renderChatItem = (chat: ChatSession, index: number) => (
@@ -196,7 +199,13 @@ export default function Sidebar({ currentView, onViewChange }: SidebarProps) {
             return (
               <button
                 key={item.id}
-                onClick={() => onViewChange(item.id as any)}
+                onClick={() => {
+                  if (item.id === 'profile') {
+                    navigate('/profile');
+                  } else {
+                    onViewChange(item.id as any);
+                  }
+                }}
                 className={`w-full flex items-center ${isCollapsed ? 'justify-center' : 'gap-4'} px-4 py-3 rounded-2xl transition-all duration-200 ease-in-out relative group focus:outline-none focus:ring-2 focus:ring-[#187E5F] focus:ring-offset-2 ${
                   isActive
                     ? 'bg-[#E8EDE7] dark:bg-gray-700/50 font-semibold shadow-sm border-2 border-[#187E5F]/20 dark:border-sage-600/30'
