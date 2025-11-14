@@ -296,7 +296,7 @@ export default function JournalArea() {
   };
 
   return (
-    <div className="h-full grid grid-cols-1 lg:grid-cols-2 gap-6">
+    <div className="w-full grid grid-cols-1 lg:grid-cols-2 gap-6 pb-6">
       <div className="space-y-6">
         <div className="bg-gradient-to-br from-[#faf8f3] via-[#fefdfb] to-[#f9f7f0] dark:bg-gray-800 rounded-[1.5rem] shadow-[0_8px_30px_rgba(0,0,0,0.12)] border-2 border-[#e8d5b7]/40 dark:border-gray-700 p-6 transition-colors relative overflow-hidden" style={{ backgroundImage: 'url("data:image/svg+xml,%3Csvg width="100" height="100" xmlns="http://www.w3.org/2000/svg"%3E%3Cdefs%3E%3Cpattern id="paper" x="0" y="0" width="100" height="100" patternUnits="userSpaceOnUse"%3E%3Cline x1="0" y1="30" x2="100" y2="30" stroke="%23e5d4b8" stroke-width="0.5" opacity="0.3"/%3E%3C/pattern%3E%3C/defs%3E%3Crect width="100" height="100" fill="url(%23paper)"/%3E%3C/svg%3E")' }}>
           <div className="absolute top-0 left-0 w-full h-1 bg-gradient-to-r from-[#8b7355] via-[#a0826d] to-[#8b7355] opacity-20"></div>

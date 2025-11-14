@@ -90,20 +90,22 @@ export default function Dashboard() {
           />
 
           <div className="flex-1 flex overflow-hidden">
-            <main className="flex-1 overflow-y-auto p-6">
-              {currentView === 'chat' && (
-                <div className="mb-6">
-                  <QuickMoodInput />
-                </div>
-              )}
-              {currentView === 'chat' && <ChatArea />}
-              {currentView === 'journal' && <JournalArea />}
-              {currentView === 'settings' && <SettingsPanel />}
-              {currentView === 'goals' && (
-                <div className="text-center text-gray-600 dark:text-gray-400 mt-20">
-                  Goals & Progress view coming soon...
-                </div>
-              )}
+            <main className="flex-1 overflow-y-auto p-6 flex flex-col">
+              <div className="flex-1">
+                {currentView === 'chat' && (
+                  <div className="mb-6">
+                    <QuickMoodInput />
+                  </div>
+                )}
+                {currentView === 'chat' && <ChatArea />}
+                {currentView === 'journal' && <JournalArea />}
+                {currentView === 'settings' && <SettingsPanel />}
+                {currentView === 'goals' && (
+                  <div className="text-center text-gray-600 dark:text-gray-400 mt-20">
+                    Goals & Progress view coming soon...
+                  </div>
+                )}
+              </div>
 
               <AffirmationFooter />
             </main>
