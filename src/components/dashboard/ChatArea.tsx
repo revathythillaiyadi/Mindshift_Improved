@@ -143,10 +143,10 @@ export default function ChatArea() {
             />
           </div>
           <div>
-            <h3 className="text-white font-bold text-lg lowercase">nira</h3>
+            <h3 className="text-white font-bold text-lg">NIRA</h3>
             <div className="flex items-center gap-2">
               <div className="w-2.5 h-2.5 bg-mint-400 rounded-full animate-gentle-pulse shadow-sm"></div>
-              <span className="text-sage-100 text-sm lowercase">here for you</span>
+              <span className="text-sage-100 text-sm">Here for you</span>
             </div>
           </div>
         </div>
@@ -293,7 +293,7 @@ export default function ChatArea() {
                 className="px-4 py-2.5 h-10 bg-teal-100 dark:bg-teal-900/30 text-teal-700 dark:text-teal-300 rounded-full text-xs font-medium hover:shadow-md hover:-translate-y-0.5 transition-all flex items-center gap-2 flex-shrink-0 disabled:opacity-50 disabled:cursor-not-allowed"
               >
                 <Wind className="w-5 h-5" />
-                <span>Breathing exercise</span>
+                <span>Breathing Exercise</span>
               </button>
               <button
                 onClick={() => handleSendMessage("I need support...")}
@@ -301,7 +301,7 @@ export default function ChatArea() {
                 className="px-4 py-2.5 h-10 bg-rose-100 dark:bg-rose-900/30 text-rose-700 dark:text-rose-300 rounded-full text-xs font-medium hover:shadow-md hover:-translate-y-0.5 transition-all flex items-center gap-2 flex-shrink-0 disabled:opacity-50 disabled:cursor-not-allowed"
               >
                 <Heart className="w-5 h-5" />
-                <span>Need support</span>
+                <span>Need Support</span>
               </button>
               <button
                 onClick={() => handleSendMessage("I want to share something I'm grateful for...")}
@@ -316,9 +316,9 @@ export default function ChatArea() {
               value={inputText}
               onChange={(e) => setInputText(e.target.value)}
               onKeyPress={handleKeyPress}
-              placeholder={isThinking ? "NIRA is thinking..." : "share your thoughts with nira..."}
+              placeholder={isThinking ? "NIRA is thinking..." : "Share your thoughts with NIRA..."}
               disabled={isThinking}
-              className="w-full px-6 py-4 rounded-2xl border border-sage-300 dark:border-gray-600 dark:bg-gray-700 dark:text-white focus:outline-none focus:ring-2 focus:ring-sage-500 focus:border-transparent transition-all text-[15px] resize-none shadow-sm placeholder-[#78968b] dark:placeholder-gray-500 lowercase disabled:opacity-60 disabled:cursor-not-allowed"
+              className="w-full px-6 py-4 rounded-2xl border border-sage-300 dark:border-gray-600 dark:bg-gray-700 dark:text-white focus:outline-none focus:ring-2 focus:ring-sage-500 focus:border-transparent transition-all text-[15px] resize-none shadow-sm placeholder-[#78968b] dark:placeholder-gray-500 disabled:opacity-60 disabled:cursor-not-allowed"
               rows={2}
             />
             <div className="flex items-center justify-between px-3">
@@ -331,8 +331,8 @@ export default function ChatArea() {
                   Add emoji
                 </span>
               </button>
-              <span className="text-xs text-sage-500 dark:text-gray-400 lowercase">
-                press enter to send
+              <span className="text-xs text-sage-500 dark:text-gray-400">
+                Press Enter to send
               </span>
             </div>
           </div>

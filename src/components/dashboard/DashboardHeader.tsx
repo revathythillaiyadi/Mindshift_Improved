@@ -130,7 +130,7 @@ export default function DashboardHeader({
           <div className="relative" ref={regionMenuRef}>
             <button
               onClick={() => setShowRegionMenu(!showRegionMenu)}
-              className="flex items-center gap-2 px-4 py-2.5 rounded-[1rem] border-2 border-sage-200 dark:border-gray-600 hover:bg-sage-50 dark:hover:bg-gray-700 transition-colors lowercase"
+              className="flex items-center gap-2 px-4 py-2.5 rounded-[1rem] border-2 border-sage-200 dark:border-gray-600 hover:bg-sage-50 dark:hover:bg-gray-700 transition-colors"
             >
               <Flag className="w-4 h-4 text-sage-500 dark:text-gray-400" strokeWidth={2} />
               <span className="text-sm font-medium text-soft-gray dark:text-gray-200">
@@ -148,7 +148,7 @@ export default function DashboardHeader({
                       onRegionChange(region.code);
                       setShowRegionMenu(false);
                     }}
-                    className={`w-full text-left px-5 py-3 hover:bg-sage-100 dark:hover:bg-gray-700 transition-all rounded-xl mx-2 text-base lowercase ${
+                    className={`w-full text-left px-5 py-3 hover:bg-sage-100 dark:hover:bg-gray-700 transition-all rounded-xl mx-2 text-base ${
                       selectedRegion === region.code ? 'bg-sage-100 dark:bg-gray-700 text-forest dark:text-sage-400 font-semibold' : 'text-soft-gray dark:text-gray-200'
                     }`}
                   >
@@ -183,21 +183,21 @@ export default function DashboardHeader({
 
             {showProfileMenu && (
               <div className="fixed right-6 mt-14 w-52 bg-white dark:bg-gray-800 rounded-2xl shadow-2xl border-2 border-sage-200 dark:border-gray-600 py-3 z-[1000]">
-                <button className="w-full text-left px-5 py-3 hover:bg-sage-100 dark:hover:bg-gray-700 transition-all text-soft-gray dark:text-gray-200 flex items-center gap-3 rounded-xl mx-2 lowercase text-base">
+                <button className="w-full text-left px-5 py-3 hover:bg-sage-100 dark:hover:bg-gray-700 transition-all text-soft-gray dark:text-gray-200 flex items-center gap-3 rounded-xl mx-2 text-base">
                   <UserCircle className="w-5 h-5" strokeWidth={2} />
-                  <span>my profile</span>
+                  <span>My Profile</span>
                 </button>
-                <button className="w-full text-left px-5 py-3 hover:bg-sage-100 dark:hover:bg-gray-700 transition-all text-soft-gray dark:text-gray-200 flex items-center gap-3 rounded-xl mx-2 lowercase text-base">
+                <button className="w-full text-left px-5 py-3 hover:bg-sage-100 dark:hover:bg-gray-700 transition-all text-soft-gray dark:text-gray-200 flex items-center gap-3 rounded-xl mx-2 text-base">
                   <Settings className="w-5 h-5" strokeWidth={2} />
-                  <span>account settings</span>
+                  <span>Account Settings</span>
                 </button>
                 <div className="my-3 h-px bg-sage-200 dark:bg-gray-600 mx-4"></div>
                 <button
                   onClick={handleSignOut}
-                  className="w-full text-left px-5 py-3 hover:bg-red-50 dark:hover:bg-red-900/20 transition-all text-red-600 dark:text-red-400 flex items-center gap-3 font-semibold rounded-xl mx-2 lowercase text-base"
+                  className="w-full text-left px-5 py-3 hover:bg-red-50 dark:hover:bg-red-900/20 transition-all text-red-600 dark:text-red-400 flex items-center gap-3 font-semibold rounded-xl mx-2 text-base"
                 >
                   <LogOut className="w-5 h-5" strokeWidth={2} />
-                  <span>log out</span>
+                  <span>Log Out</span>
                 </button>
               </div>
             )}
