@@ -23,17 +23,17 @@ const regions = [
   { code: 'JP', name: 'Japan' },
 ];
 
-function getTimeBasedGreeting(name: string): string {
+function getTimeBasedGreeting(name: string): { text: string; emoji: string } {
   const hour = new Date().getHours();
 
   if (hour >= 5 && hour < 12) {
-    return `Good morning, ${name}! ☀️`;
+    return { text: `Good morning, ${name}!`, emoji: '👋' };
   } else if (hour >= 12 && hour < 17) {
-    return `Good afternoon, ${name}! 🌤️`;
+    return { text: `Good afternoon, ${name}!`, emoji: '👋' };
   } else if (hour >= 17 && hour < 21) {
-    return `Good evening, ${name}! 🌙`;
+    return { text: `Good evening, ${name}!`, emoji: '🌙' };
   } else {
-    return `Still up, ${name}? Take care of yourself 💙`;
+    return { text: `Still up, ${name}? Take care of yourself`, emoji: '💙' };
   }
 }
 
@@ -47,7 +47,7 @@ export default function DashboardHeader({
   const [showRegionMenu, setShowRegionMenu] = useState(false);
   const [showProfileMenu, setShowProfileMenu] = useState(false);
   const [userName, setUserName] = useState<string>('');
-  const [greeting, setGreeting] = useState<string>('');
+  const [greeting, setGreeting] = useState<{ text: string; emoji: string }>({ text: '', emoji: '' });
   const [fadeIn, setFadeIn] = useState(false);
   const regionMenuRef = useRef<HTMLDivElement>(null);
   const profileMenuRef = useRef<HTMLDivElement>(null);
@@ -102,16 +102,17 @@ export default function DashboardHeader({
     <header className="bg-white/90 dark:bg-gray-800/90 backdrop-blur-xl px-6 py-4 transition-colors relative z-50">
       <div className="flex items-center justify-between">
         <div className="flex flex-col gap-1">
-          <h1 className="text-2xl font-bold bg-gradient-to-r from-sage-600 to-mint-600 dark:from-sage-400 dark:to-mint-400 bg-clip-text text-transparent">
+          <h1 className="text-2xl font-semibold bg-gradient-to-r from-sage-600 to-mint-600 dark:from-sage-400 dark:to-mint-400 bg-clip-text text-transparent">
             Mindshift Dashboard
           </h1>
-          {greeting && (
+          {greeting.text && (
             <p
-              className={`text-base text-soft-gray dark:text-gray-300 transition-opacity duration-700 ${
+              className={`text-base font-normal text-soft-gray dark:text-gray-300 transition-opacity duration-700 flex items-center gap-1 ${
                 fadeIn ? 'opacity-100' : 'opacity-0'
               }`}
             >
-              {greeting}
+              <span>{greeting.text}</span>
+              <span className="ml-1">{greeting.emoji}</span>
             </p>
           )}
         </div>

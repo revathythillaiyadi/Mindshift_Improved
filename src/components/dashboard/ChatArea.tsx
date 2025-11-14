@@ -152,7 +152,7 @@ export default function ChatArea() {
         </button>
       </div>
 
-      <div className="flex-1 overflow-y-auto p-8 space-y-6 bg-gradient-to-b from-sage-50/30 via-warm-white to-mint-50/20 dark:from-gray-900 dark:to-gray-800">
+      <div className="flex-1 overflow-y-auto p-8 space-y-6 bg-gradient-to-b from-sage-50/30 via-warm-white to-mint-50/20 dark:from-gray-900 dark:to-gray-800 chat-background-pattern">
         {messages.map((message) => (
           <div
             key={message.id}

@@ -137,7 +137,7 @@ export default function RightPanel({ selectedRegion }: RightPanelProps) {
             >
               <div className="flex items-center gap-2">
                 <Flame className="w-5 h-5 text-orange-500" />
-                <h3 className="font-semibold text-gray-800 dark:text-white">Current Streak</h3>
+                <h3 className="text-base font-semibold text-gray-800 dark:text-white">Current Streak</h3>
               </div>
               {expandedSections.has('streak') ? (
                 <ChevronUp className="w-4 h-4 text-gray-500" />
@@ -186,7 +186,7 @@ export default function RightPanel({ selectedRegion }: RightPanelProps) {
             >
               <div className="flex items-center gap-2">
                 <TrendingUp className="w-5 h-5 text-teal-500" />
-                <h3 className="font-semibold text-gray-800 dark:text-white">Mood Tracker</h3>
+                <h3 className="text-base font-semibold text-gray-800 dark:text-white">Mood Tracker</h3>
               </div>
               {expandedSections.has('mood') ? (
                 <ChevronUp className="w-4 h-4 text-gray-500" />
@@ -195,18 +195,59 @@ export default function RightPanel({ selectedRegion }: RightPanelProps) {
               )}
             </button>
             {expandedSections.has('mood') && (
-              <div className="px-4 pb-4 space-y-3">
-                <div className="flex items-end justify-between h-28 gap-1 px-2">
-                  {moodData.map((day) => (
-                    <div key={day.date} className="flex-1 flex flex-col items-center gap-1">
-                      <div
-                        className="w-full bg-gradient-to-t from-sage-500 to-mint-500 rounded-t-md transition-all hover:opacity-80 cursor-pointer"
-                        style={{ height: `${(day.mood / maxMood) * 100}%` }}
-                        title={`${day.date}: ${day.mood}/10`}
+              <div className="px-4 pb-4 space-y-3 bg-gradient-to-br from-[#E8F5F0]/30 to-white dark:from-gray-600/20 dark:to-gray-700">
+                <div className="relative h-32 px-2">
+                  <svg className="w-full h-full" viewBox="0 0 350 120" preserveAspectRatio="none">
+                    <defs>
+                      <linearGradient id="moodGradient" x1="0%" y1="0%" x2="0%" y2="100%">
+                        <stop offset="0%" stopColor="rgba(24, 126, 95, 0.3)" />
+                        <stop offset="100%" stopColor="rgba(24, 126, 95, 0.05)" />
+                      </linearGradient>
+                    </defs>
+                    {[...Array(11)].map((_, i) => (
+                      <line
+                        key={i}
+                        x1="0"
+                        y1={i * 12}
+                        x2="350"
+                        y2={i * 12}
+                        stroke="currentColor"
+                        className="text-[#E8F5F0] dark:text-[#46644e]"
+                        strokeWidth="0.5"
+                        opacity="0.5"
                       />
-                      <span className="text-xs text-gray-600 dark:text-gray-400">{day.date}</span>
-                    </div>
-                  ))}
+                    ))}
+                    <polyline
+                      fill="url(#moodGradient)"
+                      stroke="none"
+                      points={`0,120 ${moodData.map((day, i) => `${i * 50 + 25},${120 - (day.mood / maxMood) * 100}`).join(' ')} 350,120`}
+                    />
+                    <polyline
+                      fill="none"
+                      stroke="#187E5F"
+                      strokeWidth="3"
+                      strokeLinecap="round"
+                      strokeLinejoin="round"
+                      points={moodData.map((day, i) => `${i * 50 + 25},${120 - (day.mood / maxMood) * 100}`).join(' ')}
+                    />
+                    {moodData.map((day, i) => (
+                      <circle
+                        key={i}
+                        cx={i * 50 + 25}
+                        cy={120 - (day.mood / maxMood) * 100}
+                        r="4"
+                        fill="#76ac6d"
+                        className="cursor-pointer hover:r-6 transition-all"
+                      >
+                        <title>{day.date}: {day.mood}/10</title>
+                      </circle>
+                    ))}
+                  </svg>
+                  <div className="flex justify-between px-2 mt-2">
+                    {moodData.map((day) => (
+                      <span key={day.date} className="text-xs text-gray-600 dark:text-gray-400">{day.date}</span>
+                    ))}
+                  </div>
                 </div>
                 <div className="flex items-center justify-between text-xs text-gray-500 dark:text-gray-400 px-2">
                   <span>last 7 days</span>
@@ -223,7 +264,7 @@ export default function RightPanel({ selectedRegion }: RightPanelProps) {
             >
               <div className="flex items-center gap-2">
                 <Activity className="w-5 h-5 text-blue-500" />
-                <h3 className="font-semibold text-gray-800 dark:text-white">Weekly Reflection</h3>
+                <h3 className="text-base font-semibold text-gray-800 dark:text-white">Weekly Reflection</h3>
               </div>
               {expandedSections.has('reflection') ? (
                 <ChevronUp className="w-4 h-4 text-gray-500" />
@@ -278,7 +319,7 @@ export default function RightPanel({ selectedRegion }: RightPanelProps) {
             >
               <div className="flex items-center gap-2">
                 <Target className="w-5 h-5 text-sage-600 dark:text-sage-400" />
-                <h3 className="font-semibold text-gray-800 dark:text-white">Goals Progress</h3>
+                <h3 className="text-base font-semibold text-gray-800 dark:text-white">Goals Progress</h3>
               </div>
               {expandedSections.has('goals') ? (
                 <ChevronUp className="w-4 h-4 text-gray-500" />
@@ -383,7 +424,7 @@ export default function RightPanel({ selectedRegion }: RightPanelProps) {
             >
               <div className="flex items-center gap-2">
                 <Bell className="w-5 h-5 text-amber-500" />
-                <h3 className="font-semibold text-gray-800 dark:text-white">Daily Reminder</h3>
+                <h3 className="text-base font-semibold text-gray-800 dark:text-white">Daily Reminder</h3>
               </div>
               {expandedSections.has('reminder') ? (
                 <ChevronUp className="w-4 h-4 text-gray-500" />
@@ -407,7 +448,7 @@ export default function RightPanel({ selectedRegion }: RightPanelProps) {
             >
               <div className="flex items-center gap-2">
                 <Award className="w-5 h-5 text-yellow-500" />
-                <h3 className="font-semibold text-gray-800 dark:text-white">Achievements</h3>
+                <h3 className="text-base font-semibold text-gray-800 dark:text-white">Achievements</h3>
               </div>
               {expandedSections.has('achievements') ? (
                 <ChevronUp className="w-4 h-4 text-gray-500" />

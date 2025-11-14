@@ -103,7 +103,7 @@ export default function Sidebar({ currentView, onViewChange }: SidebarProps) {
         aria-label={`Open conversation: ${chat.title}`}
       >
         <div className="flex-1 min-w-0">
-          <p className="text-sm font-medium text-forest dark:text-gray-200 lowercase" title={chat.title}>
+          <p className="text-sm font-medium text-forest dark:text-gray-200" title={chat.title}>
             {truncateMiddle(chat.title, 30)}
           </p>
           <div className="flex items-center gap-2 mt-1">
@@ -163,7 +163,7 @@ export default function Sidebar({ currentView, onViewChange }: SidebarProps) {
           </div>
         </div>
 
-        <h3 className="text-[11px] uppercase tracking-[0.05em] text-sage-500 dark:text-sage-400 font-semibold mb-3 px-2 lowercase">
+        <h3 className="text-[11px] uppercase tracking-[0.05em] text-sage-500 dark:text-sage-400 font-semibold mb-3 px-2">
           navigation
         </h3>
 
@@ -194,7 +194,7 @@ export default function Sidebar({ currentView, onViewChange }: SidebarProps) {
                   fill={isActive ? 'currentColor' : 'none'}
                   size={20}
                 />
-                <span className={`text-sm transition-colors duration-200 ${
+                <span className={`text-sm font-normal transition-colors duration-200 ${
                   isActive ? 'text-[#187E5F] dark:text-sage-400' : 'text-sage-600 dark:text-gray-400'
                 }`}>{item.label}</span>
                 {item.badge && (
