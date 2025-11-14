@@ -5,6 +5,7 @@ import ChatArea from '../components/dashboard/ChatArea';
 import JournalArea from '../components/dashboard/JournalArea';
 import RightPanel from '../components/dashboard/RightPanel';
 import SettingsPanel from '../components/dashboard/SettingsPanel';
+import QuickMoodInput from '../components/dashboard/QuickMoodInput';
 import TreeRing from '../components/TreeRing';
 import { useTheme } from '../contexts/ThemeContext';
 
@@ -53,6 +54,9 @@ export default function Dashboard() {
 
           <div className="flex-1 flex overflow-hidden">
             <main className="flex-1 overflow-y-auto p-6">
+              <div className="mb-6">
+                <QuickMoodInput />
+              </div>
               {currentView === 'chat' && <ChatArea />}
               {currentView === 'journal' && <JournalArea />}
               {currentView === 'settings' && <SettingsPanel />}
