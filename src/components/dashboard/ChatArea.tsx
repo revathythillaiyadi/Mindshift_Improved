@@ -126,9 +126,9 @@ export default function ChatArea() {
 
   return (
     <div className="h-full flex flex-col bg-warm-white dark:bg-gray-800 rounded-2xl shadow-xl border border-sage-100/50 dark:border-gray-700 overflow-hidden transition-colors">
-      <div className="bg-gradient-to-r from-[#8B9D83] to-[#A8B5A0] p-6 flex items-center justify-between shadow-md">
+      <div className="bg-gradient-to-r from-[#187E5F] via-[#0B5844] to-[#187E5F] p-6 flex items-center justify-between shadow-md" style={{ backgroundSize: '200% 100%', animation: 'gradient-shift 3s ease-in-out' }}>
         <div className="flex items-center gap-4">
-          <div className="w-14 h-14 bg-white rounded-2xl flex items-center justify-center shadow-lg overflow-hidden" style={{ boxShadow: '0 0 16px rgba(139, 157, 131, 0.2)' }}>
+          <div className="w-14 h-14 bg-white rounded-2xl flex items-center justify-center shadow-lg overflow-hidden" style={{ boxShadow: '0 0 16px rgba(24, 126, 95, 0.5)' }}>
             <img
               src="/Gemini_Generated_Image_jnzolrjnzolrjnzo.png"
               alt="NIRA Avatar"
@@ -160,10 +160,10 @@ export default function ChatArea() {
             <div
               className={`w-10 h-10 rounded-2xl flex items-center justify-center flex-shrink-0 shadow-md overflow-hidden ${
                 message.type === 'bot'
-                  ? 'bg-white'
-                  : 'bg-gradient-to-br from-beige-400 to-beige-500'
+                  ? 'bg-white mr-3'
+                  : 'bg-gradient-to-br from-beige-400 to-beige-500 ml-3'
               }`}
-              style={message.type === 'bot' ? { boxShadow: '0 2px 8px rgba(0, 0, 0, 0.1)' } : {}}
+              style={message.type === 'bot' ? { boxShadow: '0 0 16px rgba(24, 126, 95, 0.5)' } : {}}
             >
               {message.type === 'bot' ? (
                 <img
@@ -188,11 +188,12 @@ export default function ChatArea() {
               )}
               {(message.text || !message.isTyping) && (
                 <div
-                  className={`px-6 py-4 rounded-2xl shadow-md ${
+                  className={`px-6 py-4 rounded-2xl ${
                     message.type === 'bot'
-                      ? 'bg-sage-100 dark:bg-gray-700 text-forest dark:text-gray-100 border border-sage-200/50 dark:border-gray-600'
+                      ? 'bg-[#D4EDE5] dark:bg-gray-700 text-[#2c4943] dark:text-gray-100 border border-[rgba(24,126,95,0.2)] dark:border-gray-600'
                       : 'bg-beige-100 dark:bg-beige-800 text-soft-gray dark:text-white border border-beige-200/50 dark:border-beige-700'
                   }`}
+                  style={message.type === 'bot' ? { boxShadow: '0 2px 8px rgba(44, 73, 67, 0.08)' } : { boxShadow: '0 2px 8px rgba(0, 0, 0, 0.05)' }}
                 >
                   <p className="text-base leading-relaxed">
                     {message.text}

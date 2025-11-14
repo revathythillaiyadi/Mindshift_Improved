@@ -933,6 +933,18 @@
   .dark .sidebar-fade-gradient {
     background: linear-gradient(to bottom, transparent 0%, rgba(44, 73, 67, 0.8) 100%);
   }
+
+  @keyframes gradient-shift {
+    0% {
+      background-position: 0% 50%;
+    }
+    50% {
+      background-position: 100% 50%;
+    }
+    100% {
+      background-position: 0% 50%;
+    }
+  }
 }
 
 @supports (animation-timeline: view()) {
