@@ -2,6 +2,7 @@ import { useState, useEffect } from 'react';
 import { User, Mail, Calendar, MapPin, Bell, Moon, Sun, Monitor, Shield, Download, Trash2, Award, MessageSquare, BookOpen, Target, Flame, Camera, Check } from 'lucide-react';
 import { supabase } from '../lib/supabase';
 import { useAuth } from '../contexts/AuthContext';
+import TreeRing from '../components/TreeRing';
 
 interface ProfileData {
   full_name: string;
@@ -167,8 +168,12 @@ export default function Profile() {
   };
 
   return (
-    <div className="min-h-screen bg-sage-50 dark:bg-gray-900 transition-colors">
-      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-8">
+    <div className="min-h-screen bg-sage-50 dark:bg-gray-900 transition-colors relative overflow-hidden">
+      <div className="tree-ring-profile-background">
+        <TreeRing ringCount={7} />
+      </div>
+
+      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-8 relative z-10">
         <h1 className="text-[24px] font-bold text-gray-900 dark:text-white mb-8">
           My Profile
         </h1>
