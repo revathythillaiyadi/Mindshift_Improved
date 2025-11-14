@@ -1,5 +1,6 @@
 import { MessageSquare, BookOpen, Settings, Target, Trash2, Plus, Brain, Search, Pin, Archive, MoreVertical } from 'lucide-react';
 import { useState } from 'react';
+import DailyQuote from './DailyQuote';
 
 interface SidebarProps {
   currentView: string;
@@ -143,6 +144,12 @@ export default function Sidebar({ currentView, onViewChange }: SidebarProps) {
             );
           })}
         </nav>
+      </div>
+
+      <div className="border-t border-[#E5E7EB] dark:border-gray-700 my-4 mx-8"></div>
+
+      <div className="px-8 mb-6">
+        <DailyQuote />
       </div>
 
       <div className="border-t border-[#E5E7EB] dark:border-gray-700 my-4 mx-8"></div>
