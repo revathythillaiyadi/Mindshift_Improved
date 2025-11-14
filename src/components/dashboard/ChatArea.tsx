@@ -20,6 +20,7 @@ export default function ChatArea() {
   const [showVoiceTooltip, setShowVoiceTooltip] = useState(() => {
     return !localStorage.getItem('voice-tooltip-seen');
   });
+  const [isInitialLoad, setIsInitialLoad] = useState(true);
   const messagesEndRef = useRef<HTMLDivElement>(null);
 
   const scrollToBottom = () => {
@@ -27,8 +28,10 @@ export default function ChatArea() {
   };
 
   useEffect(() => {
-    scrollToBottom();
-  }, [messages]);
+    if (!isInitialLoad) {
+      scrollToBottom();
+    }
+  }, [messages, isInitialLoad]);
 
   useEffect(() => {
     const initialMessageId = '1';
@@ -61,6 +64,7 @@ export default function ChatArea() {
           isTyping: false,
         }]);
         setTypingMessages(new Set());
+        setTimeout(() => setIsInitialLoad(false), 500);
       }
     }, 50);
 

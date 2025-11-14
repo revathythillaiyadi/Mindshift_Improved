@@ -39,6 +39,16 @@ export default function Dashboard() {
     }
   }, [currentView]);
 
+  useEffect(() => {
+    const timer = setTimeout(() => {
+      const mainContent = document.querySelector('main.flex-1.overflow-y-auto');
+      if (mainContent) {
+        mainContent.scrollTop = 0;
+      }
+    }, 100);
+    return () => clearTimeout(timer);
+  }, []);
+
   return (
     <div className="min-h-screen relative overflow-hidden">
       <div className="flex h-screen bg-gradient-to-br from-warm-white via-mint-50/20 to-sage-50/30 dark:from-gray-900 dark:via-gray-800 dark:to-gray-900 transition-colors relative">
