@@ -2,6 +2,7 @@ import { Moon, Sun, User, ChevronDown, LogOut, Settings, UserCircle, BookOpen } 
 import { useState, useEffect, useRef } from 'react';
 import { useNavigate } from 'react-router-dom';
 import { useAuth } from '../../contexts/AuthContext';
+import { supabase } from '../../lib/supabase';
 
 interface DashboardHeaderProps {
   selectedRegion: string;
@@ -22,6 +23,20 @@ const regions = [
   { code: 'JP', name: 'Japan' },
 ];
 
+function getTimeBasedGreeting(name: string): string {
+  const hour = new Date().getHours();
+
+  if (hour >= 5 && hour < 12) {
+    return `Good morning, ${name}! ☀️`;
+  } else if (hour >= 12 && hour < 17) {
+    return `Good afternoon, ${name}! 🌤️`;
+  } else if (hour >= 17 && hour < 21) {
+    return `Good evening, ${name}! 🌙`;
+  } else {
+    return `Still up, ${name}? Take care of yourself 💙`;
+  }
+}
+
 export default function DashboardHeader({
   selectedRegion,
   onRegionChange,
@@ -31,15 +46,43 @@ export default function DashboardHeader({
 }: DashboardHeaderProps) {
   const [showRegionMenu, setShowRegionMenu] = useState(false);
   const [showProfileMenu, setShowProfileMenu] = useState(false);
+  const [userName, setUserName] = useState<string>('');
+  const [greeting, setGreeting] = useState<string>('');
+  const [fadeIn, setFadeIn] = useState(false);
   const regionMenuRef = useRef<HTMLDivElement>(null);
   const profileMenuRef = useRef<HTMLDivElement>(null);
   const navigate = useNavigate();
-  const { signOut } = useAuth();
+  const { signOut, user } = useAuth();
 
   const handleSignOut = async () => {
     await signOut();
     navigate('/login');
   };
+
+  useEffect(() => {
+    async function fetchUserProfile() {
+      if (user) {
+        const { data, error } = await supabase
+          .from('profiles')
+          .select('full_name')
+          .eq('id', user.id)
+          .maybeSingle();
+
+        if (data && data.full_name) {
+          const firstName = data.full_name.split(' ')[0];
+          setUserName(firstName);
+          setGreeting(getTimeBasedGreeting(firstName));
+        } else {
+          setUserName('there');
+          setGreeting(getTimeBasedGreeting('there'));
+        }
+
+        setTimeout(() => setFadeIn(true), 50);
+      }
+    }
+
+    fetchUserProfile();
+  }, [user]);
 
   useEffect(() => {
     const handleClickOutside = (event: MouseEvent) => {
@@ -58,10 +101,19 @@ export default function DashboardHeader({
   return (
     <header className="bg-white/90 dark:bg-gray-800/90 backdrop-blur-xl px-6 py-4 transition-colors relative z-50">
       <div className="flex items-center justify-between">
-        <div className="flex items-center gap-4">
+        <div className="flex flex-col gap-1">
           <h1 className="text-2xl font-bold bg-gradient-to-r from-sage-600 to-mint-600 dark:from-sage-400 dark:to-mint-400 bg-clip-text text-transparent">
             Mindshift Dashboard
           </h1>
+          {greeting && (
+            <p
+              className={`text-base text-soft-gray dark:text-gray-300 transition-opacity duration-700 ${
+                fadeIn ? 'opacity-100' : 'opacity-0'
+              }`}
+            >
+              {greeting}
+            </p>
+          )}
         </div>
 
         <div className="flex items-center gap-4">
