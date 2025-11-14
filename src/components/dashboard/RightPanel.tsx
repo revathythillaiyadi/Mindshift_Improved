@@ -1,4 +1,4 @@
-import { AlertCircle, TrendingUp, Flame, Target, Bell, ChevronDown, ChevronUp, Award, Activity } from 'lucide-react';
+import { AlertCircle, TrendingUp, Flame, Target, Bell, ChevronDown, ChevronUp, Award, Activity, Sparkles } from 'lucide-react';
 import { useState, useEffect } from 'react';
 import MilestonesAchievements from './MilestonesAchievements';
 import DailyQuote from './DailyQuote';
@@ -54,7 +54,14 @@ export default function RightPanel({ selectedRegion }: RightPanelProps) {
   const [showSOSModal, setShowSOSModal] = useState(false);
   const [streakCelebration, setStreakCelebration] = useState(false);
   const [completedGoals, setCompletedGoals] = useState<Set<string>>(new Set());
-  const [expandedSections, setExpandedSections] = useState<Set<string>>(new Set(['streak', 'goals']));
+  const [expandedSections, setExpandedSections] = useState<Set<string>>(() => {
+    const hasSeenReflection = localStorage.getItem('has-seen-reflection');
+    if (!hasSeenReflection) {
+      localStorage.setItem('has-seen-reflection', 'true');
+      return new Set(['streak', 'goals', 'reflection']);
+    }
+    return new Set(['streak', 'goals']);
+  });
 
   const getStreakMessage = (days: number) => {
     if (days >= 30) return "You're unstoppable! A full month of dedication!";
@@ -265,12 +272,26 @@ export default function RightPanel({ selectedRegion }: RightPanelProps) {
               <div className="flex items-center gap-2">
                 <Activity className="w-5 h-5 text-blue-500" />
                 <h3 className="text-base font-semibold text-gray-800 dark:text-white">Weekly Reflection</h3>
+                {!expandedSections.has('reflection') && weeklyStats.moodImprovement > 0 && (
+                  <Sparkles className="w-4 h-4 text-yellow-500 animate-pulse" />
+                )}
               </div>
-              {expandedSections.has('reflection') ? (
-                <ChevronUp className="w-4 h-4 text-gray-500" />
-              ) : (
-                <ChevronDown className="w-4 h-4 text-gray-500" />
-              )}
+              <div className="flex items-center gap-3">
+                {!expandedSections.has('reflection') && (
+                  <div className="flex items-center gap-2 text-xs text-gray-500 dark:text-gray-400 font-medium">
+                    <span>{weeklyStats.totalCheckIns} check-ins</span>
+                    <span>•</span>
+                    <span>{weeklyStats.journalEntries} entries</span>
+                    <span>•</span>
+                    <span>{weeklyStats.mindfulnessMinutes} min</span>
+                  </div>
+                )}
+                {expandedSections.has('reflection') ? (
+                  <ChevronUp className="w-4 h-4 text-gray-500" />
+                ) : (
+                  <ChevronDown className="w-4 h-4 text-gray-500" />
+                )}
+              </div>
             </button>
             {expandedSections.has('reflection') && (
               <div className="px-4 pb-4 space-y-3">
