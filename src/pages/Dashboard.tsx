@@ -91,9 +91,11 @@ export default function Dashboard() {
 
           <div className="flex-1 flex overflow-hidden">
             <main className="flex-1 overflow-y-auto p-6">
-              <div className="mb-6">
-                <QuickMoodInput />
-              </div>
+              {currentView === 'chat' && (
+                <div className="mb-6">
+                  <QuickMoodInput />
+                </div>
+              )}
               {currentView === 'chat' && <ChatArea />}
               {currentView === 'journal' && <JournalArea />}
               {currentView === 'settings' && <SettingsPanel />}
