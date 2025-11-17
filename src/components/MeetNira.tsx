@@ -50,13 +50,13 @@ export default function MeetNira() {
             <div className="relative z-10 bg-white/70 dark:bg-[#141b26] backdrop-blur-xl rounded-[2.5rem] shadow-2xl border border-lavender-100/30 dark:border-[#283647] overflow-hidden">
               <div className="bg-forest dark:bg-[#1c2533] p-6 flex items-center justify-between">
                 <div className="flex items-center gap-4">
-                  <div className="w-14 h-14 bg-white dark:bg-[#00FFC8] rounded-full flex items-center justify-center shadow-lg dark:shadow-[0_0_20px_rgba(0,255,200,0.5)] animate-pulse-gentle">
+                  <div className="w-14 h-14 bg-white dark:bg-[#00FFFF] rounded-full flex items-center justify-center shadow-lg dark:shadow-[0_0_20px_rgba(0,255,255,0.5)] animate-pulse-gentle">
                     <Bot className="w-8 h-8 text-forest dark:text-[#0a0f16] transition-colors" strokeWidth={1.5} />
                   </div>
                   <div>
                     <h3 className="text-white font-semibold text-lg tracking-wide">Nira</h3>
                     <div className="flex items-center gap-2">
-                      <div className="w-2.5 h-2.5 bg-white dark:bg-[#00FFC8] rounded-full animate-pulse shadow-[0_0_8px_rgba(0,255,200,0.8)]"></div>
+                      <div className="w-2.5 h-2.5 bg-white dark:bg-[#00FFFF] rounded-full animate-pulse shadow-[0_0_8px_rgba(0,255,255,0.8)]"></div>
                       <span className="text-white/90 text-sm">Here with you</span>
                     </div>
                   </div>
@@ -71,7 +71,7 @@ export default function MeetNira() {
                   >
                     <div className={`w-11 h-11 rounded-full flex items-center justify-center flex-shrink-0 shadow-sm ${
                       message.type === 'bot'
-                        ? 'bg-gradient-to-br from-sage-300/60 to-mint-300/60 dark:bg-[#00FFC8] backdrop-blur-sm dark:shadow-[0_0_15px_rgba(0,255,200,0.4)]'
+                        ? 'bg-gradient-to-br from-sage-300/60 to-mint-300/60 dark:bg-[#00FFFF] backdrop-blur-sm dark:shadow-[0_0_15px_rgba(0,255,255,0.4)]'
                         : 'bg-gradient-to-br from-mint-300/70 to-sage-300/60 dark:bg-[#1c2533] backdrop-blur-sm'
                     }`}>
                       {message.type === 'bot' ? (
@@ -83,7 +83,7 @@ export default function MeetNira() {
                     <div className={`max-w-[75%] ${message.type === 'user' ? 'items-end' : 'items-start'} flex flex-col`}>
                       <div className={`px-6 py-4 rounded-[1.5rem] ${
                         message.type === 'bot'
-                          ? 'bg-white/80 dark:bg-[#141b26] backdrop-blur-sm text-soft-gray dark:text-[#00FFC8] shadow-sm border border-lavender-100/40 dark:border-[#00FFC8]/30 dark:shadow-[0_0_10px_rgba(0,255,200,0.2)]'
+                          ? 'bg-white/80 dark:bg-[#141b26] backdrop-blur-sm text-soft-gray dark:text-[#00FFFF] shadow-sm border border-lavender-100/40 dark:border-[#00FFFF]/30 dark:shadow-[0_0_10px_rgba(0,255,255,0.2)]'
                           : 'bg-gradient-to-br from-mint-200/60 to-sage-200/50 dark:bg-[#1c2533] backdrop-blur-sm text-soft-gray dark:text-white border dark:border-[#283647]'
                       }`}>
                         <p className="text-sm leading-relaxed">{message.text}</p>
@@ -107,10 +107,10 @@ export default function MeetNira() {
                   <input
                     type="text"
                     placeholder="Take your time... share what's on your mind"
-                    className="flex-1 px-6 py-3.5 rounded-[2rem] border border-forest dark:border-[#283647] focus:outline-none focus:ring-2 focus:ring-forest/30 dark:focus:ring-[#00FFC8]/50 focus:border-forest dark:focus:border-[#00FFC8] transition-all text-sm text-soft-gray dark:text-white placeholder:text-gentle-gray/50 dark:placeholder:text-[#B0BED0] bg-white dark:bg-[#1c2533]"
+                    className="flex-1 px-6 py-3.5 rounded-[2rem] border border-forest dark:border-[#283647] focus:outline-none focus:ring-2 focus:ring-forest/30 dark:focus:ring-[#00FFFF]/50 focus:border-forest dark:focus:border-[#00FFFF] transition-all text-sm text-soft-gray dark:text-white placeholder:text-gentle-gray/50 dark:placeholder:text-[#B0BED0] bg-white dark:bg-[#1c2533]"
                     disabled
                   />
-                  <button className="w-12 h-12 bg-gradient-to-r from-sage-400 to-mint-400 dark:bg-[#00FFC8] text-white dark:text-[#0a0f16] rounded-full hover:shadow-lg dark:shadow-[0_0_20px_rgba(0,255,200,0.5)] dark:hover:shadow-[0_0_30px_rgba(0,255,200,0.7)] hover:scale-105 transition-all flex items-center justify-center flex-shrink-0">
+                  <button className="w-12 h-12 bg-gradient-to-r from-sage-400 to-mint-400 dark:bg-[#00FFFF] text-white dark:text-[#0a0f16] rounded-full hover:shadow-lg dark:shadow-[0_0_20px_rgba(0,255,255,0.5)] dark:hover:shadow-[0_0_30px_rgba(0,255,255,0.7)] hover:scale-105 transition-all flex items-center justify-center flex-shrink-0">
                     <ArrowRight className="w-5 h-5" strokeWidth={2} />
                   </button>
                 </div>

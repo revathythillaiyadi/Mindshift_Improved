@@ -45,7 +45,7 @@ export default function Hero() {
           <div className="pt-6 animate-fade-in" style={{ animationDelay: '0.3s' }}>
             <button
               onClick={handleStartJourney}
-              className="px-12 py-5 bg-gradient-to-r from-emerald to-emerald-600 dark:bg-[#00FFC8] text-white dark:text-[#0a0f16] text-lg font-semibold rounded-[28px] hover:from-emerald-600 hover:to-ocean-light dark:hover:bg-[#00E6B4] transition-all duration-200 hover:shadow-[0_8px_24px_rgba(24,126,95,0.25)] dark:hover:shadow-[0_8px_30px_rgba(0,255,200,0.6)] hover:scale-105 active:scale-98 animate-pulse-gentle shadow-[0_4px_16px_rgba(24,126,95,0.2)] dark:shadow-[0_4px_20px_rgba(0,255,200,0.4)]"
+              className="px-12 py-5 bg-gradient-to-r from-emerald to-emerald-600 dark:bg-[#00FFFF] text-white dark:text-[#0a0f16] text-lg font-semibold rounded-[28px] hover:from-emerald-600 hover:to-ocean-light dark:hover:bg-[#00E5E5] transition-all duration-200 hover:shadow-[0_8px_24px_rgba(24,126,95,0.25)] dark:hover:shadow-[0_8px_35px_rgba(0,255,255,0.7)] hover:scale-105 active:scale-98 animate-pulse-gentle shadow-[0_4px_16px_rgba(24,126,95,0.2)] dark:shadow-[0_4px_25px_rgba(0,255,255,0.5)]"
             >
               Start Your Journey
             </button>

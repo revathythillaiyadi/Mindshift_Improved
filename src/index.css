@@ -56,10 +56,10 @@
     --color-dark-text-tertiary: #E0E8F0;
     --color-dark-text-muted: #B0BED0;
 
-    --color-neon-teal: #00FFC8;
-    --color-neon-teal-hover: #00E6B4;
-    --color-neon-teal-dim: #1AFFCE;
-    --color-teal-glow: rgba(0, 255, 200, 0.3);
+    --color-neon-teal: #00FFFF;
+    --color-neon-teal-hover: #00E5E5;
+    --color-neon-teal-dim: #33FFFF;
+    --color-teal-glow: rgba(0, 255, 255, 0.5);
 
     --bg-primary: var(--color-dark-primary-bg);
     --bg-secondary: var(--color-dark-secondary-bg);
