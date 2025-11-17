@@ -9,7 +9,7 @@ export default function Hero() {
   };
 
   return (
-    <section className="relative min-h-[90vh] flex items-center justify-center px-6 overflow-hidden bg-neutral-50 dark:bg-[#101720] transition-colors">
+    <section className="relative min-h-[90vh] flex items-center justify-center px-6 overflow-hidden bg-neutral-50 dark:bg-[#0a0f16] transition-colors">
       {/* Tree Rings Background */}
       <div className="absolute inset-0 overflow-hidden">
         <TreeRing
@@ -37,7 +37,7 @@ export default function Hero() {
           </h1>
 
           {/* Sub-headline */}
-          <p className="text-xl md:text-2xl lg:text-3xl leading-relaxed max-w-3xl mx-auto text-sage-500 dark:text-[#F0F4F8] font-light transition-colors">
+          <p className="text-xl md:text-2xl lg:text-3xl leading-relaxed max-w-3xl mx-auto text-sage-500 dark:text-[#E8EEF5] font-light transition-colors">
             You're not alone. Let's reframe those thoughts and reshape your world.
           </p>
 
@@ -45,7 +45,7 @@ export default function Hero() {
           <div className="pt-6 animate-fade-in" style={{ animationDelay: '0.3s' }}>
             <button
               onClick={handleStartJourney}
-              className="px-12 py-5 bg-gradient-to-r from-emerald to-emerald-600 dark:from-[#5dd4ac] dark:to-[#4ec199] text-white dark:text-[#101720] text-lg font-semibold rounded-[28px] hover:from-emerald-600 hover:to-ocean-light dark:hover:from-[#4ec199] dark:hover:to-[#3db088] transition-all duration-200 hover:shadow-[0_8px_24px_rgba(24,126,95,0.25)] dark:hover:shadow-[0_8px_24px_rgba(93,212,172,0.4)] hover:scale-105 active:scale-98 animate-pulse-gentle shadow-[0_4px_16px_rgba(24,126,95,0.2)] dark:shadow-[0_4px_16px_rgba(93,212,172,0.3)]"
+              className="px-12 py-5 bg-gradient-to-r from-emerald to-emerald-600 dark:bg-[#00FFC8] text-white dark:text-[#0a0f16] text-lg font-semibold rounded-[28px] hover:from-emerald-600 hover:to-ocean-light dark:hover:bg-[#00E6B4] transition-all duration-200 hover:shadow-[0_8px_24px_rgba(24,126,95,0.25)] dark:hover:shadow-[0_8px_30px_rgba(0,255,200,0.6)] hover:scale-105 active:scale-98 animate-pulse-gentle shadow-[0_4px_16px_rgba(24,126,95,0.2)] dark:shadow-[0_4px_20px_rgba(0,255,200,0.4)]"
             >
               Start Your Journey
             </button>

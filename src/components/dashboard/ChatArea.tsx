@@ -138,10 +138,10 @@ export default function ChatArea() {
   };
 
   return (
-    <div className="h-full flex flex-col bg-warm-white dark:bg-[#1e2936] rounded-2xl shadow-xl border border-sage-100/50 dark:border-[#2d3e52] overflow-hidden transition-colors">
+    <div className="h-full flex flex-col bg-warm-white dark:bg-[#141b26] rounded-2xl shadow-xl border border-sage-100/50 dark:border-[#283647] overflow-hidden transition-colors">
       <div className="bg-gradient-to-r from-[#187E5F] via-[#0B5844] to-[#187E5F] px-4 py-3 flex items-center justify-between shadow-md" style={{ backgroundSize: '200% 100%', animation: 'gradient-shift 3s ease-in-out' }}>
         <div className="flex items-center gap-3">
-          <div className={`w-10 h-10 bg-white rounded-2xl flex items-center justify-center shadow-lg overflow-hidden ${isThinking ? 'animate-gentle-pulse' : ''}`} style={{ boxShadow: '0 0 16px rgba(24, 126, 95, 0.5)' }}>
+          <div className={`w-10 h-10 bg-white dark:bg-[#00FFC8] rounded-2xl flex items-center justify-center shadow-lg dark:shadow-[0_0_20px_rgba(0,255,200,0.6)] overflow-hidden ${isThinking ? 'animate-gentle-pulse' : ''}`} style={{ boxShadow: '0 0 16px rgba(24, 126, 95, 0.5)' }}>
             <img
               src="/Gemini_Generated_Image_jnzolrjnzolrjnzo.png"
               alt="NIRA Avatar"
@@ -151,7 +151,7 @@ export default function ChatArea() {
           <div>
             <h3 className="text-white font-bold text-base">NIRA</h3>
             <div className="flex items-center gap-1.5">
-              <div className="w-2 h-2 bg-mint-400 rounded-full animate-gentle-pulse shadow-sm"></div>
+              <div className="w-2 h-2 bg-mint-400 dark:bg-[#00FFC8] rounded-full animate-gentle-pulse shadow-sm dark:shadow-[0_0_8px_rgba(0,255,200,0.8)]"></div>
               <span className="text-sage-100 text-xs">Here for you</span>
             </div>
           </div>
@@ -164,7 +164,7 @@ export default function ChatArea() {
         </button>
       </div>
 
-      <div className="flex-1 overflow-y-auto px-4 py-3 space-y-3 bg-gradient-to-b from-sage-50/30 via-warm-white to-mint-50/20 dark:from-[#101720] dark:to-[#0f1620] chat-background-pattern">
+      <div className="flex-1 overflow-y-auto px-4 py-3 space-y-3 bg-gradient-to-b from-sage-50/30 via-warm-white to-mint-50/20 dark:from-[#0a0f16] dark:to-[#0a0f16] chat-background-pattern">
         {messages.map((message) => (
           <div
             key={message.id}
@@ -179,21 +179,21 @@ export default function ChatArea() {
             )}
             <div className={`max-w-[75%] ${message.type === 'user' ? 'items-end' : 'items-start'} flex flex-col gap-2`}>
               {message.type === 'bot' && message.isTyping && message.text === '' && (
-                <div className="flex items-center gap-2 px-4 py-3 bg-sage-100 dark:bg-[#1e2936] rounded-2xl shadow-md border border-sage-200/50 dark:border-[#2d3e52]">
+                <div className="flex items-center gap-2 px-4 py-3 bg-sage-100 dark:bg-[#141b26] rounded-2xl shadow-md border border-sage-200/50 dark:border-[#283647]">
                   <div className="flex gap-1">
-                    <span className="w-2 h-2 bg-sage-600 dark:bg-[#5dd4ac] rounded-full animate-thinking-dot" style={{ animationDelay: '0s' }}></span>
-                    <span className="w-2 h-2 bg-sage-600 dark:bg-[#5dd4ac] rounded-full animate-thinking-dot" style={{ animationDelay: '0.2s' }}></span>
-                    <span className="w-2 h-2 bg-sage-600 dark:bg-[#5dd4ac] rounded-full animate-thinking-dot" style={{ animationDelay: '0.4s' }}></span>
+                    <span className="w-2 h-2 bg-sage-600 dark:bg-[#00FFC8] rounded-full animate-thinking-dot" style={{ animationDelay: '0s' }}></span>
+                    <span className="w-2 h-2 bg-sage-600 dark:bg-[#00FFC8] rounded-full animate-thinking-dot" style={{ animationDelay: '0.2s' }}></span>
+                    <span className="w-2 h-2 bg-sage-600 dark:bg-[#00FFC8] rounded-full animate-thinking-dot" style={{ animationDelay: '0.4s' }}></span>
                   </div>
-                  <span className="text-sm text-sage-600 dark:text-[#5dd4ac]">NIRA is thinking...</span>
+                  <span className="text-sm text-sage-600 dark:text-[#00FFC8]">NIRA is thinking...</span>
                 </div>
               )}
               {(message.text || !message.isTyping) && (
                 <div
                   className={`px-4 py-3 rounded-2xl ${
                     message.type === 'bot'
-                      ? 'bg-[#D4EDE5] dark:bg-[#1e2936] text-[#2c4943] dark:text-[#5dd4ac] border border-[rgba(24,126,95,0.2)] dark:border-[#2d3e52]'
-                      : 'bg-beige-100 dark:bg-[#253145] text-soft-gray dark:text-white border border-beige-200/50 dark:border-[#2d3e52]'
+                      ? 'bg-[#D4EDE5] dark:bg-[#141b26] text-[#2c4943] dark:text-[#00FFC8] border border-[rgba(24,126,95,0.2)] dark:border-[#283647]'
+                      : 'bg-beige-100 dark:bg-[#1c2533] text-soft-gray dark:text-white border border-beige-200/50 dark:border-[#283647]'
                   }`}
                   style={message.type === 'bot' ? { boxShadow: '0 2px 8px rgba(44, 73, 67, 0.08)' } : { boxShadow: '0 2px 8px rgba(0, 0, 0, 0.05)' }}
                 >
@@ -212,13 +212,13 @@ export default function ChatArea() {
         {isThinking && messages.length > 0 && messages[messages.length - 1].type === 'user' && (
           <div className="flex gap-3">
             <div className="flex flex-col gap-2">
-              <div className="flex items-center gap-2 px-4 py-3 bg-sage-100 dark:bg-[#1e2936] rounded-2xl shadow-md border border-sage-200/50 dark:border-[#2d3e52]">
+              <div className="flex items-center gap-2 px-4 py-3 bg-sage-100 dark:bg-[#141b26] rounded-2xl shadow-md border border-sage-200/50 dark:border-[#283647]">
                 <div className="flex gap-1">
-                  <span className="w-2 h-2 bg-sage-600 dark:bg-[#5dd4ac] rounded-full animate-thinking-dot" style={{ animationDelay: '0s' }}></span>
-                  <span className="w-2 h-2 bg-sage-600 dark:bg-[#5dd4ac] rounded-full animate-thinking-dot" style={{ animationDelay: '0.2s' }}></span>
-                  <span className="w-2 h-2 bg-sage-600 dark:bg-[#5dd4ac] rounded-full animate-thinking-dot" style={{ animationDelay: '0.4s' }}></span>
+                  <span className="w-2 h-2 bg-sage-600 dark:bg-[#00FFC8] rounded-full animate-thinking-dot" style={{ animationDelay: '0s' }}></span>
+                  <span className="w-2 h-2 bg-sage-600 dark:bg-[#00FFC8] rounded-full animate-thinking-dot" style={{ animationDelay: '0.2s' }}></span>
+                  <span className="w-2 h-2 bg-sage-600 dark:bg-[#00FFC8] rounded-full animate-thinking-dot" style={{ animationDelay: '0.4s' }}></span>
                 </div>
-                <span className="text-sm text-sage-600 dark:text-[#5dd4ac]">NIRA is thinking...</span>
+                <span className="text-sm text-sage-600 dark:text-[#00FFC8]">NIRA is thinking...</span>
               </div>
             </div>
           </div>
@@ -226,7 +226,7 @@ export default function ChatArea() {
         <div ref={messagesEndRef} />
       </div>
 
-      <div className="px-4 py-3 bg-white/90 dark:bg-[#1e2936] border-t border-sage-100/50 dark:border-gray-700">
+      <div className="px-4 py-3 bg-white/90 dark:bg-[#141b26] border-t border-sage-100/50 dark:border-gray-700">
         <div className="flex items-end gap-2">
           <div className="relative">
             <button
@@ -268,7 +268,7 @@ export default function ChatArea() {
               <button
                 onClick={() => handleSendMessage("I'm feeling anxious right now...")}
                 disabled={isThinking}
-                className="px-4 py-2 h-8 bg-blue-100 dark:bg-[#253145] text-blue-700 dark:text-[#F0F4F8] rounded-full text-xs font-medium hover:shadow-md hover:-translate-y-0.5 transition-all flex items-center gap-2 flex-shrink-0 disabled:opacity-50 disabled:cursor-not-allowed"
+                className="px-4 py-2 h-8 bg-blue-100 dark:bg-[#1c2533] text-blue-700 dark:text-[#F0F4F8] rounded-full text-xs font-medium hover:shadow-md hover:-translate-y-0.5 transition-all flex items-center gap-2 flex-shrink-0 disabled:opacity-50 disabled:cursor-not-allowed"
               >
                 <AlertCircle className="w-4 h-4" />
                 <span>Feeling anxious</span>
@@ -276,7 +276,7 @@ export default function ChatArea() {
               <button
                 onClick={() => handleSendMessage("I need a breathing exercise...")}
                 disabled={isThinking}
-                className="px-4 py-2 h-8 bg-teal-100 dark:bg-[#253145] text-teal-700 dark:text-[#5dd4ac] rounded-full text-xs font-medium hover:shadow-md hover:-translate-y-0.5 transition-all flex items-center gap-2 flex-shrink-0 disabled:opacity-50 disabled:cursor-not-allowed"
+                className="px-4 py-2 h-8 bg-teal-100 dark:bg-[#1c2533] text-teal-700 dark:text-[#00FFC8] rounded-full text-xs font-medium hover:shadow-md hover:-translate-y-0.5 transition-all flex items-center gap-2 flex-shrink-0 disabled:opacity-50 disabled:cursor-not-allowed"
               >
                 <Wind className="w-4 h-4" />
                 <span>Breathing Exercise</span>
@@ -284,7 +284,7 @@ export default function ChatArea() {
               <button
                 onClick={() => handleSendMessage("I need support...")}
                 disabled={isThinking}
-                className="px-4 py-2 h-8 bg-rose-100 dark:bg-[#253145] text-rose-700 dark:text-[#F0F4F8] rounded-full text-xs font-medium hover:shadow-md hover:-translate-y-0.5 transition-all flex items-center gap-2 flex-shrink-0 disabled:opacity-50 disabled:cursor-not-allowed"
+                className="px-4 py-2 h-8 bg-rose-100 dark:bg-[#1c2533] text-rose-700 dark:text-[#F0F4F8] rounded-full text-xs font-medium hover:shadow-md hover:-translate-y-0.5 transition-all flex items-center gap-2 flex-shrink-0 disabled:opacity-50 disabled:cursor-not-allowed"
               >
                 <Heart className="w-4 h-4" />
                 <span>Need Support</span>
@@ -297,7 +297,7 @@ export default function ChatArea() {
                 onKeyPress={handleKeyPress}
                 placeholder={isThinking ? "NIRA is thinking..." : "Share your thoughts with NIRA..."}
                 disabled={isThinking}
-                className="w-full px-4 py-3 pr-12 rounded-2xl border border-sage-300 dark:border-[#2d3e52] dark:bg-[#1e2936] dark:text-white focus:outline-none focus:ring-2 focus:ring-sage-500 focus:border-transparent transition-all text-[15px] resize-none shadow-sm placeholder-[#78968b] dark:placeholder-[#8FA3B8] disabled:opacity-60 disabled:cursor-not-allowed"
+                className="w-full px-4 py-3 pr-12 rounded-2xl border border-sage-300 dark:border-[#283647] dark:bg-[#141b26] dark:text-white focus:outline-none focus:ring-2 focus:ring-sage-500 focus:border-transparent transition-all text-[15px] resize-none shadow-sm placeholder-[#78968b] dark:placeholder-[#7B8FA8] disabled:opacity-60 disabled:cursor-not-allowed"
                 rows={1}
                 style={{ minHeight: '44px' }}
               />
@@ -305,7 +305,7 @@ export default function ChatArea() {
                 className="absolute right-3 bottom-3 p-1.5 hover:bg-[rgba(24,126,95,0.1)] dark:hover:bg-gray-700 rounded-lg transition-all group"
                 title="Add emoji"
               >
-                <Smile className="w-4 h-4 text-[#187E5F] dark:text-[#5dd4ac]" />
+                <Smile className="w-4 h-4 text-[#187E5F] dark:text-[#00FFC8]" />
               </button>
             </div>
           </div>
@@ -326,12 +326,12 @@ export default function ChatArea() {
 
         <div
           onClick={() => navigate('/dashboard?tab=journal')}
-          className="mt-3 bg-[#F8FAF9] dark:bg-[#253145] rounded-lg px-3 py-2 cursor-pointer hover:bg-[#E8F5F0] dark:hover:bg-[#2d3e52] transition-all duration-200"
+          className="mt-3 bg-[#F8FAF9] dark:bg-[#1c2533] rounded-lg px-3 py-2 cursor-pointer hover:bg-[#E8F5F0] dark:hover:bg-[#2d3e52] transition-all duration-200"
         >
           <div className="flex items-center justify-center gap-2">
-            <BookOpen className="w-3.5 h-3.5 text-[#2c4943] dark:text-[#5dd4ac]" />
+            <BookOpen className="w-3.5 h-3.5 text-[#2c4943] dark:text-[#00FFC8]" />
             <span className="text-xs text-[#2c4943] dark:text-[#F0F4F8]">
-              Want to reflect deeper? <span className="font-semibold text-[#187E5F] dark:text-[#5dd4ac]">Start a journal entry.</span>
+              Want to reflect deeper? <span className="font-semibold text-[#187E5F] dark:text-[#00FFC8]">Start a journal entry.</span>
             </span>
           </div>
         </div>

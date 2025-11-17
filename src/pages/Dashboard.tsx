@@ -55,7 +55,7 @@ export default function Dashboard() {
 
   return (
     <div className="min-h-screen relative overflow-hidden">
-      <div className="flex h-screen bg-gradient-to-br from-warm-white via-mint-50/20 to-sage-50/30 dark:from-[#101720] dark:via-[#0f1620] dark:to-[#101720] transition-colors relative">
+      <div className="flex h-screen bg-gradient-to-br from-warm-white via-mint-50/20 to-sage-50/30 dark:from-[#0a0f16] dark:via-[#0a0f16] dark:to-[#0a0f16] transition-colors relative">
         <div className="absolute inset-0 pointer-events-none overflow-hidden opacity-60 dark:opacity-70 z-0">
           <TreeRing
             ringCount={15}

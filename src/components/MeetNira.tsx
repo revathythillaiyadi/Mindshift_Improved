@@ -23,7 +23,7 @@ export default function MeetNira() {
   }, [visibleMessages, messages.length]);
 
   return (
-    <section className="py-24 px-6 bg-gradient-to-b from-mint-50/20 via-warm-white to-sage-50/30 dark:from-[#101720] dark:via-[#0f1620] dark:to-[#101720] relative overflow-hidden">
+    <section className="py-24 px-6 bg-gradient-to-b from-mint-50/20 via-warm-white to-sage-50/30 dark:from-[#0a0f16] dark:via-[#0a0f16] dark:to-[#0a0f16] relative overflow-hidden">
       <div className="absolute inset-0 pointer-events-none overflow-hidden">
         <TreeRing
           ringCount={10}
@@ -47,23 +47,23 @@ export default function MeetNira() {
 
         <div className="max-w-2xl mx-auto">
           <div className="relative">
-            <div className="relative z-10 bg-white/70 dark:bg-[#1e2936] backdrop-blur-xl rounded-[2.5rem] shadow-2xl border border-lavender-100/30 dark:border-[#2d3e52] overflow-hidden">
-              <div className="bg-forest dark:bg-[#253145] p-6 flex items-center justify-between">
+            <div className="relative z-10 bg-white/70 dark:bg-[#141b26] backdrop-blur-xl rounded-[2.5rem] shadow-2xl border border-lavender-100/30 dark:border-[#283647] overflow-hidden">
+              <div className="bg-forest dark:bg-[#1c2533] p-6 flex items-center justify-between">
                 <div className="flex items-center gap-4">
-                  <div className="w-14 h-14 bg-white dark:bg-[#5dd4ac] rounded-full flex items-center justify-center shadow-lg animate-pulse-gentle">
-                    <Bot className="w-8 h-8 text-forest dark:text-[#101720] transition-colors" strokeWidth={1.5} />
+                  <div className="w-14 h-14 bg-white dark:bg-[#00FFC8] rounded-full flex items-center justify-center shadow-lg dark:shadow-[0_0_20px_rgba(0,255,200,0.5)] animate-pulse-gentle">
+                    <Bot className="w-8 h-8 text-forest dark:text-[#0a0f16] transition-colors" strokeWidth={1.5} />
                   </div>
                   <div>
                     <h3 className="text-white font-semibold text-lg tracking-wide">Nira</h3>
                     <div className="flex items-center gap-2">
-                      <div className="w-2.5 h-2.5 bg-white dark:bg-[#5dd4ac] rounded-full animate-pulse"></div>
+                      <div className="w-2.5 h-2.5 bg-white dark:bg-[#00FFC8] rounded-full animate-pulse shadow-[0_0_8px_rgba(0,255,200,0.8)]"></div>
                       <span className="text-white/90 text-sm">Here with you</span>
                     </div>
                   </div>
                 </div>
               </div>
 
-              <div className="p-8 space-y-6 h-[450px] overflow-y-auto bg-gradient-to-b from-lavender-50/20 via-warm-white/50 to-paleblue-50/20 dark:from-[#101720] dark:via-[#101720] dark:to-[#101720]">
+              <div className="p-8 space-y-6 h-[450px] overflow-y-auto bg-gradient-to-b from-lavender-50/20 via-warm-white/50 to-paleblue-50/20 dark:from-[#0a0f16] dark:via-[#0a0f16] dark:to-[#0a0f16]">
                 {messages.slice(0, visibleMessages).map((message, index) => (
                   <div
                     key={index}
@@ -71,20 +71,20 @@ export default function MeetNira() {
                   >
                     <div className={`w-11 h-11 rounded-full flex items-center justify-center flex-shrink-0 shadow-sm ${
                       message.type === 'bot'
-                        ? 'bg-gradient-to-br from-sage-300/60 to-mint-300/60 dark:from-[#5dd4ac] dark:to-[#4ec199] backdrop-blur-sm'
-                        : 'bg-gradient-to-br from-mint-300/70 to-sage-300/60 dark:from-[#253145] dark:to-[#2d3e52] backdrop-blur-sm'
+                        ? 'bg-gradient-to-br from-sage-300/60 to-mint-300/60 dark:bg-[#00FFC8] backdrop-blur-sm dark:shadow-[0_0_15px_rgba(0,255,200,0.4)]'
+                        : 'bg-gradient-to-br from-mint-300/70 to-sage-300/60 dark:bg-[#1c2533] backdrop-blur-sm'
                     }`}>
                       {message.type === 'bot' ? (
-                        <Bot className="w-6 h-6 text-sage-700 dark:text-[#101720]" strokeWidth={1.5} />
+                        <Bot className="w-6 h-6 text-sage-700 dark:text-[#0a0f16]" strokeWidth={1.5} />
                       ) : (
-                        <User className="w-6 h-6 text-sage-700 dark:text-[#F0F4F8]" strokeWidth={1.5} />
+                        <User className="w-6 h-6 text-sage-700 dark:text-white" strokeWidth={1.5} />
                       )}
                     </div>
                     <div className={`max-w-[75%] ${message.type === 'user' ? 'items-end' : 'items-start'} flex flex-col`}>
                       <div className={`px-6 py-4 rounded-[1.5rem] ${
                         message.type === 'bot'
-                          ? 'bg-white/80 dark:bg-[#1e2936] backdrop-blur-sm text-soft-gray dark:text-[#5dd4ac] shadow-sm border border-lavender-100/40 dark:border-[#2d3e52]'
-                          : 'bg-gradient-to-br from-mint-200/60 to-sage-200/50 dark:from-[#253145] dark:to-[#2d3e52] backdrop-blur-sm text-soft-gray dark:text-white'
+                          ? 'bg-white/80 dark:bg-[#141b26] backdrop-blur-sm text-soft-gray dark:text-[#00FFC8] shadow-sm border border-lavender-100/40 dark:border-[#00FFC8]/30 dark:shadow-[0_0_10px_rgba(0,255,200,0.2)]'
+                          : 'bg-gradient-to-br from-mint-200/60 to-sage-200/50 dark:bg-[#1c2533] backdrop-blur-sm text-soft-gray dark:text-white border dark:border-[#283647]'
                       }`}>
                         <p className="text-sm leading-relaxed">{message.text}</p>
                       </div>
@@ -96,21 +96,21 @@ export default function MeetNira() {
                 ))}
               </div>
 
-              <div className="p-6 bg-white/60 dark:bg-[#1a2332] backdrop-blur-md">
+              <div className="p-6 bg-white/60 dark:bg-[#141b26] backdrop-blur-md">
                 <div className="flex items-center gap-3">
-                  <button className="p-3 hover:bg-sage-50 dark:hover:bg-[#253145] rounded-full transition-all" title="voice input">
-                    <Mic className="w-5 h-5 text-sage-500/70 dark:text-[#8FA3B8]" strokeWidth={1.5} />
+                  <button className="p-3 hover:bg-sage-50 dark:hover:bg-[#1c2533] rounded-full transition-all" title="voice input">
+                    <Mic className="w-5 h-5 text-sage-500/70 dark:text-[#7B8FA8]" strokeWidth={1.5} />
                   </button>
-                  <button className="p-3 hover:bg-sage-50 dark:hover:bg-[#253145] rounded-full transition-all" title="add emoji">
-                    <Smile className="w-5 h-5 text-sage-500/70 dark:text-[#8FA3B8]" strokeWidth={1.5} />
+                  <button className="p-3 hover:bg-sage-50 dark:hover:bg-[#1c2533] rounded-full transition-all" title="add emoji">
+                    <Smile className="w-5 h-5 text-sage-500/70 dark:text-[#7B8FA8]" strokeWidth={1.5} />
                   </button>
                   <input
                     type="text"
                     placeholder="Take your time... share what's on your mind"
-                    className="flex-1 px-6 py-3.5 rounded-[2rem] border border-forest dark:border-[#2d3e52] focus:outline-none focus:ring-2 focus:ring-forest/30 dark:focus:ring-[#5dd4ac]/30 focus:border-forest dark:focus:border-[#5dd4ac] transition-all text-sm text-soft-gray dark:text-white placeholder:text-gentle-gray/50 dark:placeholder:text-[#8FA3B8] bg-white dark:bg-[#253145]"
+                    className="flex-1 px-6 py-3.5 rounded-[2rem] border border-forest dark:border-[#283647] focus:outline-none focus:ring-2 focus:ring-forest/30 dark:focus:ring-[#00FFC8]/50 focus:border-forest dark:focus:border-[#00FFC8] transition-all text-sm text-soft-gray dark:text-white placeholder:text-gentle-gray/50 dark:placeholder:text-[#7B8FA8] bg-white dark:bg-[#1c2533]"
                     disabled
                   />
-                  <button className="w-12 h-12 bg-gradient-to-r from-sage-400 to-mint-400 dark:from-[#5dd4ac] dark:to-[#4ec199] text-white dark:text-[#101720] rounded-full hover:shadow-lg hover:scale-105 transition-all flex items-center justify-center flex-shrink-0">
+                  <button className="w-12 h-12 bg-gradient-to-r from-sage-400 to-mint-400 dark:bg-[#00FFC8] text-white dark:text-[#0a0f16] rounded-full hover:shadow-lg dark:shadow-[0_0_20px_rgba(0,255,200,0.5)] dark:hover:shadow-[0_0_30px_rgba(0,255,200,0.7)] hover:scale-105 transition-all flex items-center justify-center flex-shrink-0">
                     <ArrowRight className="w-5 h-5" strokeWidth={2} />
                   </button>
                 </div>
