@@ -7,6 +7,10 @@ const faqs = [
     answer: 'Absolutely. We use bank-level encryption to protect your data. All conversations are confidential, and we never share your personal information with third parties. Your privacy is our highest priority.',
   },
   {
+    question: 'What does Mindshift do?',
+    answer: 'Mindshift is an AI companion that helps you quickly shift unhelpful thoughts and make better decisions using conversational reframing. Just open the web app, chat or talk with NIRA, and get instant mindset clarity in minutes — no downloads needed, works perfectly on phone or laptop browsers.',
+  },
+  {
     question: 'Who or what is NIRA?',
     answer: 'NIRA (Neural Insight & Reframing Assistant) is the friendly AI companion inside the Mindshift app. It\'s your 24×7 pocket buddy that listens to whatever\'s on your mind and uses smart, gentle questions (based on NLP "sleight of mouth" techniques) to help you instantly see things from a clearer, more helpful angle. No lectures, no judgment — just quick, natural mindset shifts that feel like talking to a wise friend who always knows the right question to ask. Chat or speak with NIRA anytime.',
   },
