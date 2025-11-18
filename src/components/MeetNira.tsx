@@ -11,10 +11,11 @@ export default function MeetNira() {
 
   const messages = [
     { type: 'bot', text: "Hello!🌿I'm NIRA — i'm here to listen, no rush." },
-    { type: 'user', text: I've been feeling pretty heavy lately..." },
-    { type: 'bot', text: I hear you. that sounds really tough. want to tell me what's been weighing on you?" },
-    { type: 'user', text: Just everything... work, life, it all feels like too much" },
-    { type: 'bot', text: It's okay to feel that way. let's take this one step at a time, together 💙" }
+    // FIX: Added opening double quotes (") to the text strings below
+    { type: 'user', text: "I've been feeling pretty heavy lately..." },
+    { type: 'bot', text: "I hear you. that sounds really tough. want to tell me what's been weighing on you?" },
+    { type: 'user', text: "Just everything... work, life, it all feels like too much" },
+    { type: 'bot', text: "It's okay to feel that way. let's take this one step at a time, together 💙" }
   ];
 
   useEffect(() => {
