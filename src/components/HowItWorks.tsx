@@ -212,11 +212,11 @@ export default function HowItWorks() {
       <div className="container mx-auto max-w-7xl relative" style={{ zIndex: 1 }}>
         <div className="text-center mb-24 animate-fade-in">
           <div className="inline-flex items-center gap-2 mb-4">
-            <h2 className="text-4xl md:text-5xl font-bold text-forest dark:text-sage-100 transition-colors">
+            <h2 className="text-4xl md:text-5xl font-bold text-forest dark:text-[#1e2936] transition-colors">
               Your Path to Growth
             </h2>
           </div>
-          <p className="text-xl text-gentle-gray/70 max-w-2xl mx-auto font-serif italic">
+          <p className="text-lg text-gentle-gray/70 dark:text-[#1e2936] max-w-2xl mx-auto font-serif italic">
             Like a vine reaching toward the sun, each step winds naturally along your journey toward wellness.
           </p>
         </div>
@@ -244,7 +244,7 @@ export default function HowItWorks() {
                     }}
                   >
                   <div
-                    className={`bg-white/80 backdrop-blur-sm p-8 rounded-[2rem] shadow-xl border-2 transition-all relative w-80 group hover:shadow-2xl hover:-translate-y-1 ${
+                    className={`bg-white/80 dark:bg-white/90 backdrop-blur-sm p-8 rounded-[2rem] shadow-xl border-2 transition-all relative w-80 group hover:shadow-2xl hover:-translate-y-1 ${
                       isActive
                         ? 'border-sage-400/60 shadow-sage-200/50'
                         : hasBeenActive
@@ -255,7 +255,7 @@ export default function HowItWorks() {
                       animationDelay: `${index * 0.1}s`,
                     }}
                   >
-                    <div className="absolute -top-5 -left-5 w-16 h-16 bg-gradient-to-br from-sage-500 to-mint-500 rounded-[1.5rem] flex items-center justify-center shadow-lg border-4 border-white group-hover:scale-110 transition-transform">
+                    <div className="absolute -top-5 -left-5 w-16 h-16 bg-gradient-to-br from-sage-500 to-mint-500 dark:from-emerald-500 dark:to-mint-500 rounded-[1.5rem] flex items-center justify-center shadow-lg border-4 border-white group-hover:scale-110 transition-transform">
                       <Icon className="w-8 h-8 text-white" strokeWidth={2.5} />
                     </div>
 
@@ -263,25 +263,25 @@ export default function HowItWorks() {
                     <div className="flex items-center gap-2 mb-4 pt-6">
                       <div className="flex items-center gap-1.5">
                         <div className={`w-2 h-2 rounded-full transition-colors ${
-                          isActive ? 'bg-sage-50 dark:bg-gray-700/500 animate-pulse' : hasBeenActive ? 'bg-sage-400' : 'bg-sage-200'
+                          isActive ? 'bg-sage-50 dark:bg-emerald-400 animate-pulse' : hasBeenActive ? 'bg-sage-400 dark:bg-emerald-500' : 'bg-sage-200 dark:bg-emerald-300'
                         }`} />
-                        <span className="text-xs font-bold text-forest/50 uppercase tracking-wider">
+                        <span className="text-xs font-bold text-forest/50 dark:text-[#1e2936]/70 uppercase tracking-wider">
                           Step {step.number}
                         </span>
                       </div>
                     </div>
 
-                    <h3 className="text-2xl font-bold text-forest mb-4 leading-tight">
+                    <h3 className="text-2xl font-bold text-forest dark:text-[#1e2936] mb-4 leading-tight">
                       {step.title}
                     </h3>
 
-                    <p className="text-gentle-gray/80 leading-relaxed text-base">
+                    <p className="text-gentle-gray/80 dark:text-[#1e2936]/80 leading-relaxed text-base">
                       {step.description}
                     </p>
 
-                    <div className="absolute bottom-0 left-0 right-0 h-1 bg-gradient-to-r from-sage-400/20 via-mint-400/20 to-sage-400/20 rounded-b-[2rem] overflow-hidden">
+                    <div className="absolute bottom-0 left-0 right-0 h-1 bg-gradient-to-r from-sage-400/20 via-mint-400/20 to-sage-400/20 dark:from-emerald-400/20 dark:via-mint-400/20 dark:to-emerald-400/20 rounded-b-[2rem] overflow-hidden">
                       <div
-                        className="h-full bg-gradient-to-r from-sage-500 to-mint-500 transition-all duration-700 ease-out"
+                        className="h-full bg-gradient-to-r from-sage-500 to-mint-500 dark:from-emerald-500 dark:to-mint-500 transition-all duration-700 ease-out"
                         style={{ width: isActive ? '100%' : hasBeenActive ? '100%' : '0%' }}
                       />
                     </div>
