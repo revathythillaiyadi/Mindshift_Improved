@@ -12,20 +12,11 @@ const orangeAccent = '#f7941d'; // Orange accent for the gradient end
 const blueAccent = '#3B82F6'; // Blue accent for brain logo
 
 export default function Header({ isDark, setIsDark }: HeaderProps) {
-  // Component to render the Brain icon with the defined horizontal gradient
+  // Component to render the Brain icon with rounded square background similar to login page
   const GradientBrainIcon = () => (
-    <svg width="36" height="36" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
-      <defs>
-        <linearGradient id="brainGradient" x1="0%" y1="0%" x2="100%" y2="0%">
-          {/* Start color: Green (Left side) */}
-          <stop offset="0%" style={{ stopColor: darkAccent, stopOpacity: 1 }} />
-          {/* End color: Blue (Right side) */}
-          <stop offset="100%" style={{ stopColor: blueAccent, stopOpacity: 1 }} />
-        </linearGradient>
-      </defs>
-      {/* Use Brain from lucide-react, but apply the SVG structure and fill property */}
-      <Brain className="w-9 h-9" strokeWidth={2.5} style={{ stroke: 'url(#brainGradient)' }} />
-    </svg>
+    <div className="w-10 h-10 bg-gradient-to-br from-sage-500 to-mint-500 rounded-[0.75rem] flex items-center justify-center shadow-lg">
+      <Brain className="w-6 h-6 text-white" strokeWidth={2.5} />
+    </div>
   );
 
   return (
@@ -33,10 +24,8 @@ export default function Header({ isDark, setIsDark }: HeaderProps) {
       <nav className="container mx-auto px-6 py-4">
         <div className="flex items-center justify-between">
           <div className="flex items-center space-x-3">
-            {/* Logo area - Container for the gradient icon */}
-            <div className="p-1 rounded-pebble transition-colors shadow-lg">
-              <GradientBrainIcon />
-            </div>
+            {/* Logo area - Brain icon with gradient background */}
+            <GradientBrainIcon />
             {/* MindShift Text - Split into two parts with separate colors */}
             <span className="text-2xl font-bold tracking-tight transition-colors">
               <span className={`text-[${darkAccent}] dark:text-[${darkAccent}]`}>Mind</span>
