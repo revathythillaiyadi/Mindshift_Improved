@@ -51,13 +51,13 @@ export default function Services() {
           </p>
         </div>
 
-        <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-8">
+        <div className="flex flex-wrap justify-center gap-8">
           {services.map((service, index) => {
             const Icon = service.icon;
             return (
               <div
                 key={service.title}
-                className="bg-white/90 p-8 rounded-[2rem] shadow-lg border-2 border-white/50 hover:shadow-xl transition-all hover:-translate-y-2 group relative overflow-hidden animate-fade-in text-center"
+                className="bg-white/90 p-8 rounded-[2rem] shadow-lg border-2 border-white/50 hover:shadow-xl transition-all hover:-translate-y-2 group relative overflow-hidden animate-fade-in text-center w-full md:w-[calc(50%-1rem)] lg:w-[calc(33.333%-1.5rem)] max-w-md"
                 style={{ animationDelay: `${index * 0.1}s` }}
               >
 
