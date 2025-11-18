@@ -24,7 +24,7 @@ const faqs = [
   },
   {
     question: 'Is MindShift effective for managing anxiety and depression?',
-    answer: 'MindShift uses cognitive behavioral therapy (CBT) techniques that have been proven effective in managing anxiety and depression symptoms. Many users report improved mood and reduced stress. However, for clinical conditions, we recommend working with a licensed mental health professional.',
+    answer: 'MindShift can be a helpful tool for mild anxiety and low mood by promoting reframing and mindfulness, with users reporting reduced stress in short sessions. However, it\'s not a cure or medical treatment—evidence-based studies on similar NLP apps show benefits for symptom relief, but consult a doctor for clinical anxiety or depression.',
   },
   {
     question: 'How often should I use MindShift?',
