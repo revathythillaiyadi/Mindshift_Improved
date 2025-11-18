@@ -130,4 +130,3 @@ export default function MeetNira() {
 }
 
 
-Keep color shade in dark mode to #5a7f6a ,  #1e2936 and bg-secondary: var(--color-soft-cream)
