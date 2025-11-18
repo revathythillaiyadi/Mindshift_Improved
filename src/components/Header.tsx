@@ -53,7 +53,7 @@ export default function Header({ isDark, setIsDark }: HeaderProps) {
               {isDark ? <Sun className="w-5 h-5 text-[${darkAccent}]" /> : <Moon className="w-5 h-5 text-sage-500" />}
             </button>
             {/* Login Button - Brighter green with white text */}
-            <Link to="/login" className="px-6 py-2 text-white border border-emerald-500 dark:border-mint-500 bg-transparent hover:bg-emerald-500/10 dark:hover:bg-mint-500/10 rounded-[20px] transition-all duration-200 font-medium">
+            <Link to="/login" className="px-6 py-2 text-[#5a7f6a] dark:text-white text-lg border border-emerald-500 dark:border-mint-500 bg-transparent hover:bg-emerald-500/10 dark:hover:bg-mint-500/10 rounded-[20px] transition-all duration-200 font-medium">
               Login
             </Link>
             {/* Sign Up Button - Brighter green gradient with white text */}
