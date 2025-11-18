@@ -35,10 +35,10 @@ export default function AffirmationFooter() {
 
   return (
     <>
-      <div className="mt-auto pt-8 pb-6 px-5 text-center bg-gradient-to-b from-transparent to-[#F8FAF9] dark:to-[#2c4943] transition-colors border-t border-[#E8F5F0]/50 dark:border-[#46644e]/50">
+      <div className="mt-8 pt-10 pb-10 px-5 text-center bg-gradient-to-b from-transparent to-[#F8FAF9] dark:to-[#2c4943] transition-colors">
         <div className="flex flex-col items-center justify-center max-w-[600px] mx-auto">
-          <Sparkles className="w-5 h-5 text-[#187E5F] dark:text-sage-400 mb-3 animate-pulse-gentle" strokeWidth={2} />
-          <p className="text-sm italic text-[#315545] dark:text-[#c4d9d3] leading-relaxed">
+          <Sparkles className="w-6 h-6 text-[#187E5F] dark:text-sage-400 mb-4 animate-pulse-gentle" strokeWidth={2} />
+          <p className="text-base italic text-[#315545] dark:text-[#c4d9d3] leading-relaxed">
             {dailyAffirmation}
           </p>
         </div>
