@@ -1,5 +1,5 @@
 import { useState } from 'react';
-import { Brain, Mail, Lock, AlertCircle } from 'lucide-react';
+import { Brain, Mail, Lock, AlertCircle, Eye, EyeOff } from 'lucide-react';
 import { Link } from 'react-router-dom';
 import { useAuth } from '../contexts/AuthContext';
 import TreeRing from '../components/TreeRing';
@@ -10,6 +10,7 @@ export default function Login() {
   const [error, setError] = useState('');
   const [loading, setLoading] = useState(false);
   const [showForgotPassword, setShowForgotPassword] = useState(false);
+  const [showPassword, setShowPassword] = useState(false);
   const [resetEmail, setResetEmail] = useState('');
   const [resetMessage, setResetMessage] = useState('');
 
@@ -196,13 +197,20 @@ export default function Login() {
                 <Lock className="absolute left-4 top-1/2 -translate-y-1/2 w-5 h-5 text-sage-400" />
                 <input
                   id="password"
-                  type="password"
+                  type={showPassword ? "text" : "password"}
                   value={password}
                   onChange={(e) => setPassword(e.target.value)}
                   placeholder="••••••••"
-                  className="w-full pl-12 pr-4 py-3 border-2 border-sage-200 dark:border-gray-600 rounded-[1.5rem] focus:outline-none focus:ring-2 focus:ring-sage-500 focus:border-transparent bg-white dark:bg-gray-700 text-soft-gray dark:text-white placeholder-gentle-gray dark:placeholder-gray-400 transition-all"
+                  className="w-full pl-12 pr-12 py-3 border-2 border-sage-200 dark:border-gray-600 rounded-[1.5rem] focus:outline-none focus:ring-2 focus:ring-sage-500 focus:border-transparent bg-white dark:bg-gray-700 text-soft-gray dark:text-white placeholder-gentle-gray dark:placeholder-gray-400 transition-all"
                   required
                 />
+                <button
+                  type="button"
+                  onClick={() => setShowPassword(!showPassword)}
+                  className="absolute right-4 top-1/2 -translate-y-1/2 text-sage-400 hover:text-sage-600 transition-colors"
+                >
+                  {showPassword ? <EyeOff className="w-5 h-5" /> : <Eye className="w-5 h-5" />}
+                </button>
               </div>
             </div>
 

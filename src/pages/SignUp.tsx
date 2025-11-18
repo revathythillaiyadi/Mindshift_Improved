@@ -1,5 +1,5 @@
 import { useState } from 'react';
-import { Brain, Mail, Lock, AlertCircle, CheckCircle, User, Phone, MapPin, Shield, Check, Users } from 'lucide-react';
+import { Brain, Mail, Lock, AlertCircle, CheckCircle, User, Phone, MapPin, Shield, Check, Users, Eye, EyeOff } from 'lucide-react';
 import { Link } from 'react-router-dom';
 import { useAuth, UserProfile } from '../contexts/AuthContext';
 import TreeRing from '../components/TreeRing';
@@ -41,6 +41,8 @@ export default function SignUp() {
   });
 
   const [confirmPassword, setConfirmPassword] = useState('');
+  const [showPassword, setShowPassword] = useState(false);
+  const [showConfirmPassword, setShowConfirmPassword] = useState(false);
 
   const { signUpWithProfile } = useAuth();
 
@@ -310,13 +312,20 @@ export default function SignUp() {
                   <Lock className="absolute left-4 top-1/2 -translate-y-1/2 w-5 h-5 text-sage-400" />
                   <input
                     id="password"
-                    type="password"
+                    type={showPassword ? "text" : "password"}
                     value={formData.password}
                     onChange={(e) => updateFormData('password', e.target.value)}
                     placeholder="••••••••"
-                    className="w-full pl-12 pr-4 py-3 border-2 border-sage-200 dark:border-gray-600 rounded-[1.5rem] focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-transparent bg-white dark:bg-gray-700 text-blue-900 dark:text-white placeholder-gentle-gray dark:placeholder-gray-400 transition-all"
+                    className="w-full pl-12 pr-12 py-3 border-2 border-sage-200 dark:border-gray-600 rounded-[1.5rem] focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-transparent bg-white dark:bg-gray-700 text-blue-900 dark:text-white placeholder-gentle-gray dark:placeholder-gray-400 transition-all"
                     required
                   />
+                  <button
+                    type="button"
+                    onClick={() => setShowPassword(!showPassword)}
+                    className="absolute right-4 top-1/2 -translate-y-1/2 text-sage-400 hover:text-sage-600 transition-colors"
+                  >
+                    {showPassword ? <EyeOff className="w-5 h-5" /> : <Eye className="w-5 h-5" />}
+                  </button>
                 </div>
                 {breachedPasswordError && (
                   <div className="mt-3 p-3 bg-orange-50 dark:bg-orange-900/20 border-2 border-orange-500 dark:border-orange-600 rounded-lg flex items-start gap-2">
@@ -354,13 +363,20 @@ export default function SignUp() {
                   <Lock className="absolute left-4 top-1/2 -translate-y-1/2 w-5 h-5 text-sage-400" />
                   <input
                     id="confirmPassword"
-                    type="password"
+                    type={showConfirmPassword ? "text" : "password"}
                     value={confirmPassword}
                     onChange={(e) => setConfirmPassword(e.target.value)}
                     placeholder="••••••••"
-                    className="w-full pl-12 pr-4 py-3 border-2 border-sage-200 dark:border-gray-600 rounded-[1.5rem] focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-transparent bg-white dark:bg-gray-700 text-blue-900 dark:text-white placeholder-gentle-gray dark:placeholder-gray-400 transition-all"
+                    className="w-full pl-12 pr-12 py-3 border-2 border-sage-200 dark:border-gray-600 rounded-[1.5rem] focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-transparent bg-white dark:bg-gray-700 text-blue-900 dark:text-white placeholder-gentle-gray dark:placeholder-gray-400 transition-all"
                     required
                   />
+                  <button
+                    type="button"
+                    onClick={() => setShowConfirmPassword(!showConfirmPassword)}
+                    className="absolute right-4 top-1/2 -translate-y-1/2 text-sage-400 hover:text-sage-600 transition-colors"
+                  >
+                    {showConfirmPassword ? <EyeOff className="w-5 h-5" /> : <Eye className="w-5 h-5" />}
+                  </button>
                 </div>
               </div>
 
