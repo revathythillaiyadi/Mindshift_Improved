@@ -90,8 +90,8 @@ export default function Dashboard() {
           />
 
           <div className="flex-1 flex overflow-hidden">
-            <main className="flex-1 overflow-y-auto p-6 flex flex-col">
-              <div className="flex-1">
+            <main className="flex-1 overflow-y-auto flex flex-col">
+              <div className="flex-1 p-6">
                 {currentView === 'chat' && (
                   <div className="mb-6">
                     <QuickMoodInput />
