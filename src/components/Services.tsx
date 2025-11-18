@@ -57,7 +57,7 @@ export default function Services() {
             return (
               <div
                 key={service.title}
-                className="bg-white/80 backdrop-blur-sm p-8 rounded-[2rem] shadow-lg border-2 border-sage-100/50 hover:shadow-xl transition-all hover:-translate-y-2 group relative overflow-hidden animate-fade-in"
+                className="bg-white/90 p-8 rounded-[2rem] shadow-lg border-2 border-white/50 hover:shadow-xl transition-all hover:-translate-y-2 group relative overflow-hidden animate-fade-in"
                 style={{ animationDelay: `${index * 0.1}s` }}
               >
 
