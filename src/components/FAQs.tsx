@@ -28,7 +28,7 @@ const faqs = [
   },
   {
     question: 'How often should I use MindShift?',
-    answer: 'You can use MindShift as often as you need. Many users find daily check-ins helpful for building consistent mental health habits. The app adapts to your usage patterns and provides personalized recommendations based on your engagement.',
+    answer: 'Mindshift can be a helpful tool for mild anxiety and low mood by promoting reframing and mindfulness, with users reporting reduced stress in short sessions. However, it\'s not a cure or medical treatment—evidence-based studies on similar NLP apps show benefits for symptom relief, but consult a doctor for clinical anxiety or depression.',
   },
   {
     question: 'What happens if I\'m in crisis?',
