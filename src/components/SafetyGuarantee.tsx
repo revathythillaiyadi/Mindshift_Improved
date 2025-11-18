@@ -23,7 +23,7 @@ export default function SafetyGuarantee() {
         </div>
 
         <div className="bg-white/90 backdrop-blur-sm p-8 rounded-[2.5rem] border-2 border-white/50 shadow-xl animate-fade-in" style={{ animationDelay: '0.2s' }}>
-          <p className="text-gentle-gray text-lg leading-relaxed text-center mb-8 font-serif">
+          <p className="text-lg leading-relaxed text-center mb-8 font-serif" style={{ color: '#1e2936' }}>
             At MindShift, we understand that mental health is deeply personal and requires the highest level of care.
             While NIRA provides compassionate support and gentle guidance, we want you to know that help is always
             available when you need it most.
