@@ -216,7 +216,7 @@ export default function HowItWorks() {
               Your Path to Growth
             </h2>
           </div>
-          <p className="text-lg text-gentle-gray/70 dark:text-[#1e2936] max-w-2xl mx-auto font-serif italic">
+          <p className="text-lg text-soft-gray dark:text-white max-w-2xl mx-auto font-serif italic">
             Like a vine reaching toward the sun, each step winds naturally along your journey toward wellness.
           </p>
         </div>
