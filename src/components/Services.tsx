@@ -57,16 +57,16 @@ export default function Services() {
             return (
               <div
                 key={service.title}
-                className="bg-white/90 p-8 rounded-[2rem] shadow-lg border-2 border-white/50 hover:shadow-xl transition-all hover:-translate-y-2 group relative overflow-hidden animate-fade-in"
+                className="bg-white/90 p-8 rounded-[2rem] shadow-lg border-2 border-white/50 hover:shadow-xl transition-all hover:-translate-y-2 group relative overflow-hidden animate-fade-in text-center"
                 style={{ animationDelay: `${index * 0.1}s` }}
               >
 
-                <div className="w-16 h-16 bg-gradient-to-br from-sage-500 to-mint-500 rounded-[1.5rem] flex items-center justify-center mb-6 group-hover:scale-110 group-hover:rotate-3 transition-all shadow-md relative">
+                <div className="w-16 h-16 bg-gradient-to-br from-sage-500 to-mint-500 rounded-[1.5rem] flex items-center justify-center mb-6 group-hover:scale-110 group-hover:rotate-3 transition-all shadow-md relative mx-auto">
                   <Icon className="w-8 h-8 text-white" strokeWidth={2} />
                 </div>
 
                 <h3 className="text-xl font-bold text-forest mb-3 relative">{service.title}</h3>
-                <p className="text-gentle-gray/70 leading-relaxed text-sm relative">{service.description}</p>
+                <p className="leading-relaxed text-sm relative" style={{ color: '#2c3e50' }}>{service.description}</p>
 
                 <div className="absolute bottom-0 left-0 right-0 h-1 bg-gradient-to-r from-sage-400/20 via-mint-400/20 to-sage-400/20 rounded-b-[2rem]">
                   <div className="h-full w-0 group-hover:w-full bg-gradient-to-r from-sage-500 to-mint-500 transition-all duration-500 ease-out" />
