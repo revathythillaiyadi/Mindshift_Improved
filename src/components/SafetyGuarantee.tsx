@@ -30,32 +30,32 @@ export default function SafetyGuarantee() {
           </p>
 
           <div className="grid md:grid-cols-3 gap-6">
-            <div className="text-center bg-sage-50 dark:bg-gray-700/50/60 p-6 rounded-[2rem] border-2 border-sage-100/30 hover:shadow-lg hover:-translate-y-1 transition-all group animate-fade-in" style={{ animationDelay: '0.3s' }}>
+            <div className="text-center p-6 rounded-[2rem] hover:shadow-lg hover:-translate-y-1 transition-all group animate-fade-in" style={{ backgroundColor: '#2c3e50', animationDelay: '0.3s' }}>
               <div className="inline-flex items-center justify-center w-14 h-14 bg-gradient-to-br from-sage-500 to-mint-500 rounded-full mb-4 shadow-md group-hover:scale-110 transition-transform">
                 <Phone className="w-7 h-7 text-white" strokeWidth={2} />
               </div>
-              <h3 className="text-forest font-bold text-lg mb-2">24/7 Crisis Access</h3>
-              <p className="text-black-g/70 text-sm leading-relaxed">
+              <h3 className="text-sage-400 font-bold text-lg mb-2">24/7 Crisis Access</h3>
+              <p className="text-white/80 text-sm leading-relaxed">
                 Immediate support connects you to emergency resources anytime, day or night
               </p>
             </div>
 
-            <div className="text-center bg-mint-50 dark:bg-gray-700/50/60 p-6 rounded-[2rem] border-2 border-mint-100/30 hover:shadow-lg hover:-translate-y-1 transition-all group animate-fade-in" style={{ animationDelay: '0.4s' }}>
+            <div className="text-center p-6 rounded-[2rem] hover:shadow-lg hover:-translate-y-1 transition-all group animate-fade-in" style={{ backgroundColor: '#2c3e50', animationDelay: '0.4s' }}>
               <div className="inline-flex items-center justify-center w-14 h-14 bg-gradient-to-br from-mint-500 to-sage-500 rounded-full mb-4 shadow-md group-hover:scale-110 transition-transform">
                 <Shield className="w-7 h-7 text-white" strokeWidth={2} />
               </div>
-              <h3 className="text-forest font-bold text-lg mb-2">Protected & Private</h3>
-              <p className="text-gentle-gray/70 text-sm leading-relaxed">
+              <h3 className="text-sage-400 font-bold text-lg mb-2">Protected & Private</h3>
+              <p className="text-white/80 text-sm leading-relaxed">
                 Your conversations are encrypted and completely confidential, always
               </p>
             </div>
 
-            <div className="text-center bg-beige-50/60 dark:bg-gray-800 p-6 rounded-[2rem] hover:shadow-lg hover:-translate-y-1 transition-all group animate-fade-in" style={{ animationDelay: '0.5s' }}>
-              <div className="inline-flex items-center justify-center w-14 h-14 bg-gradient-to-br from-beige-500 to-mint-500 rounded-full mb-4 shadow-md group-hover:scale-110 transition-transform">
+            <div className="text-center p-6 rounded-[2rem] hover:shadow-lg hover:-translate-y-1 transition-all group animate-fade-in" style={{ backgroundColor: '#2c3e50', animationDelay: '0.5s' }}>
+              <div className="inline-flex items-center justify-center w-14 h-14 bg-gradient-to-br from-sage-500 to-mint-500 rounded-full mb-4 shadow-md group-hover:scale-110 transition-transform">
                 <Heart className="w-7 h-7 text-white" strokeWidth={2} />
               </div>
-              <h3 className="text-forest font-bold text-lg mb-2">Professional Support</h3>
-              <p className="text-gentle-gray/70 text-sm leading-relaxed">
+              <h3 className="text-sage-400 font-bold text-lg mb-2">Professional Support</h3>
+              <p className="text-white/80 text-sm leading-relaxed">
                 Guidance to connect with licensed therapists when you need more
               </p>
             </div>
