@@ -51,7 +51,7 @@ export default function Resources() {
               <a
                 key={resource.title}
                 href={resource.link}
-                className="bg-white/80 backdrop-blur-sm p-6 rounded-pebble shadow-lg border border-sage-100/50 hover:shadow-xl transition-all hover:-translate-y-1 group flex items-start gap-4"
+                className="bg-white/90 backdrop-blur-sm p-6 rounded-pebble shadow-lg border border-sage-100/50 hover:shadow-xl transition-all hover:-translate-y-1 group flex items-start gap-4"
               >
                 <div className="w-14 h-14 bg-forest rounded-pebble flex items-center justify-center flex-shrink-0 group-hover:scale-110 transition-transform shadow-md">
                   <Icon className="w-7 h-7 text-white" strokeWidth={2} />
@@ -61,7 +61,7 @@ export default function Resources() {
                     <h3 className="text-xl font-bold text-warm-gray dark:text-gray-400 transition-colors">{resource.title}</h3>
                     <ExternalLink className="w-5 h-5 text-sage-600 group-hover:translate-x-1 transition-transform" />
                   </div>
-                  <p className="text-warm-gray/70 leading-relaxed">{resource.description}</p>
+                  <p className="leading-relaxed" style={{ color: '#1e2936' }}>{resource.description}</p>
                 </div>
               </a>
             );
