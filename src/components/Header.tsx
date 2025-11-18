@@ -9,6 +9,7 @@ interface HeaderProps {
 // Define your new color constants for consistency
 const darkAccent = '#5a7f6a'; // New dark mode green/sage color
 const orangeAccent = '#f7941d'; // Orange accent for the gradient end
+const blueAccent = '#3B82F6'; // Blue accent for brain logo
 
 export default function Header({ isDark, setIsDark }: HeaderProps) {
   // Component to render the Brain icon with the defined horizontal gradient
@@ -16,10 +17,10 @@ export default function Header({ isDark, setIsDark }: HeaderProps) {
     <svg width="36" height="36" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
       <defs>
         <linearGradient id="brainGradient" x1="0%" y1="0%" x2="100%" y2="0%">
-          {/* Start color: Green/Sage (Left side) */}
+          {/* Start color: Green (Left side) */}
           <stop offset="0%" style={{ stopColor: darkAccent, stopOpacity: 1 }} />
-          {/* End color: Orange accent (Right side) */}
-          <stop offset="100%" style={{ stopColor: orangeAccent, stopOpacity: 1 }} />
+          {/* End color: Blue (Right side) */}
+          <stop offset="100%" style={{ stopColor: blueAccent, stopOpacity: 1 }} />
         </linearGradient>
       </defs>
       {/* Use Brain from lucide-react, but apply the SVG structure and fill property */}
