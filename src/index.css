@@ -1155,6 +1155,20 @@
     animation: tooltip-appear 0.3s ease-out forwards;
   }
 
+  @keyframes footprintAppear {
+    0% {
+      opacity: 0;
+      transform: scale(0.5) rotate(-10deg);
+    }
+    60% {
+      transform: scale(1.1) rotate(2deg);
+    }
+    100% {
+      opacity: 1;
+      transform: scale(1) rotate(0deg);
+    }
+  }
+
   .chat-background-pattern {
     background-image:
       radial-gradient(circle at 20% 30%, rgba(24, 126, 95, 0.03) 0%, transparent 50%),
