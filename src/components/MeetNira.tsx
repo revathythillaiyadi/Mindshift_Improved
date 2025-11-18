@@ -63,7 +63,7 @@ export default function MeetNira() {
                 </div>
               </div>
 
-              <div className="p-8 space-y-6 h-[450px] overflow-y-auto bg-gradient-to-b from-lavender-50/20 via-warm-white/50 to-paleblue-50/20 dark:from-[#0a0f16] dark:via-[#0a0f16] dark:to-[#0a0f16]">
+              <div className="p-8 space-y-6 h-[450px] overflow-y-auto bg-white/90 dark:from-[#0a0f16] dark:via-[#0a0f16] dark:to-[#0a0f16]">
                 {messages.slice(0, visibleMessages).map((message, index) => (
                   <div
                     key={index}
