@@ -4,7 +4,9 @@
  * Optimized for quick responses with parallel processing support
  */
 
-const N8N_WEBHOOK_URL = 'https://trevathy.app.n8n.cloud/webhook/dbb33ceb-ed53-4dc1-8781-4d2786571d68';
+// Test webhook URL - Make sure to execute the workflow in n8n test mode before testing
+// For production, use: https://trevathy.app.n8n.cloud/webhook/dbb33ceb-ed53-4dc1-8781-4d2786571d68
+const N8N_WEBHOOK_URL = 'https://trevathy.app.n8n.cloud/webhook-test/b15d3ab2-c44b-4786-a227-6e53000b0f43';
 
 export interface N8NRequest {
   message: string;
