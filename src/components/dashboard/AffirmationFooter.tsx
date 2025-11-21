@@ -35,7 +35,7 @@ export default function AffirmationFooter() {
 
   return (
     <>
-      <div className="mt-8 pt-10 pb-10 px-5 text-center bg-gradient-to-b from-transparent to-[#F8FAF9] dark:to-[#2c4943] transition-colors">
+      <div className="pt-10 pb-10 px-5 text-center bg-gradient-to-b from-transparent to-[#F8FAF9] dark:to-[#2c4943] transition-colors">
         <div className="flex flex-col items-center justify-center max-w-[600px] mx-auto">
           <Sparkles className="w-6 h-6 text-[#187E5F] dark:text-sage-400 mb-4 animate-pulse-gentle" strokeWidth={2} />
           <p className="text-base italic text-[#315545] dark:text-[#c4d9d3] leading-relaxed">
@@ -44,7 +44,7 @@ export default function AffirmationFooter() {
         </div>
       </div>
 
-      <footer className="border-t border-[#E8F5F0] dark:border-[#46644e] bg-white/90 dark:bg-gray-800/90 backdrop-blur-xl transition-colors">
+      <footer className="bg-white/90 dark:bg-gray-800/90 backdrop-blur-xl transition-colors">
         <div className="px-6 py-8">
           <div className="max-w-6xl mx-auto grid grid-cols-1 md:grid-cols-3 gap-8 mb-8">
             <div className="flex flex-col items-center md:items-start text-center md:text-left">

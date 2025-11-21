@@ -1,10 +1,10 @@
-import { MessageSquare, BookOpen, Settings, Target, Trash2, Plus, Brain, Search, Pin, ChevronLeft, ChevronRight, User } from 'lucide-react';
+import { MessageSquare, BookOpen, Settings, Trash2, Plus, Brain, Search, Pin, ChevronLeft, ChevronRight, User } from 'lucide-react';
 import { useState, useEffect } from 'react';
 import { useNavigate } from 'react-router-dom';
 
 interface SidebarProps {
   currentView: string;
-  onViewChange: (view: 'chat' | 'journal' | 'settings' | 'goals') => void;
+  onViewChange: (view: 'chat' | 'journal' | 'settings') => void;
 }
 
 interface ChatSession {
@@ -97,7 +97,6 @@ export default function Sidebar({ currentView, onViewChange }: SidebarProps) {
   const navItems = [
     { id: 'chat', label: 'Chat With NIRA', icon: MessageSquare },
     { id: 'journal', label: 'Journal', icon: BookOpen, badge: '1' },
-    { id: 'goals', label: 'Goals & Progress', icon: Target },
     { id: 'settings', label: 'Settings', icon: Settings },
     { id: 'profile', label: 'My Profile', icon: User },
   ];

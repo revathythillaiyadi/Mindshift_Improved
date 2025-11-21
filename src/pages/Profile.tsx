@@ -1,9 +1,49 @@
 import { useState, useEffect } from 'react';
-import { User, Mail, Calendar, MapPin, Bell, Moon, Sun, Monitor, Shield, Download, Trash2, Award, MessageSquare, BookOpen, Target, Flame, Camera, Check, ArrowLeft } from 'lucide-react';
+import { User, Mail, Calendar, MapPin, Bell, Moon, Sun, Monitor, Shield, Download, Trash2, Award, MessageSquare, BookOpen, Target, Flame, Camera, Check, ArrowLeft, Clock } from 'lucide-react';
 import { useNavigate } from 'react-router-dom';
 import { supabase } from '../lib/supabase';
 import { useAuth } from '../contexts/AuthContext';
+import { useTheme } from '../contexts/ThemeContext';
 import TreeRing from '../components/TreeRing';
+
+const COUNTRIES = [
+  'United States',
+  'Canada',
+  'United Kingdom',
+  'Australia',
+  'Germany',
+  'France',
+  'Spain',
+  'Italy',
+  'Japan',
+  'South Korea',
+  'India',
+  'Brazil',
+  'Mexico',
+  'China',
+  'Russia',
+  'South Africa',
+  'New Zealand',
+  'Netherlands',
+  'Sweden',
+  'Norway',
+  'Denmark',
+  'Finland',
+  'Switzerland',
+  'Austria',
+  'Belgium',
+  'Portugal',
+  'Greece',
+  'Poland',
+  'Ireland',
+  'Singapore',
+  'Malaysia',
+  'Thailand',
+  'Philippines',
+  'Indonesia',
+  'Vietnam',
+  'Other'
+];
 
 interface ProfileData {
   full_name: string;
@@ -26,6 +66,7 @@ interface Statistics {
 export default function Profile() {
   const { user } = useAuth();
   const navigate = useNavigate();
+  const { isDark, toggleTheme } = useTheme();
   const [profile, setProfile] = useState<ProfileData>({
     full_name: '',
     email: user?.email || '',
@@ -35,7 +76,13 @@ export default function Profile() {
     member_since: new Date().toISOString()
   });
 
-  const [theme, setTheme] = useState<'light' | 'dark' | 'auto'>('auto');
+  // Sync local theme state with global theme
+  const [theme, setTheme] = useState<'light' | 'dark' | 'auto'>(() => {
+    const saved = localStorage.getItem('theme');
+    if (saved === 'dark') return 'dark';
+    if (saved === 'light') return 'light';
+    return 'auto';
+  });
   const [emailNotifications, setEmailNotifications] = useState(true);
   const [dailyReminder, setDailyReminder] = useState(true);
   const [reminderTime, setReminderTime] = useState('09:00');
@@ -68,6 +115,18 @@ export default function Profile() {
     loadProfile();
   }, [user]);
 
+  // Sync theme state with actual theme
+  useEffect(() => {
+    const saved = localStorage.getItem('theme');
+    if (saved === 'dark') {
+      setTheme('dark');
+    } else if (saved === 'light') {
+      setTheme('light');
+    } else {
+      setTheme('auto');
+    }
+  }, [isDark]);
+
   const loadProfile = async () => {
     if (!user) return;
 
@@ -99,23 +158,56 @@ export default function Profile() {
 
     setIsSaving(true);
     try {
-      const { error } = await supabase
+      // First, try with only the core fields that definitely exist
+      const coreData = {
+        id: user.id,
+        email: user.email || profile.email,
+        full_name: profile.full_name,
+        updated_at: new Date().toISOString()
+      };
+
+      let { error } = await supabase
         .from('profiles')
-        .upsert({
-          id: user.id,
-          full_name: profile.full_name,
-          pronouns: profile.pronouns,
-          location: profile.location,
-          avatar_url: profile.avatar_url,
-          updated_at: new Date().toISOString()
+        .upsert(coreData, {
+          onConflict: 'id',
+          ignoreDuplicates: false
         });
 
-      if (error) throw error;
+      // If core save succeeds, try to update optional fields separately
+      // This way if optional fields don't exist, the core save still works
+      if (!error && (profile.pronouns || profile.location)) {
+        const optionalData: any = {};
+        if (profile.pronouns) optionalData.pronouns = profile.pronouns;
+        if (profile.location) optionalData.location = profile.location;
+
+        // Try to update optional fields, but don't fail if they don't exist
+        const { error: optionalError } = await supabase
+          .from('profiles')
+          .update(optionalData)
+          .eq('id', user.id);
+
+        // Log optional field errors but don't throw - core save already succeeded
+        if (optionalError) {
+          console.warn('Optional fields (pronouns/location) could not be saved:', optionalError.message);
+        }
+      }
+
+      if (error) {
+        console.error('Error saving profile:', error);
+        console.error('Error details:', {
+          message: error.message,
+          code: error.code,
+          details: error.details,
+          hint: error.hint
+        });
+        throw error;
+      }
 
       alert('Profile saved successfully!');
-    } catch (error) {
+    } catch (error: any) {
       console.error('Error saving profile:', error);
-      alert('Failed to save profile. Please try again.');
+      const errorMessage = error?.message || 'Failed to save profile. Please try again.';
+      alert(errorMessage);
     } finally {
       setIsSaving(false);
     }
@@ -125,25 +217,147 @@ export default function Profile() {
     const file = e.target.files?.[0];
     if (!file || !user) return;
 
+    // Validate file type
+    const validTypes = ['image/jpeg', 'image/jpg', 'image/png', 'image/webp', 'image/gif'];
+    if (!validTypes.includes(file.type)) {
+      alert('Please upload a valid image file (JPEG, PNG, WebP, or GIF)');
+      return;
+    }
+
+    // Validate file size (max 5MB)
+    const maxSize = 5 * 1024 * 1024; // 5MB in bytes
+    if (file.size > maxSize) {
+      alert('Image size must be less than 5MB');
+      return;
+    }
+
     try {
       const fileExt = file.name.split('.').pop();
-      const fileName = `${user.id}-${Math.random()}.${fileExt}`;
-      const filePath = `avatars/${fileName}`;
+      const fileName = `${Date.now()}-${Math.random().toString(36).substring(7)}.${fileExt}`;
+      // Storage policy requires: avatars/{user_id}/{filename}
+      const filePath = `${user.id}/${fileName}`;
 
-      const { error: uploadError } = await supabase.storage
-        .from('avatars')
-        .upload(filePath, file);
+      // Delete old avatar if exists
+      if (profile.avatar_url) {
+        try {
+          const oldPath = profile.avatar_url.split('/').slice(-2).join('/');
+          await supabase.storage.from('avatars').remove([oldPath]);
+        } catch (deleteError) {
+          // Ignore delete errors - old file might not exist
+          console.warn('Could not delete old avatar:', deleteError);
+        }
+      }
 
-      if (uploadError) throw uploadError;
+      // Try to upload directly - bucket check might fail due to permissions
+      // so we'll try the upload and handle errors appropriately
+      let bucketName = 'avatars';
+      console.log(`Attempting to upload to bucket: ${bucketName}, path: ${filePath}`);
+      
+      const { error: uploadError, data: uploadData } = await supabase.storage
+        .from(bucketName)
+        .upload(filePath, file, {
+          cacheControl: '3600',
+          upsert: false
+        });
+
+      if (uploadError) {
+        console.error('Upload error details:', {
+          message: uploadError.message,
+          statusCode: uploadError.statusCode,
+          error: uploadError
+        });
+        
+        // Try alternative bucket names if "avatars" fails
+        if (uploadError.message?.includes('Bucket not found') || uploadError.message?.includes('not found')) {
+          const altNames = ['avatar', 'Avatar', 'Avatar_files', 'Avatar Files', 'avatars'];
+          let uploaded = false;
+          
+          for (const altName of altNames) {
+            if (altName === bucketName) continue; // Already tried this one
+            
+            console.log(`Trying alternative bucket name: ${altName}`);
+            const { error: altError, data: altData } = await supabase.storage
+              .from(altName)
+              .upload(filePath, file, {
+                cacheControl: '3600',
+                upsert: false
+              });
+            
+            if (!altError && altData) {
+              bucketName = altName;
+              uploaded = true;
+              console.log(`✅ Successfully uploaded to bucket: ${altName}`);
+              // Update uploadData for later use
+              Object.assign(uploadData || {}, altData);
+              break;
+            }
+          }
+          
+          if (!uploaded) {
+            alert('The avatars storage bucket does not exist. Please create it in your Supabase dashboard:\n\n1. Go to Storage in Supabase\n2. Click "New bucket"\n3. Name it exactly "avatars" (lowercase)\n4. Make it PUBLIC\n5. Click "Create bucket"\n\nThen set up RLS policies:\n1. Go to Storage > Policies\n2. Click "New Policy"\n3. For INSERT: Allow authenticated users with condition:\n   bucket_id = \'avatars\' AND (storage.foldername(name))[1] = auth.uid()::text\n4. For SELECT: Allow public access');
+            return;
+          }
+        } else if (uploadError.message?.includes('permission') || uploadError.message?.includes('policy') || uploadError.message?.includes('RLS') || uploadError.message?.includes('denied')) {
+          alert('Permission denied. Please check your storage bucket RLS policies in Supabase:\n\n1. Go to Storage > Policies\n2. Create a policy for INSERT:\n   - Name: "Users can upload their own avatar"\n   - Operation: INSERT\n   - Target roles: authenticated\n   - WITH CHECK: bucket_id = \'avatars\' AND (storage.foldername(name))[1] = auth.uid()::text\n\n3. Create a policy for SELECT:\n   - Name: "Public avatar access"\n   - Operation: SELECT\n   - Target roles: public\n   - USING: bucket_id = \'avatars\'');
+          return;
+        } else if (uploadError.message?.includes('duplicate') || uploadError.message?.includes('already exists')) {
+          // Try with upsert
+          const { error: upsertError, data: upsertData } = await supabase.storage
+            .from(bucketName)
+            .upload(filePath, file, {
+              cacheControl: '3600',
+              upsert: true
+            });
+          if (upsertError) {
+            throw upsertError;
+          }
+          // Update uploadData
+          Object.assign(uploadData || {}, upsertData);
+        } else {
+          throw uploadError;
+        }
+      }
 
       const { data: { publicUrl } } = supabase.storage
-        .from('avatars')
+        .from(bucketName)
         .getPublicUrl(filePath);
+      
+      console.log('Upload successful! Public URL:', publicUrl);
 
       setProfile({ ...profile, avatar_url: publicUrl });
-    } catch (error) {
+      
+      // Optionally save the avatar_url to the profile
+      // Note: This will only work if avatar_url column exists
+      try {
+        await supabase
+          .from('profiles')
+          .update({ avatar_url: publicUrl })
+          .eq('id', user.id);
+      } catch (saveError) {
+        // Don't fail if avatar_url column doesn't exist
+        console.warn('Could not save avatar_url to profile:', saveError);
+      }
+    } catch (error: any) {
       console.error('Error uploading avatar:', error);
-      alert('Failed to upload avatar. Please try again.');
+      console.error('Full error object:', JSON.stringify(error, null, 2));
+      
+      let errorMessage = 'Failed to upload avatar. ';
+      
+      if (error?.message) {
+        if (error.message.includes('Bucket not found')) {
+          errorMessage += 'The "avatars" bucket does not exist. Please create it in Supabase Storage.';
+        } else if (error.message.includes('permission') || error.message.includes('policy') || error.message.includes('RLS')) {
+          errorMessage += 'Permission denied. Please check your storage bucket RLS policies allow authenticated users to upload.';
+        } else if (error.message.includes('duplicate')) {
+          errorMessage += 'File already exists. Please try again.';
+        } else {
+          errorMessage += error.message;
+        }
+      } else {
+        errorMessage += 'Please try again.';
+      }
+      
+      alert(errorMessage);
     }
   };
 
@@ -277,17 +491,22 @@ export default function Profile() {
 
                 <div>
                   <label className="block text-sm font-medium text-gray-700 dark:text-gray-300 mb-2">
-                    Location
+                    Country
                   </label>
                   <div className="relative">
-                    <MapPin className="absolute left-3 top-1/2 -translate-y-1/2 w-4 h-4 text-gray-500" />
-                    <input
-                      type="text"
+                    <MapPin className="absolute left-3 top-1/2 -translate-y-1/2 w-4 h-4 text-gray-500 pointer-events-none z-10" />
+                    <select
                       value={profile.location}
                       onChange={(e) => setProfile({ ...profile, location: e.target.value })}
-                      className="w-full pl-10 pr-4 py-2.5 rounded-lg border border-sage-200 dark:border-gray-600 bg-white dark:bg-gray-700 text-gray-900 dark:text-white focus:outline-none focus:ring-2 focus:ring-[#187E5F] transition-colors"
-                      placeholder="City, Country"
-                    />
+                      className="w-full pl-10 pr-4 py-2.5 rounded-lg border border-sage-200 dark:border-gray-600 bg-white dark:bg-gray-700 text-gray-900 dark:text-white focus:outline-none focus:ring-2 focus:ring-[#187E5F] transition-colors appearance-none cursor-pointer"
+                    >
+                      <option value="">Select your country</option>
+                      {COUNTRIES.map((country) => (
+                        <option key={country} value={country}>
+                          {country}
+                        </option>
+                      ))}
+                    </select>
                   </div>
                 </div>
               </div>
@@ -305,9 +524,15 @@ export default function Profile() {
                   </label>
                   <div className="grid grid-cols-3 gap-3">
                     <button
-                      onClick={() => setTheme('light')}
+                      onClick={() => {
+                        setTheme('light');
+                        if (isDark) {
+                          toggleTheme(); // Switch to light
+                        }
+                        localStorage.setItem('theme', 'light');
+                      }}
                       className={`flex flex-col items-center gap-2 p-3 rounded-lg border-2 transition-all ${
-                        theme === 'light'
+                        theme === 'light' && !isDark
                           ? 'border-[#187E5F] bg-sage-50 dark:bg-gray-700'
                           : 'border-sage-200 dark:border-gray-600 hover:border-sage-300 dark:hover:border-gray-500'
                       }`}
@@ -316,9 +541,15 @@ export default function Profile() {
                       <span className="text-xs font-medium text-gray-700 dark:text-gray-300">Light</span>
                     </button>
                     <button
-                      onClick={() => setTheme('dark')}
+                      onClick={() => {
+                        setTheme('dark');
+                        if (!isDark) {
+                          toggleTheme(); // Switch to dark
+                        }
+                        localStorage.setItem('theme', 'dark');
+                      }}
                       className={`flex flex-col items-center gap-2 p-3 rounded-lg border-2 transition-all ${
-                        theme === 'dark'
+                        theme === 'dark' && isDark
                           ? 'border-[#187E5F] bg-sage-50 dark:bg-gray-700'
                           : 'border-sage-200 dark:border-gray-600 hover:border-sage-300 dark:hover:border-gray-500'
                       }`}
@@ -327,7 +558,15 @@ export default function Profile() {
                       <span className="text-xs font-medium text-gray-700 dark:text-gray-300">Dark</span>
                     </button>
                     <button
-                      onClick={() => setTheme('auto')}
+                      onClick={() => {
+                        setTheme('auto');
+                        // Auto mode: use system preference
+                        const prefersDark = window.matchMedia('(prefers-color-scheme: dark)').matches;
+                        if (prefersDark !== isDark) {
+                          toggleTheme();
+                        }
+                        localStorage.removeItem('theme');
+                      }}
                       className={`flex flex-col items-center gap-2 p-3 rounded-lg border-2 transition-all ${
                         theme === 'auto'
                           ? 'border-[#187E5F] bg-sage-50 dark:bg-gray-700'
@@ -384,13 +623,19 @@ export default function Profile() {
                     </div>
 
                     {dailyReminder && (
-                      <div className="pl-8">
-                        <input
-                          type="time"
-                          value={reminderTime}
-                          onChange={(e) => setReminderTime(e.target.value)}
-                          className="px-3 py-2 rounded-lg border border-sage-200 dark:border-gray-600 bg-white dark:bg-gray-800 text-gray-900 dark:text-white focus:outline-none focus:ring-2 focus:ring-[#187E5F]"
-                        />
+                      <div className="pl-8 mt-3">
+                        <label className="block text-xs font-medium text-gray-600 dark:text-gray-400 mb-2">
+                          Reminder Time
+                        </label>
+                        <div className="relative">
+                          <Clock className="absolute left-3 top-1/2 -translate-y-1/2 w-4 h-4 text-gray-500 pointer-events-none z-10" />
+                          <input
+                            type="time"
+                            value={reminderTime}
+                            onChange={(e) => setReminderTime(e.target.value)}
+                            className="w-full pl-10 pr-4 py-2.5 rounded-lg border border-sage-200 dark:border-gray-600 bg-white dark:bg-gray-800 text-gray-900 dark:text-white focus:outline-none focus:ring-2 focus:ring-[#187E5F] transition-colors"
+                          />
+                        </div>
                       </div>
                     )}
                   </div>
