@@ -798,6 +798,11 @@ export default function ChatArea() {
       })
       .catch((error: any) => {
         console.error('❌ Error getting AI response from n8n:', error);
+        console.error('❌ Error details:', {
+          message: error.message,
+          error: error,
+          url: import.meta.env.VITE_N8N_WEBHOOK_URL || 'using default',
+        });
         // Fallback response
         const fallbackText = "I hear you. Let's work through this together. Can you tell me more about what's on your mind?";
         setMessages(prev =>
