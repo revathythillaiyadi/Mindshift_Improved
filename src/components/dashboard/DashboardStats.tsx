@@ -44,8 +44,14 @@ export default function DashboardStats() {
       
       try {
         const [checkIns, minutes] = await Promise.all([
-          getTodayConversations(user.id),
-          getTodayMindfulnessMinutes(user.id),
+          getTodayConversations(user.id).catch(err => {
+            console.warn('Error loading today conversations (non-critical):', err);
+            return 0; // Return default value on error
+          }),
+          getTodayMindfulnessMinutes(user.id).catch(err => {
+            console.warn('Error loading mindfulness minutes (non-critical):', err);
+            return 0; // Return default value on error
+          }),
         ]);
         
         setWeeklyStats({
@@ -55,20 +61,27 @@ export default function DashboardStats() {
         });
         
         // Refresh stats to ensure streak and achievements are updated
-        await refreshStats();
+        await refreshStats().catch(err => {
+          console.warn('Error refreshing stats (non-critical):', err);
+        });
       } catch (error) {
-        console.error('Error loading conversation stats:', error);
+        // Only log if it's a critical error, not network issues
+        if (error instanceof Error && !error.message.includes('Failed to fetch') && !error.message.includes('ERR_INSUFFICIENT_RESOURCES')) {
+          console.error('Error loading conversation stats:', error);
+        } else {
+          console.debug('Stats loading error (network/resource issue, non-critical):', error);
+        }
       }
     };
 
     loadConversationStats();
-    // Refresh every 30 seconds to keep stats in sync (reduced frequency to prevent resource exhaustion)
+    // Refresh every 60 seconds to reduce load (increased from 30s to prevent resource exhaustion)
     const interval = setInterval(() => {
       loadConversationStats().catch(error => {
         // Silently handle errors to prevent console spam
         console.debug('Stats refresh error (non-critical):', error);
       });
-    }, 30000);
+    }, 60000); // Increased to 60 seconds
     
     return () => clearInterval(interval);
   }, [user, stats?.journal_count_monthly, stats?.current_streak, refreshStats]);
