@@ -8,6 +8,7 @@ import Dashboard from './pages/Dashboard.tsx';
 import Profile from './pages/Profile.tsx';
 import TheScribe from './pages/TheScribe.jsx';
 import BetaQRCode from './pages/BetaQRCode.tsx';
+import TestN8N from './pages/TestN8N.tsx';
 import { AuthProvider, useAuth } from './contexts/AuthContext.tsx';
 import { ThemeProvider } from './contexts/ThemeContext.tsx';
 import './index.css';
@@ -53,6 +54,7 @@ createRoot(document.getElementById('root')!).render(
             <Route path="/dashboard" element={<ProtectedRoute><Dashboard /></ProtectedRoute>} />
             <Route path="/profile" element={<ProtectedRoute><Profile /></ProtectedRoute>} />
             <Route path="/scribe" element={<TheScribe />} />
+            <Route path="/test-n8n" element={<TestN8N />} />
           </Routes>
         </AuthProvider>
       </ThemeProvider>

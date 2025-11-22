@@ -1,0 +1,233 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>n8n Connection Test</title>
+    <style>
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, sans-serif;
+            max-width: 800px;
+            margin: 50px auto;
+            padding: 20px;
+            background: #f5f5f5;
+        }
+        .container {
+            background: white;
+            padding: 30px;
+            border-radius: 12px;
+            box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+        }
+        h1 {
+            color: #187E5F;
+            margin-top: 0;
+        }
+        .status {
+            padding: 15px;
+            border-radius: 8px;
+            margin: 15px 0;
+        }
+        .status.success {
+            background: #d4edda;
+            border: 1px solid #c3e6cb;
+            color: #155724;
+        }
+        .status.error {
+            background: #f8d7da;
+            border: 1px solid #f5c6cb;
+            color: #721c24;
+        }
+        .status.info {
+            background: #d1ecf1;
+            border: 1px solid #bee5eb;
+            color: #0c5460;
+        }
+        .status.loading {
+            background: #fff3cd;
+            border: 1px solid #ffeaa7;
+            color: #856404;
+        }
+        button {
+            background: #187E5F;
+            color: white;
+            border: none;
+            padding: 12px 24px;
+            border-radius: 6px;
+            cursor: pointer;
+            font-size: 16px;
+            margin-top: 10px;
+        }
+        button:hover {
+            background: #0B5844;
+        }
+        button:disabled {
+            background: #ccc;
+            cursor: not-allowed;
+        }
+        pre {
+            background: #f8f9fa;
+            padding: 15px;
+            border-radius: 6px;
+            overflow-x: auto;
+            font-size: 14px;
+        }
+        .info-item {
+            margin: 10px 0;
+            padding: 10px;
+            background: #f8f9fa;
+            border-radius: 6px;
+        }
+        .info-item strong {
+            color: #187E5F;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1>🔍 n8n Connection Test</h1>
+        
+        <div id="info" class="status info">
+            <strong>ℹ️ Information:</strong>
+            <div id="info-content">Loading...</div>
+        </div>
+
+        <div id="status" class="status loading" style="display: none;">
+            <strong>⏳ Status:</strong>
+            <div id="status-content">Ready to test</div>
+        </div>
+
+        <button id="test-btn" onclick="testConnection()">Test n8n Connection</button>
+
+        <div id="result" style="display: none;">
+            <h2>Test Result</h2>
+            <pre id="result-content"></pre>
+        </div>
+    </div>
+
+    <script type="module">
+        // Get webhook URL from environment or use default
+        const webhookUrl = import.meta.env?.VITE_N8N_WEBHOOK_URL || 
+                          'https://trevathy.app.n8n.cloud/webhook/dbb33ceb-ed53-4dc1-8781-4d2786571d68';
+        
+        // Display info
+        document.getElementById('info-content').innerHTML = `
+            <div class="info-item">
+                <strong>Webhook URL:</strong><br>
+                <code>${webhookUrl}</code>
+            </div>
+            <div class="info-item">
+                <strong>Using Environment Variable:</strong> ${import.meta.env?.VITE_N8N_WEBHOOK_URL ? 'Yes ✅' : 'No (using default)'}
+            </div>
+            <div class="info-item">
+                <strong>Environment Mode:</strong> ${import.meta.env?.MODE || 'unknown'}
+            </div>
+        `;
+
+        window.testConnection = async function() {
+            const statusDiv = document.getElementById('status');
+            const statusContent = document.getElementById('status-content');
+            const resultDiv = document.getElementById('result');
+            const resultContent = document.getElementById('result-content');
+            const testBtn = document.getElementById('test-btn');
+
+            statusDiv.style.display = 'block';
+            statusDiv.className = 'status loading';
+            statusContent.textContent = 'Testing connection...';
+            testBtn.disabled = true;
+            resultDiv.style.display = 'none';
+
+            try {
+                const startTime = performance.now();
+                
+                const response = await fetch(webhookUrl, {
+                    method: 'POST',
+                    headers: {
+                        'Content-Type': 'application/json',
+                        'Accept': 'application/json',
+                    },
+                    body: JSON.stringify({
+                        message: 'test connection',
+                        userId: 'test-user',
+                        sessionId: 'test-session',
+                        context: {
+                            timestamp: Date.now(),
+                        },
+                    }),
+                });
+
+                const responseTime = performance.now() - startTime;
+                const contentType = response.headers.get('content-type');
+                let data;
+
+                if (contentType?.includes('application/json')) {
+                    data = await response.json();
+                } else {
+                    data = await response.text();
+                }
+
+                if (!response.ok) {
+                    throw new Error(`HTTP ${response.status}: ${JSON.stringify(data)}`);
+                }
+
+                // Success!
+                statusDiv.className = 'status success';
+                statusContent.innerHTML = `
+                    ✅ <strong>Connection Successful!</strong><br>
+                    Response time: ${responseTime.toFixed(2)}ms<br>
+                    Status: ${response.status} ${response.statusText}
+                `;
+
+                resultDiv.style.display = 'block';
+                resultContent.textContent = JSON.stringify({
+                    success: true,
+                    status: response.status,
+                    responseTime: `${responseTime.toFixed(2)}ms`,
+                    data: data,
+                }, null, 2);
+
+            } catch (error) {
+                // Error
+                statusDiv.className = 'status error';
+                
+                let errorMessage = error.message;
+                let suggestion = '';
+
+                if (errorMessage.includes('404') || errorMessage.includes('not registered')) {
+                    suggestion = `
+                        <br><br>
+                        <strong>💡 Solution:</strong><br>
+                        1. Go to <a href="https://trevathy.app.n8n.cloud" target="_blank">n8n dashboard</a><br>
+                        2. Open your workflow<br>
+                        3. Toggle the workflow to <strong>ACTIVE</strong> (top-right switch)<br>
+                        4. Run this test again
+                    `;
+                } else if (errorMessage.includes('Failed to fetch') || errorMessage.includes('NetworkError')) {
+                    suggestion = `
+                        <br><br>
+                        <strong>💡 Check:</strong><br>
+                        - Internet connection<br>
+                        - CORS settings in n8n<br>
+                        - Webhook URL is correct
+                    `;
+                }
+
+                statusContent.innerHTML = `
+                    ❌ <strong>Connection Failed</strong><br>
+                    ${errorMessage}
+                    ${suggestion}
+                `;
+
+                resultDiv.style.display = 'block';
+                resultContent.textContent = JSON.stringify({
+                    success: false,
+                    error: error.message,
+                    webhookUrl: webhookUrl,
+                }, null, 2);
+            } finally {
+                testBtn.disabled = false;
+            }
+        };
+    </script>
+</body>
+</html>
+
