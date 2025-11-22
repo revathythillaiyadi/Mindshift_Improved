@@ -681,6 +681,34 @@ export default function ChatArea() {
 
         const fullText = n8nResponse.response;
         
+        // Log the response for debugging
+        console.log('✅ n8n response received:', {
+          success: n8nResponse.success,
+          responseLength: fullText?.length || 0,
+          responsePreview: fullText?.substring(0, 100) || 'empty',
+          fullResponse: n8nResponse,
+        });
+        
+        // Ensure we have text to display
+        if (!fullText || fullText.trim() === '') {
+          console.warn('⚠️ Empty response from n8n, using fallback');
+          const fallbackText = "I received your message but I'm having trouble processing it right now. Can you try again?";
+          setMessages(prev =>
+            prev.map(msg =>
+              msg.id === botResponseId
+                ? { ...msg, text: fallbackText, isTyping: false }
+                : msg
+            )
+          );
+          setTypingMessages(prev => {
+            const newSet = new Set(prev);
+            newSet.delete(botResponseId);
+            return newSet;
+          });
+          setIsThinking(false);
+          return;
+        }
+        
         // Simulate typing animation for better UX (quick, 50ms per 5 chars)
         const typeSpeed = 50; // milliseconds per chunk
         const chunkSize = 5; // characters per chunk
@@ -738,13 +766,16 @@ export default function ChatArea() {
             clearInterval(typeInterval);
             
             // Response complete - ensure full text is shown
-            setMessages(prev =>
-              prev.map(msg =>
+            console.log('✅ Typing animation complete, setting full text:', fullText.substring(0, 50));
+            setMessages(prev => {
+              const updated = prev.map(msg =>
                 msg.id === botResponseId
                   ? { ...msg, text: fullText, isTyping: false }
                   : msg
-              )
-            );
+              );
+              console.log('✅ Updated messages:', updated.find(m => m.id === botResponseId));
+              return updated;
+            });
             setTypingMessages(prev => {
               const newSet = new Set(prev);
               newSet.delete(botResponseId);

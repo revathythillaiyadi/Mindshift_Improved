@@ -231,6 +231,14 @@ export async function sendToN8N(
       data = await response.text();
     }
 
+    // Log the raw response for debugging
+    console.log('📦 Raw n8n response:', {
+      contentType,
+      dataType: typeof data,
+      dataPreview: typeof data === 'string' ? data.substring(0, 200) : JSON.stringify(data).substring(0, 200),
+      fullData: data,
+    });
+
     // Handle different response formats from n8n
     let responseText: string;
     
@@ -248,10 +256,28 @@ export async function sendToN8N(
       responseText = data.content;
     } else if (data?.output) {
       responseText = data.output;
+    } else if (Array.isArray(data) && data.length > 0) {
+      // Handle array responses - get first item or join
+      responseText = typeof data[0] === 'string' ? data.join(' ') : JSON.stringify(data);
+    } else if (data && typeof data === 'object') {
+      // Try to find any string value in the object
+      const stringValues = Object.values(data).filter(v => typeof v === 'string' && v.trim().length > 0);
+      if (stringValues.length > 0) {
+        responseText = stringValues[0] as string;
+      } else {
+        // Last resort: stringify the object
+        responseText = JSON.stringify(data);
+      }
     } else {
       // If response is an object with other structure, try to extract text or stringify
       responseText = JSON.stringify(data);
     }
+    
+    // Log the extracted text
+    console.log('📝 Extracted response text:', {
+      length: responseText?.length || 0,
+      preview: responseText?.substring(0, 100) || 'empty',
+    });
 
     return {
       response: responseText || 'I received your message but got an empty response.',
